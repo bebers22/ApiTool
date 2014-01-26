@@ -27,7 +27,7 @@ public class ShellConnector {
     static final String idDSAPath = "~/.ssh/id_dsa";
     static final String idRSAPath = "~/.ssh/id_rsa";
     private String host = "snv4914";
-    private String username = "izhaqb";
+    private String username = "yuvalsi";
     private String password = "Unix11!";
     private KnownHosts database = new KnownHosts();
     private OutputStreamWriter writer = null;

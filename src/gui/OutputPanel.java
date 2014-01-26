@@ -6,6 +6,8 @@ package gui;
 
 import dataTypes.*;
 
+import java.awt.event.AdjustmentEvent;
+import java.awt.event.AdjustmentListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -44,9 +46,17 @@ public class OutputPanel extends javax.swing.JPanel implements LogAreaListiner{
     private void initComponents() {
 
         logScroll = new javax.swing.JScrollPane();
+        logScroll.setAutoscrolls(true);
         outputlog = new javax.swing.JTextPane();
 
         logScroll.setViewportView(outputlog);
+        
+        ///scroll down to the bottom allways
+        logScroll.getVerticalScrollBar().addAdjustmentListener(new AdjustmentListener() {  
+            public void adjustmentValueChanged(AdjustmentEvent e) {  
+                e.getAdjustable().setValue(e.getAdjustable().getMaximum());  
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

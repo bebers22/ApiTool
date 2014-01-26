@@ -50,24 +50,53 @@ public class EnviromentHolder {
     public static FrameModel frameModel;
     private static TaskSchedulerBoard workersScheduler;
     
-    private static HashMap<String,String> ddlFillInBBs;
+    private static String[] usernamePassword;
+
+	private static HashMap<String,String> ddlFillInBBs;
     private static HashMap<String,String> ddlFillInVersion;
     
     
     public static void loadPreferences() {
      	try {
 
-    		File fXmlFile = new File(Constants.BB_AND_VERSIONS_XML);
-    		Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(fXmlFile);
-    		
-    		ddlFillInBBs = parsePropertiestoMap("BB",doc);
-    		ddlFillInVersion = parsePropertiestoMap("Version",doc);
-
+     		loadUserEnvDetails();
+     		loadDdlDetails();
+     		
     	} catch (Exception e) {
     		e.printStackTrace();
     	}
     }
 
+    private static void loadUserEnvDetails() {
+    	try {
+    		
+    	   	File usernamePasswordfile = new File(Constants.USERNAME_PASSWORD_XML);
+			Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(usernamePasswordfile);
+			NodeList  nList = doc.getElementsByTagName("User");
+			if( nList.getLength() != 0 ) {
+				Element el = (Element) nList.item(0);
+				usernamePassword = new String[2];
+				usernamePassword[0] = el.getAttribute("username");
+				usernamePassword[1] = el.getAttribute("password");
+			}
+		
+    	} catch (Exception e) {
+			System.out.println("FAILD to load local file - using default values");
+		}
+	
+    	
+		
+	}
+
+	public static void loadDdlDetails() throws SAXException, IOException, ParserConfigurationException {
+    	
+		File fXmlFile = new File(Constants.BB_AND_VERSIONS_XML);
+		Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(fXmlFile);
+		
+		ddlFillInBBs = parsePropertiestoMap("BB",doc);
+		ddlFillInVersion = parsePropertiestoMap("Version",doc);
+    	
+    }
     
     
     private static HashMap<String, String> parsePropertiestoMap(String tagName, Document doc) {
@@ -158,6 +187,11 @@ public class EnviromentHolder {
     		
     	return versionsString;
     }
+    
+    public static String[] getUsernamePassword() {
+		return usernamePassword;
+	}
+
     
 
     public static void registerLisitners() {
