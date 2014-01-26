@@ -12,4 +12,7 @@ public class Constants {
 	public final static String LOCAL_BUILD_LOGS = "Local build logs";
 	public final static String BUILD_CC_LOGS = "Build CC logs";
 	
+
+	public final static String BB_AND_VERSIONS_XML = "V:/API Knowledge Base/prop/BBAndVersions.xml";
+	
 }

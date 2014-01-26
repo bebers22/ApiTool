@@ -14,6 +14,8 @@ import gui.ToolFrame;
 
 import java.awt.Component;
 import java.awt.Container;
+import java.io.File;
+import java.io.IOException;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -21,8 +23,17 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
 import org.omg.CORBA.StringHolder;
 import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
 /**
  *
@@ -39,7 +50,53 @@ public class EnviromentHolder {
     public static FrameModel frameModel;
     private static TaskSchedulerBoard workersScheduler;
     
-    public static ToolFrame getToolFrame() {
+    private static HashMap<String,String> ddlFillInBBs;
+    private static HashMap<String,String> ddlFillInVersion;
+    
+    
+    public static void loadPreferences() {
+     	try {
+
+    		File fXmlFile = new File(Constants.BB_AND_VERSIONS_XML);
+    		Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(fXmlFile);
+    		
+    		ddlFillInBBs = parsePropertiestoMap("BB",doc);
+    		ddlFillInVersion = parsePropertiestoMap("Version",doc);
+
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    	}
+    }
+
+    
+    
+    private static HashMap<String, String> parsePropertiestoMap(String tagName, Document doc) {
+
+		NodeList nList = doc.getElementsByTagName(tagName);
+		
+		int nListLenght = nList.getLength();
+		
+		HashMap<String, String> mapToFill = new HashMap<String,String>(nListLenght);
+		
+		for(int i=0 ; i<nListLenght ; i++) {
+			Node node = nList.item(i);
+			if(node.getNodeType() == Node.ELEMENT_NODE) {
+				
+				Element el = (Element)node;
+				//System.out.println(el.getAttribute("id"));
+				//System.out.println(el.getAttribute("name"));
+				mapToFill.put(el.getAttribute("id"), el.getAttribute("name"));
+				
+			}
+		}
+		
+		return mapToFill;
+		
+	}
+
+
+
+	public static ToolFrame getToolFrame() {
         return toolFrame;
     }
 
@@ -87,6 +144,21 @@ public class EnviromentHolder {
         EnviromentHolder.componentMap = componentMap;
         registerLisitners();
     }
+    
+    public static String[] getDdlForBB() {
+    	
+    	String[] bbsString = ddlFillInBBs.values().toArray(new String[ddlFillInBBs.size()]);
+    		
+    	return bbsString;
+    }
+    
+    public static String[] getDdlForVersions() {
+    	
+    	String[] versionsString = (String[])ddlFillInVersion.values().toArray(new String[ddlFillInVersion.size()]);
+    		
+    	return versionsString;
+    }
+    
 
     public static void registerLisitners() {
 

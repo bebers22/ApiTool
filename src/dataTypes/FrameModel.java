@@ -22,7 +22,8 @@ public class FrameModel {
     
     
     public void initiate() {
-        String[] logAreaNames = EnviromentHolder.logAreaNames.toString().split("@");
+    	
+        String[] logAreaNames = EnviromentHolder.logAreaNames.value.split("@");
         
         for(int i=0; i<logAreaNames.length; i++) {
             Logs.put(logAreaNames[i], new LogAreaModel(logAreaNames[i]));

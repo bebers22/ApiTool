@@ -7,6 +7,7 @@ package gui;
 import dataTypes.FrameModel;
 import dataTypes.LogAreaListiner;
 import dataTypes.TaskSchedulerBoard;
+import enviroment.Constants;
 import enviroment.EnviromentHolder;
 
 import java.awt.Component;
@@ -14,9 +15,11 @@ import java.awt.Container;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
 import java.awt.Dimension;
 
 /**
@@ -46,7 +49,8 @@ public class ToolFrame extends javax.swing.JFrame {
     
     private void postLoadEnvierment() {
         EnviromentHolder.setToolFrame(this);
-        EnviromentHolder.setComponentMap(loadOutputLogs(this));
+        HashMap<String, LogAreaListiner> nn = loadOutputLogs(this);
+        EnviromentHolder.setComponentMap(nn);
     }
     
 public  HashMap<String, LogAreaListiner> loadOutputLogs(final Container c) {
@@ -100,7 +104,7 @@ public  HashMap<String, LogAreaListiner> loadOutputLogs(final Container c) {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        localBuildLog.setName("localBuildLog"); // NOI18N
+        localBuildLog.setName(Constants.LOCAL_BUILD_LOGS); // NOI18N
 
         javax.swing.GroupLayout localBuildTABLayout = new javax.swing.GroupLayout(localBuildTAB);
         localBuildTABLayout.setHorizontalGroup(
@@ -125,7 +129,7 @@ public  HashMap<String, LogAreaListiner> loadOutputLogs(final Container c) {
 
         commandsTabbedPane.addTab("Local Build", localBuildTAB);
 
-        buildCCLog.setName("buildCCLog"); // NOI18N
+        buildCCLog.setName(Constants.BUILD_CC_LOGS); // NOI18N
 
         javax.swing.GroupLayout buildCCPanelTABLayout = new javax.swing.GroupLayout(buildCCPanelTAB);
         buildCCPanelTABLayout.setHorizontalGroup(
@@ -352,6 +356,8 @@ public  HashMap<String, LogAreaListiner> loadOutputLogs(final Container c) {
             java.util.logging.Logger.getLogger(ToolFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        
+        EnviromentHolder.loadPreferences();
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {

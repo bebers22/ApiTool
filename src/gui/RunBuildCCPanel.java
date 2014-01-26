@@ -5,6 +5,7 @@
 package gui;
 
 import enviroment.Constants;
+import enviroment.EnviromentHolder;
 import eventHendlers.BuildCCHandler;
 import eventHendlers.localBuildHandler;
 
@@ -69,12 +70,12 @@ public class RunBuildCCPanel extends javax.swing.JPanel {
     	lblBb.setBounds(6, 6, 25, 26);
     	lblBb.setFont(new Font("Tahoma", Font.PLAIN, 13));
     	add(lblBb);
+    	
     	bbDDL = new javax.swing.JComboBox();
     	bbDDL.setBounds(61, 6, 125, 26);
     	bbDDL.setToolTipText("Select BB to run build");
     	bbDDL.setMaximumRowCount(20);
-
-    	bbDDL.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+    	bbDDL.setModel(new javax.swing.DefaultComboBoxModel(EnviromentHolder.getDdlForBB()));
     	add(bbDDL);
 
     	lblVersion = new JLabel("Version:");
@@ -85,7 +86,9 @@ public class RunBuildCCPanel extends javax.swing.JPanel {
     	versionsDDL = new JComboBox();
     	versionsDDL.setBounds(61, 44, 125, 26);
     	versionsDDL.setToolTipText("Select version");
+    	versionsDDL.setModel(new javax.swing.DefaultComboBoxModel(EnviromentHolder.getDdlForVersions()));
     	add(versionsDDL);
+    	
     	runBuildCCBTN = new javax.swing.JButton();
     	runBuildCCBTN.setBounds(6, 91, 115, 28);
 

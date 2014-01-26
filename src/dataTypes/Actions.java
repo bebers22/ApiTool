@@ -41,7 +41,7 @@ public class Actions {
         public void updateLog(String str) {
 
 		for(LogAreaListiner listner : listners) {
-		listner.updateLog(str); 
+			listner.updateLog(str); 
 		}
 
 	}

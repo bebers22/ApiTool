@@ -25,7 +25,7 @@ public class OutputPanel extends javax.swing.JPanel implements LogAreaListiner{
     public OutputPanel() {
         
         initComponents();
-        outputlog.getDocument().addDocumentListener(new LimitLinesDocumentListener(10));
+        //outputlog.getDocument().addDocumentListener(new LimitLinesDocumentListener(10));
         //EnviermentHolder.getComponentMap().put(this.getName(), this);
     }
 
@@ -65,10 +65,10 @@ public class OutputPanel extends javax.swing.JPanel implements LogAreaListiner{
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public void updateLog(String dataToAdd) {
+    public synchronized void updateLog(String dataToAdd) {
         Document doc = outputlog.getDocument();
         try {
-            doc.insertString(doc.getLength(), dataToAdd, null);
+            doc.insertString(doc.getLength() , dataToAdd, null);
             System.out.println(dataToAdd);
         } catch (BadLocationException ex) {
             Logger.getLogger(OutputPanel.class.getName()).log(Level.SEVERE, null, ex);
