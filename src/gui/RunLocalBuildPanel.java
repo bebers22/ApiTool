@@ -4,7 +4,9 @@
  */
 package gui;
 
+import enviroment.Constants;
 import eventHendlers.localBuildHandler;
+
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.GroupLayout;
@@ -38,32 +40,32 @@ public class RunLocalBuildPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel13 = new javax.swing.JLabel();
-        refreshLocalCB = new javax.swing.JCheckBox();
+        commandLabel = new javax.swing.JLabel();
+        
         commandDDL = new javax.swing.JComboBox();
+        
+        refreshLocalCB = new javax.swing.JCheckBox();
         refreshTlgServerCB = new javax.swing.JCheckBox();
         restartServerCB = new javax.swing.JCheckBox();
+        
         checkLogBTN = new javax.swing.JButton();
         startBTN = new javax.swing.JButton();
         endBTN = new javax.swing.JButton();
 
-        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel13.setText("Command :");
-        jLabel13.setOpaque(true);
-
-        refreshLocalCB.setText("refreshLocal");
+        commandLabel.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        commandLabel.setText("Command :");
+        commandLabel.setOpaque(true);
 
         commandDDL.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        refreshTlgServerCB.setText("refreshTlgServer");
-
-        restartServerCB.setText("restartServer");
-
-        checkLogBTN.setText("CheckLog");
-
-        startBTN.setText("Start");
-
-        endBTN.setText("End");
+        
+        refreshLocalCB.setText(Constants.REFRESH_LOCAL);
+        refreshTlgServerCB.setText(Constants.REFRESH_TLG_SERVER);
+        restartServerCB.setText(Constants.RESTART_TLG_SERVER);
+        
+        checkLogBTN.setText(Constants.CHECK_LOG);
+        startBTN.setText(Constants.START);
+        endBTN.setText(Constants.END);
+        
         endBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 endBTNActionPerformed(evt);
@@ -82,7 +84,7 @@ public class RunLocalBuildPanel extends javax.swing.JPanel {
         					.addComponent(endBTN, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE))
         				.addComponent(restartServerCB)
         				.addGroup(layout.createSequentialGroup()
-        					.addComponent(jLabel13)
+        					.addComponent(commandLabel)
         					.addPreferredGap(ComponentPlacement.RELATED)
         					.addComponent(commandDDL, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE))
         				.addComponent(checkLogBTN)
@@ -96,7 +98,7 @@ public class RunLocalBuildPanel extends javax.swing.JPanel {
         		.addGroup(layout.createSequentialGroup()
         			.addGap(24)
         			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
-        				.addComponent(jLabel13)
+        				.addComponent(commandLabel)
         				.addComponent(commandDDL, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
         			.addGap(18)
         			.addComponent(refreshLocalCB, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
@@ -123,7 +125,7 @@ public class RunLocalBuildPanel extends javax.swing.JPanel {
     private javax.swing.JButton checkLogBTN;
     private javax.swing.JComboBox commandDDL;
     private javax.swing.JButton endBTN;
-    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel commandLabel;
     private javax.swing.JCheckBox refreshLocalCB;
     private javax.swing.JCheckBox refreshTlgServerCB;
     private javax.swing.JCheckBox restartServerCB;

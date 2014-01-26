@@ -4,8 +4,37 @@
  */
 package gui;
 
+import enviroment.Constants;
 import eventHendlers.BuildCCHandler;
 import eventHendlers.localBuildHandler;
+
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.GroupLayout;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.UIManager;
+import javax.swing.JLabel;
+
+import java.awt.Font;
+
+import javax.swing.JComboBox;
+
+import java.awt.FlowLayout;
+import java.awt.BorderLayout;
+
+import javax.swing.BoxLayout;
+
+import java.awt.CardLayout;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+
+import net.miginfocom.swing.MigLayout;
+
+import java.awt.Insets;
+
+import org.eclipse.wb.swing.FocusTraversalOnArray;
+
+import java.awt.Component;
+import java.awt.Rectangle;
 
 /**
  *
@@ -34,74 +63,46 @@ public class RunBuildCCPanel extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+    	setLayout(null);
 
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        versionTB = new javax.swing.JTextField();
-        bbDDL = new javax.swing.JComboBox();
-        runBuildCCBTN = new javax.swing.JButton();
-        checkLogBTN = new javax.swing.JButton();
+    	lblBb = new JLabel("BB:");
+    	lblBb.setBounds(6, 6, 25, 26);
+    	lblBb.setFont(new Font("Tahoma", Font.PLAIN, 13));
+    	add(lblBb);
+    	bbDDL = new javax.swing.JComboBox();
+    	bbDDL.setBounds(61, 6, 125, 26);
+    	bbDDL.setToolTipText("Select BB to run build");
+    	bbDDL.setMaximumRowCount(20);
 
-        jLabel13.setBackground(new java.awt.Color(255, 0, 0));
-        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel13.setText("Select bb: ");
-        jLabel13.setOpaque(true);
+    	bbDDL.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+    	add(bbDDL);
 
-        jLabel14.setBackground(new java.awt.Color(255, 0, 0));
-        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel14.setText("Enter version Number: ");
-        jLabel14.setOpaque(true);
+    	lblVersion = new JLabel("Version:");
+    	lblVersion.setBounds(6, 44, 57, 17);
+    	lblVersion.setFont(new Font("Tahoma", Font.PLAIN, 13));
+    	add(lblVersion);
 
-        bbDDL.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+    	versionsDDL = new JComboBox();
+    	versionsDDL.setBounds(61, 44, 125, 26);
+    	versionsDDL.setToolTipText("Select version");
+    	add(versionsDDL);
+    	runBuildCCBTN = new javax.swing.JButton();
+    	runBuildCCBTN.setBounds(6, 91, 115, 28);
 
-        runBuildCCBTN.setText("Run build in CC");
+    	runBuildCCBTN.setText(Constants.RUN_BUILD_IN_CC);
+    	add(runBuildCCBTN);
+    	checkLogBTN = new javax.swing.JButton();
+    	checkLogBTN.setBounds(6, 131, 114, 28);
 
-        checkLogBTN.setText("Check Log");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel14)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(bbDDL, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(versionTB, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(86, 86, 86)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(runBuildCCBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(checkLogBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(182, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel13)
-                    .addComponent(bbDDL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(runBuildCCBTN))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel14)
-                    .addComponent(versionTB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(checkLogBTN))
-                .addContainerGap(22, Short.MAX_VALUE))
-        );
+    	checkLogBTN.setText(Constants.CHECK_LOG);
+    	add(checkLogBTN);
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox bbDDL;
     private javax.swing.JButton checkLogBTN;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JButton runBuildCCBTN;
-    private javax.swing.JTextField versionTB;
-    // End of variables declaration//GEN-END:variables
+    private JLabel lblBb;
+    private JLabel lblVersion;
+    private JComboBox versionsDDL;
 }

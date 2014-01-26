@@ -5,6 +5,7 @@
 package eventHendlers;
 
 import dataTypes.LogAreaModel;
+import enviroment.Constants;
 import enviroment.EnviromentHolder;
 import gui.ToolFrame;
 
@@ -26,17 +27,15 @@ public class localBuildHandler implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         String actionCommand = e.getActionCommand();
         
-        logAreaModel = enviroment.EnviromentHolder.getLogs().get("localBuildLog");
+        logAreaModel = enviroment.EnviromentHolder.getLogs().get(Constants.LOCAL_BUILD_LOGS);
         switch(actionCommand){
-                case "Start":
+                case Constants.START:
                     logAreaModel.setWorker(actionCommand);
                     break;
-                case "End":
+                case Constants.END:
                     logAreaModel.stopWorker(actionCommand);
                     break;
-                case "ClearLog":
-                    break;
-                case "CheckLog":
+                case Constants.CHECK_LOG:
                     logAreaModel.addTaskToWorker(actionCommand);
                     break;
             }

@@ -6,6 +6,8 @@ package dataTypes;
 
 import java.util.Vector;
 
+import enviroment.Constants;
+
 /**
  *
  * @author izhaq
@@ -46,15 +48,13 @@ public class Actions {
         
         public void startActivity(String command) {
             switch(command){
-                case "Start":
+                case Constants.START:
                     logAreaModel.setWorker(command);
                     break;
-                case "End":
+                case Constants.END:
                     logAreaModel.stopWorker(command);
                     break;
-                case "ClearLog":
-                    break;
-                case "CheckLog":
+                case Constants.CHECK_LOG:
                     break;
             }
         }

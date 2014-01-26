@@ -21,6 +21,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import org.omg.CORBA.StringHolder;
 import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 
 /**
@@ -30,9 +31,10 @@ import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 public class EnviromentHolder {
     
     public static ToolFrame toolFrame; 
-    public static String logAreaNames = "localBuildLog@buildCCLog@generalLog@consolLog";
+    public static StringHolder logAreaNames = new StringHolder(Constants.LOCAL_BUILD_LOGS+"@"+Constants.BUILD_CC_LOGS); //localBuildLog@buildCCLog@generalLog@consolLog);
     public static HashMap<String, LogAreaModel> Logs;
     public static HashMap componentMap = new HashMap<String, LogAreaListiner>();
+    
     //private HashMap<String, OutputPanel> consols = new HashMap<String, OutputPanel>();
     public static FrameModel frameModel;
     private static TaskSchedulerBoard workersScheduler;
@@ -54,11 +56,11 @@ public class EnviromentHolder {
     }
             
     public static String getLogAreaNames() {
-        return logAreaNames;
+        return logAreaNames.toString();
     }
 
     public static void setLogAreaNames(String logAreaNames) {
-        EnviromentHolder.logAreaNames = logAreaNames;
+        EnviromentHolder.logAreaNames = new StringHolder(logAreaNames);
     }
 
     public static HashMap<String, LogAreaModel> getLogs() {
