@@ -42,7 +42,7 @@ import org.xml.sax.SAXException;
 public class EnviromentHolder {
     
     public static ToolFrame toolFrame; 
-    public static StringHolder logAreaNames = new StringHolder(Constants.LOCAL_BUILD_LOGS+"@"+Constants.BUILD_CC_LOGS); //localBuildLog@buildCCLog@generalLog@consolLog);
+    public static StringHolder logAreaNames = new StringHolder(Constants.LOCAL_BUILD_LOGS+"@"+Constants.BUILD_CC_LOGS+"@"+Constants.BB_MANAGMENT_LOG); //localBuildLog@buildCCLog@generalLog@consolLog);
     public static HashMap<String, LogAreaModel> Logs;
     public static HashMap componentMap = new HashMap<String, LogAreaListiner>();
     

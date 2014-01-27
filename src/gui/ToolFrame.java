@@ -338,9 +338,12 @@ public  HashMap<String, LogAreaListiner> loadOutputLogs(final Container c) {
         				.addGroup(layout.createSequentialGroup()
         					.addGap(6)
         					.addComponent(jPanel3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        				.addComponent(apiProfilePanel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         				.addComponent(commandsAreaPanel, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 992, Short.MAX_VALUE))
         			.addContainerGap(325, Short.MAX_VALUE))
+        		.addGroup(layout.createSequentialGroup()
+        			.addContainerGap()
+        			.addComponent(apiProfilePanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        			.addGap(319))
         );
         layout.setVerticalGroup(
         	layout.createParallelGroup(Alignment.TRAILING)
