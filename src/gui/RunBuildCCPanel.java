@@ -90,12 +90,12 @@ public class RunBuildCCPanel extends javax.swing.JPanel {
     	add(versionsDDL);
     	
     	runBuildCCBTN = new javax.swing.JButton();
-    	runBuildCCBTN.setBounds(6, 91, 115, 28);
+    	runBuildCCBTN.setBounds(61, 82, 115, 28);
 
     	runBuildCCBTN.setText(Constants.RUN_BUILD_IN_CC);
     	add(runBuildCCBTN);
     	checkLogBTN = new javax.swing.JButton();
-    	checkLogBTN.setBounds(6, 131, 114, 28);
+    	checkLogBTN.setBounds(61, 122, 114, 28);
 
     	checkLogBTN.setText(Constants.CHECK_LOG);
     	add(checkLogBTN);

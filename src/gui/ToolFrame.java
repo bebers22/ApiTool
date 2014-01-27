@@ -22,6 +22,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 import java.awt.Dimension;
 import java.awt.ComponentOrientation;
+import javax.swing.JPanel;
 
 /**
  *
@@ -89,20 +90,11 @@ public  HashMap<String, LogAreaListiner> loadOutputLogs(final Container c) {
         runBuildCCPanel = new gui.RunBuildCCPanel();
         buildCCLog = new gui.OutputPanel();
         generalTAB = new javax.swing.JPanel();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        generalOutputArea = new javax.swing.JTextArea();
-        generalOutputArea.setMaximumSize(new Dimension(20, 20));
         generalPanel = new gui.GeneralPanel();
-        jPanel16 = new javax.swing.JPanel();
-        consolePanel = new javax.swing.JPanel();
-        openConsoleBTN = new javax.swing.JButton();
-        consoleTAB = new javax.swing.JPanel();
-        jScrollPane7 = new javax.swing.JScrollPane();
-        consoleOutputArea = new javax.swing.JTextArea();
-        jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         apiProfilePanel = new gui.ApiProfilePanel();
+        bbManagementPanel = new BbManagementPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -114,18 +106,17 @@ public  HashMap<String, LogAreaListiner> loadOutputLogs(final Container c) {
         		.addGroup(localBuildTABLayout.createSequentialGroup()
         			.addContainerGap()
         			.addComponent(runLocalBuildPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        			.addPreferredGap(ComponentPlacement.UNRELATED)
-        			.addComponent(localBuildLog, GroupLayout.PREFERRED_SIZE, 660, GroupLayout.PREFERRED_SIZE)
-        			.addContainerGap(446, Short.MAX_VALUE))
+        			.addGap(18)
+        			.addComponent(localBuildLog, GroupLayout.DEFAULT_SIZE, 767, Short.MAX_VALUE))
         );
         localBuildTABLayout.setVerticalGroup(
         	localBuildTABLayout.createParallelGroup(Alignment.LEADING)
         		.addGroup(localBuildTABLayout.createSequentialGroup()
         			.addContainerGap()
         			.addGroup(localBuildTABLayout.createParallelGroup(Alignment.LEADING)
-        				.addComponent(localBuildLog, GroupLayout.PREFERRED_SIZE, 548, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(localBuildLog, GroupLayout.PREFERRED_SIZE, 480, GroupLayout.PREFERRED_SIZE)
         				.addComponent(runLocalBuildPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-        			.addContainerGap(490, Short.MAX_VALUE))
+        			.addContainerGap(145, Short.MAX_VALUE))
         );
         localBuildTAB.setLayout(localBuildTABLayout);
 
@@ -138,127 +129,150 @@ public  HashMap<String, LogAreaListiner> loadOutputLogs(final Container c) {
         	buildCCPanelTABLayout.createParallelGroup(Alignment.LEADING)
         		.addGroup(buildCCPanelTABLayout.createSequentialGroup()
         			.addContainerGap()
-        			.addComponent(runBuildCCPanel, GroupLayout.PREFERRED_SIZE, 201, GroupLayout.PREFERRED_SIZE)
+        			.addComponent(runBuildCCPanel, GroupLayout.PREFERRED_SIZE, 207, GroupLayout.PREFERRED_SIZE)
         			.addPreferredGap(ComponentPlacement.RELATED)
-        			.addComponent(buildCCLog, GroupLayout.PREFERRED_SIZE, 752, GroupLayout.PREFERRED_SIZE)
-        			.addContainerGap(19, Short.MAX_VALUE))
+        			.addComponent(buildCCLog, GroupLayout.DEFAULT_SIZE, 765, Short.MAX_VALUE))
         );
         buildCCPanelTABLayout.setVerticalGroup(
         	buildCCPanelTABLayout.createParallelGroup(Alignment.LEADING)
         		.addGroup(buildCCPanelTABLayout.createSequentialGroup()
         			.addGroup(buildCCPanelTABLayout.createParallelGroup(Alignment.LEADING)
         				.addGroup(buildCCPanelTABLayout.createSequentialGroup()
-        					.addGap(34)
-        					.addComponent(runBuildCCPanel, GroupLayout.PREFERRED_SIZE, 314, GroupLayout.PREFERRED_SIZE))
-        				.addGroup(buildCCPanelTABLayout.createSequentialGroup()
         					.addContainerGap()
-        					.addComponent(buildCCLog, GroupLayout.PREFERRED_SIZE, 482, GroupLayout.PREFERRED_SIZE)))
+        					.addComponent(buildCCLog, GroupLayout.PREFERRED_SIZE, 482, GroupLayout.PREFERRED_SIZE))
+        				.addGroup(buildCCPanelTABLayout.createSequentialGroup()
+        					.addGap(34)
+        					.addComponent(runBuildCCPanel, GroupLayout.PREFERRED_SIZE, 314, GroupLayout.PREFERRED_SIZE)))
         			.addContainerGap(143, Short.MAX_VALUE))
         );
         buildCCPanelTAB.setLayout(buildCCPanelTABLayout);
 
         commandsTabbedPane.addTab("Buld CC", buildCCPanelTAB);
+        bbTAB = new javax.swing.JPanel();
 
-        generalOutputArea.setColumns(20);
-        generalOutputArea.setRows(5);
-        jScrollPane5.setViewportView(generalOutputArea);
+        commandsTabbedPane.addTab("BB management", bbTAB);
+        
+        bbManagementLog = new OutputPanel();
+        bbManagementLog.setName(Constants.BB_MANAGMENT_LOG);
+        
+        
+        GroupLayout gl_bbTAB = new GroupLayout(bbTAB);
+        gl_bbTAB.setHorizontalGroup(
+        	gl_bbTAB.createParallelGroup(Alignment.LEADING)
+        		.addGroup(gl_bbTAB.createSequentialGroup()
+        			.addContainerGap()
+        			.addComponent(bbManagementPanel, GroupLayout.PREFERRED_SIZE, 206, GroupLayout.PREFERRED_SIZE)
+        			.addPreferredGap(ComponentPlacement.RELATED)
+        			.addComponent(bbManagementLog, GroupLayout.DEFAULT_SIZE, 765, Short.MAX_VALUE)
+        			.addContainerGap())
+        );
+        gl_bbTAB.setVerticalGroup(
+        	gl_bbTAB.createParallelGroup(Alignment.LEADING)
+        		.addGroup(gl_bbTAB.createSequentialGroup()
+        			.addGroup(gl_bbTAB.createParallelGroup(Alignment.LEADING)
+        				.addGroup(gl_bbTAB.createSequentialGroup()
+        					.addContainerGap()
+        					.addComponent(bbManagementLog, GroupLayout.PREFERRED_SIZE, 482, GroupLayout.PREFERRED_SIZE))
+        				.addGroup(gl_bbTAB.createSequentialGroup()
+        					.addGap(33)
+        					.addComponent(bbManagementPanel, GroupLayout.PREFERRED_SIZE, 305, GroupLayout.PREFERRED_SIZE)))
+        			.addContainerGap(143, Short.MAX_VALUE))
+        );
+        bbTAB.setLayout(gl_bbTAB);
+        generalOutputArea = new javax.swing.JTextArea();
+        generalOutputArea.setMaximumSize(new Dimension(20, 20));
+        
+                generalOutputArea.setColumns(20);
+                generalOutputArea.setRows(5);
 
         javax.swing.GroupLayout generalTABLayout = new javax.swing.GroupLayout(generalTAB);
         generalTABLayout.setHorizontalGroup(
         	generalTABLayout.createParallelGroup(Alignment.LEADING)
         		.addGroup(generalTABLayout.createSequentialGroup()
         			.addContainerGap()
-        			.addGroup(generalTABLayout.createParallelGroup(Alignment.LEADING)
-        				.addComponent(jScrollPane5, GroupLayout.PREFERRED_SIZE, 620, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(generalPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-        			.addContainerGap(406, Short.MAX_VALUE))
+        			.addComponent(generalPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        			.addPreferredGap(ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+        			.addComponent(generalOutputArea, GroupLayout.PREFERRED_SIZE, 709, GroupLayout.PREFERRED_SIZE))
         );
         generalTABLayout.setVerticalGroup(
         	generalTABLayout.createParallelGroup(Alignment.LEADING)
         		.addGroup(generalTABLayout.createSequentialGroup()
         			.addGap(11)
-        			.addComponent(generalPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        			.addPreferredGap(ComponentPlacement.RELATED)
-        			.addComponent(jScrollPane5, GroupLayout.PREFERRED_SIZE, 538, GroupLayout.PREFERRED_SIZE)
-        			.addContainerGap(381, Short.MAX_VALUE))
+        			.addGroup(generalTABLayout.createParallelGroup(Alignment.LEADING)
+        				.addComponent(generalOutputArea, GroupLayout.PREFERRED_SIZE, 532, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(generalPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+        			.addContainerGap(88, Short.MAX_VALUE))
         );
         generalTAB.setLayout(generalTABLayout);
 
         commandsTabbedPane.addTab("General", generalTAB);
-
-        openConsoleBTN.setText("Open Console");
-
-        javax.swing.GroupLayout consolePanelLayout = new javax.swing.GroupLayout(consolePanel);
-        consolePanel.setLayout(consolePanelLayout);
-        consolePanelLayout.setHorizontalGroup(
-            consolePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(consolePanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(openConsoleBTN)
-                .addContainerGap(1009, Short.MAX_VALUE))
-        );
-        consolePanelLayout.setVerticalGroup(
-            consolePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(consolePanelLayout.createSequentialGroup()
-                .addComponent(openConsoleBTN)
-                .addGap(0, 12, Short.MAX_VALUE))
-        );
-
-        consoleOutputArea.setColumns(20);
-        consoleOutputArea.setRows(5);
-        jScrollPane7.setViewportView(consoleOutputArea);
-
-        javax.swing.GroupLayout consoleTABLayout = new javax.swing.GroupLayout(consoleTAB);
-        consoleTABLayout.setHorizontalGroup(
-        	consoleTABLayout.createParallelGroup(Alignment.LEADING)
-        		.addGroup(consoleTABLayout.createSequentialGroup()
-        			.addContainerGap()
-        			.addComponent(jScrollPane7, GroupLayout.PREFERRED_SIZE, 874, GroupLayout.PREFERRED_SIZE)
-        			.addContainerGap(168, Short.MAX_VALUE))
-        );
-        consoleTABLayout.setVerticalGroup(
-        	consoleTABLayout.createParallelGroup(Alignment.LEADING)
-        		.addGroup(consoleTABLayout.createSequentialGroup()
-        			.addComponent(jScrollPane7, GroupLayout.PREFERRED_SIZE, 534, GroupLayout.PREFERRED_SIZE)
-        			.addContainerGap(446, Short.MAX_VALUE))
-        );
-        consoleTAB.setLayout(consoleTABLayout);
-
-        javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
-        jPanel16.setLayout(jPanel16Layout);
-        jPanel16Layout.setHorizontalGroup(
-            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel16Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(consoleTAB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(consolePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        jPanel16Layout.setVerticalGroup(
-            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel16Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(consolePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(consoleTAB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        commandsTabbedPane.addTab("Console", jPanel16);
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1140, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 404, Short.MAX_VALUE)
-        );
-
-        commandsTabbedPane.addTab("Refresh envierment", jPanel1);
+        jPanel16 = new javax.swing.JPanel();
+        consolePanel = new javax.swing.JPanel();
+        openConsoleBTN = new javax.swing.JButton();
+        consoleTAB = new javax.swing.JPanel();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        consoleOutputArea = new javax.swing.JTextArea();
+        
+                openConsoleBTN.setText("Open Console");
+                
+                        javax.swing.GroupLayout consolePanelLayout = new javax.swing.GroupLayout(consolePanel);
+                        consolePanel.setLayout(consolePanelLayout);
+                        consolePanelLayout.setHorizontalGroup(
+                            consolePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(consolePanelLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(openConsoleBTN)
+                                .addContainerGap(1009, Short.MAX_VALUE))
+                        );
+                        consolePanelLayout.setVerticalGroup(
+                            consolePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(consolePanelLayout.createSequentialGroup()
+                                .addComponent(openConsoleBTN)
+                                .addGap(0, 12, Short.MAX_VALUE))
+                        );
+                        
+                                consoleOutputArea.setColumns(20);
+                                consoleOutputArea.setRows(5);
+                                jScrollPane7.setViewportView(consoleOutputArea);
+                                
+                                        javax.swing.GroupLayout consoleTABLayout = new javax.swing.GroupLayout(consoleTAB);
+                                        consoleTABLayout.setHorizontalGroup(
+                                        	consoleTABLayout.createParallelGroup(Alignment.LEADING)
+                                        		.addGroup(consoleTABLayout.createSequentialGroup()
+                                        			.addContainerGap()
+                                        			.addComponent(jScrollPane7, GroupLayout.PREFERRED_SIZE, 874, GroupLayout.PREFERRED_SIZE)
+                                        			.addContainerGap(168, Short.MAX_VALUE))
+                                        );
+                                        consoleTABLayout.setVerticalGroup(
+                                        	consoleTABLayout.createParallelGroup(Alignment.LEADING)
+                                        		.addGroup(consoleTABLayout.createSequentialGroup()
+                                        			.addComponent(jScrollPane7, GroupLayout.PREFERRED_SIZE, 534, GroupLayout.PREFERRED_SIZE)
+                                        			.addContainerGap(446, Short.MAX_VALUE))
+                                        );
+                                        consoleTAB.setLayout(consoleTABLayout);
+                                        
+                                                javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
+                                                jPanel16.setLayout(jPanel16Layout);
+                                                jPanel16Layout.setHorizontalGroup(
+                                                    jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel16Layout.createSequentialGroup()
+                                                        .addContainerGap()
+                                                        .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                            .addComponent(consoleTAB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                            .addComponent(consolePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                        .addContainerGap())
+                                                );
+                                                jPanel16Layout.setVerticalGroup(
+                                                    jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addGroup(jPanel16Layout.createSequentialGroup()
+                                                        .addContainerGap()
+                                                        .addComponent(consolePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                        .addComponent(consoleTAB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addContainerGap())
+                                                );
+                                                
+                                                        commandsTabbedPane.addTab("Console", jPanel16);
 
         javax.swing.GroupLayout commandsPanelLayout = new javax.swing.GroupLayout(commandsPanel);
         commandsPanelLayout.setHorizontalGroup(
@@ -393,10 +407,9 @@ public  HashMap<String, LogAreaListiner> loadOutputLogs(final Container c) {
     private gui.GeneralPanel generalPanel;
     private javax.swing.JPanel generalTAB;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel bbTAB;
     private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane7;
     private gui.OutputPanel localBuildLog;
     private javax.swing.JPanel localBuildTAB;
@@ -404,6 +417,10 @@ public  HashMap<String, LogAreaListiner> loadOutputLogs(final Container c) {
     private gui.OutputPanel outputPanel1;
     private gui.RunBuildCCPanel runBuildCCPanel;
     private gui.RunLocalBuildPanel runLocalBuildPanel;
+    private BbManagementPanel bbManagementPanel;
+    private OutputPanel bbManagementLog;
+
+    
     // End of variables declaration//GEN-END:variables
     
     public OutputPanel getLocalBuildLog() {

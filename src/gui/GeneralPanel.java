@@ -32,9 +32,9 @@ public class GeneralPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
     	GridBagLayout gridBagLayout = new GridBagLayout();
-    	gridBagLayout.columnWidths = new int[]{117, 55, 135, 0};
+    	gridBagLayout.columnWidths = new int[]{117, 55, 0};
     	gridBagLayout.rowHeights = new int[]{23, 23, 23, 0};
-    	gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
+    	gridBagLayout.columnWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
     	gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
     	setLayout(gridBagLayout);
 
@@ -58,7 +58,7 @@ public class GeneralPanel extends javax.swing.JPanel {
     	});
     	GridBagConstraints gbc_stopTlgServerBTN = new GridBagConstraints();
     	gbc_stopTlgServerBTN.anchor = GridBagConstraints.NORTHEAST;
-    	gbc_stopTlgServerBTN.insets = new Insets(0, 0, 5, 5);
+    	gbc_stopTlgServerBTN.insets = new Insets(0, 0, 5, 0);
     	gbc_stopTlgServerBTN.gridx = 1;
     	gbc_stopTlgServerBTN.gridy = 0;
     	add(stopTlgServerBTN, gbc_stopTlgServerBTN);
@@ -85,7 +85,6 @@ public class GeneralPanel extends javax.swing.JPanel {
     	startTlgServerBTN = new javax.swing.JButton();
     	startTlgServerBTN.setText("StartTlgServer");
     	GridBagConstraints gbc_startTlgServerBTN = new GridBagConstraints();
-    	gbc_startTlgServerBTN.insets = new Insets(0, 0, 0, 5);
     	gbc_startTlgServerBTN.anchor = GridBagConstraints.NORTHWEST;
     	gbc_startTlgServerBTN.gridx = 1;
     	gbc_startTlgServerBTN.gridy = 2;
