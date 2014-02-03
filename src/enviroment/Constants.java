@@ -14,6 +14,8 @@ public class Constants {
 	public final static String CHANGE_PROJ = "Change project";
 	public final static String CREATE_NEW_BB = "Create new BB";
 	public final static String BB_MANAGMENT_LOG = "BB managment logs";
+	public final static String CLEAR_BACKEND_FILES = "Clear Backend Generator";
+	
 	
 	public final static String BB_AND_VERSIONS_XML = "V:/API Knowledge Base/prop/BBAndVersions.xml";
 	public final static String USERNAME_PASSWORD_XML = "V:/API Knowledge Base/prop/usernamePassword.xml";
