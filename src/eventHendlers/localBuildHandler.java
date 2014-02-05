@@ -7,6 +7,8 @@ package eventHendlers;
 import dataTypes.LogAreaModel;
 import enviroment.Constants;
 import enviroment.EnviromentHolder;
+import gui.RunBuildCCPanel;
+import gui.RunLocalBuildPanel;
 import gui.ToolFrame;
 
 import java.awt.event.ActionEvent;
@@ -19,10 +21,12 @@ import java.awt.event.ActionListener;
 public class localBuildHandler implements ActionListener{
 
     public LogAreaModel logAreaModel;
+    public RunLocalBuildPanel runLocalBuildPanel;
     
-    public localBuildHandler() {
-        
+    public localBuildHandler(RunLocalBuildPanel rlbp) {
+    	runLocalBuildPanel = rlbp;
     }
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         String actionCommand = e.getActionCommand();

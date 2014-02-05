@@ -60,17 +60,17 @@ public class GeneralPanel extends javax.swing.JPanel {
     	gbc_ddlVersion.insets = new Insets(0, 0, 5, 5);
     	gbc_ddlVersion.gridx = 1;
     	gbc_ddlVersion.gridy = 0;
-    	ddlVersion.setModel(new javax.swing.DefaultComboBoxModel(EnviromentHolder.getDdlForVersions()));
+    	ddlVersion.setModel(new javax.swing.DefaultComboBoxModel(EnviromentHolder.setVersionWithUnderScor(EnviromentHolder.getDdlForVersions())));
     	add(ddlVersion, gbc_ddlVersion);
     	
-    	setTlgEnvBTN = new javax.swing.JButton();
-    	setTlgEnvBTN.setText(Constants.CLEAR_BACKEND_FILES);
+    	clearBackendBTN = new javax.swing.JButton();
+    	clearBackendBTN.setText(Constants.CLEAR_BACKEND_FILES);
     	GridBagConstraints gbc_setTlgEnvBTN = new GridBagConstraints();
     	gbc_setTlgEnvBTN.anchor = GridBagConstraints.NORTH;
     	gbc_setTlgEnvBTN.insets = new Insets(0, 0, 5, 0);
     	gbc_setTlgEnvBTN.gridx = 2;
     	gbc_setTlgEnvBTN.gridy = 0;
-    	add(setTlgEnvBTN, gbc_setTlgEnvBTN);
+    	add(clearBackendBTN, gbc_setTlgEnvBTN);
     	
     	startTlgServerBTN = new javax.swing.JButton();
     	startTlgServerBTN.setText("StartTlgServer");
@@ -124,7 +124,7 @@ public class GeneralPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton refreahLocalBTN;
     private javax.swing.JButton refreshTlgServerBTN;
-    private javax.swing.JButton setTlgEnvBTN;
+    private javax.swing.JButton clearBackendBTN;
     private javax.swing.JButton startTlgServerBTN;
     private javax.swing.JButton stopTlgServerBTN;
     private JLabel lblVersion;

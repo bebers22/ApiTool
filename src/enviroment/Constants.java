@@ -17,9 +17,23 @@ public class Constants {
 	public final static String CLEAR_BACKEND_FILES = "Clear Backend Generator";
 	
 	
+	public final static String XML_TAG_PLACEHOLDERS = "PlaceHolder";
+	public final static String XML_TAG_USERNAME = "username";
+	public final static String XML_TAG_PASSWORD = "password";
+	public final static String XML_TAG_NAME = "name";
+	public final static String XML_TAG_ID = "id";
+	public final static String XML_TAG_USER = "User";
+	public final static String XML_TAG_BB = "BB";
+	public final static String XML_TAG_VERSION = "Version";
+	public final static String XML_TAG_COMMAND = "command";
+	
 	public final static String BB_AND_VERSIONS_XML = "V:/API Knowledge Base/prop/BBAndVersions.xml";
 	public final static String USERNAME_PASSWORD_XML = "V:/API Knowledge Base/prop/usernamePassword.xml";
+	public final static String COMMANDS_XML = "V:/API Knowledge Base/prop/commands.xml";
 	public final static String SUCESS_CONNECT_ICON = "V:/API Knowledge Base/prop/sucess.jpg";
+	
+	public static String PLACE_HOLDER_VERSION;
+	public static String PLACE_HOLDER_BB;
 	
 	
 }

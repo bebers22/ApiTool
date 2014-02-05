@@ -27,9 +27,9 @@ public class RunLocalBuildPanel extends javax.swing.JPanel {
     
     private void initHandlers() 
     {
-        startBTN.addActionListener(new localBuildHandler());
-        endBTN.addActionListener(new localBuildHandler());
-        checkLogBTN.addActionListener(new localBuildHandler());
+        startBTN.addActionListener(new localBuildHandler(this));
+        endBTN.addActionListener(new localBuildHandler(this));
+        checkLogBTN.addActionListener(new localBuildHandler(this));
     }
     /**
      * This method is called from within the constructor to initialize the form.

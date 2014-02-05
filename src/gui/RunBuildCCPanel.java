@@ -53,8 +53,8 @@ public class RunBuildCCPanel extends javax.swing.JPanel {
 
     private void initHandlers() 
     {
-        checkLogBTN.addActionListener(new BuildCCHandler());
-        runBuildCCBTN.addActionListener(new BuildCCHandler());
+        checkLogBTN.addActionListener(new BuildCCHandler(this));
+        runBuildCCBTN.addActionListener(new BuildCCHandler(this));
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -103,9 +103,26 @@ public class RunBuildCCPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox bbDDL;
-    private javax.swing.JButton checkLogBTN;
+	private javax.swing.JButton checkLogBTN;
     private javax.swing.JButton runBuildCCBTN;
     private JLabel lblBb;
     private JLabel lblVersion;
     private JComboBox versionsDDL;
+    
+    
+    public javax.swing.JComboBox getBbDDL() {
+		return bbDDL;
+	}
+
+	public void setBbDDL(javax.swing.JComboBox bbDDL) {
+		this.bbDDL = bbDDL;
+	}
+
+	public JComboBox getVersionsDDL() {
+		return versionsDDL;
+	}
+
+	public void setVersionsDDL(JComboBox versionsDDL) {
+		this.versionsDDL = versionsDDL;
+	}
 }
