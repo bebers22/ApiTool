@@ -5,11 +5,17 @@
 package gui;
 
 import enviroment.Constants;
+import enviroment.EnviromentHolder;
 import eventHendlers.localBuildHandler;
 
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.GroupLayout;
+import javax.swing.JLabel;
+
+import java.awt.Font;
 
 /**
  *
@@ -17,7 +23,11 @@ import javax.swing.GroupLayout;
  */
 public class RunLocalBuildPanel extends javax.swing.JPanel {
 
-    /**
+
+	private JComponent lblBb;
+	private JComboBox bbDDL;
+	private JComboBox versionsDDL;
+	/**
      * Creates new form RunLocalBuildPanel
      */
     public RunLocalBuildPanel() {
@@ -27,7 +37,7 @@ public class RunLocalBuildPanel extends javax.swing.JPanel {
     
     private void initHandlers() 
     {
-        startBTN.addActionListener(new localBuildHandler(this));
+        localBuildBTN.addActionListener(new localBuildHandler(this));
         endBTN.addActionListener(new localBuildHandler(this));
         checkLogBTN.addActionListener(new localBuildHandler(this));
     }
@@ -39,96 +49,76 @@ public class RunLocalBuildPanel extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
-        commandLabel = new javax.swing.JLabel();
         
-        commandDDL = new javax.swing.JComboBox();
-        
+    	setLayout(null);
+    	
         refreshLocalCB = new javax.swing.JCheckBox();
+        refreshLocalCB.setBounds(6, 92, 96, 22);
         refreshTlgServerCB = new javax.swing.JCheckBox();
+        refreshTlgServerCB.setBounds(6, 126, 121, 18);
         restartServerCB = new javax.swing.JCheckBox();
+        restartServerCB.setBounds(6, 156, 117, 18);
         
         checkLogBTN = new javax.swing.JButton();
-        startBTN = new javax.swing.JButton();
+        checkLogBTN.setBounds(61, 238, 112, 28);
+        localBuildBTN = new javax.swing.JButton();
+        localBuildBTN.setBounds(61, 198, 110, 28);
         endBTN = new javax.swing.JButton();
-
-        commandLabel.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        commandLabel.setText("Command :");
-        commandLabel.setOpaque(true);
-
-        commandDDL.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        endBTN.setBounds(61, 278, 81, 28);
         
+       
         refreshLocalCB.setText(Constants.REFRESH_LOCAL);
         refreshTlgServerCB.setText(Constants.REFRESH_TLG_SERVER);
         restartServerCB.setText(Constants.RESTART_TLG_SERVER);
         
-        checkLogBTN.setText(Constants.CHECK_LOG);
-        startBTN.setText(Constants.START);
+        checkLogBTN.setText(Constants.CHECK_LOCAL_BUILD_LOG);
+        localBuildBTN.setText(Constants.RUN_LOCAL_BUILD);
         endBTN.setText(Constants.END);
         
-        endBTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                endBTNActionPerformed(evt);
-            }
-        });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        layout.setHorizontalGroup(
-        	layout.createParallelGroup(Alignment.LEADING)
-        		.addGroup(layout.createSequentialGroup()
-        			.addContainerGap()
-        			.addGroup(layout.createParallelGroup(Alignment.LEADING)
-        				.addGroup(layout.createSequentialGroup()
-        					.addComponent(startBTN, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
-        					.addPreferredGap(ComponentPlacement.RELATED)
-        					.addComponent(endBTN, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE))
-        				.addComponent(restartServerCB)
-        				.addGroup(layout.createSequentialGroup()
-        					.addComponent(commandLabel)
-        					.addPreferredGap(ComponentPlacement.RELATED)
-        					.addComponent(commandDDL, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE))
-        				.addComponent(checkLogBTN)
-        				.addGroup(layout.createParallelGroup(Alignment.TRAILING, false)
-        					.addComponent(refreshLocalCB, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        					.addComponent(refreshTlgServerCB, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-        			.addContainerGap(19, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-        	layout.createParallelGroup(Alignment.LEADING)
-        		.addGroup(layout.createSequentialGroup()
-        			.addGap(24)
-        			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
-        				.addComponent(commandLabel)
-        				.addComponent(commandDDL, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-        			.addGap(18)
-        			.addComponent(refreshLocalCB, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
-        			.addGap(18)
-        			.addComponent(refreshTlgServerCB)
-        			.addGap(18)
-        			.addComponent(restartServerCB)
-        			.addGap(30)
-        			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
-        				.addComponent(startBTN)
-        				.addComponent(endBTN))
-        			.addGap(18)
-        			.addComponent(checkLogBTN)
-        			.addContainerGap(40, Short.MAX_VALUE))
-        );
-        this.setLayout(layout);
+               
+        
+        add(endBTN);
+        add(checkLogBTN);
+        add(localBuildBTN);
+        add(restartServerCB);
+        add(refreshTlgServerCB);
+        add(refreshLocalCB);
+        
+    	lblBb = new JLabel("BB:");
+    	lblBb.setBounds(6, 6, 25, 26);
+    	lblBb.setFont(new Font("Tahoma", Font.PLAIN, 13));
+    	add(lblBb);
+    	
+    	bbDDL = new javax.swing.JComboBox();
+    	bbDDL.setBounds(61, 6, 125, 26);
+    	bbDDL.setToolTipText("Select BB to run build");
+    	bbDDL.setMaximumRowCount(20);
+    	bbDDL.setModel(new javax.swing.DefaultComboBoxModel(EnviromentHolder.getDdlForBB()));
+    	add(bbDDL);
+
+    	lblVersion = new JLabel("Version:");
+    	lblVersion.setBounds(6, 49, 57, 17);
+    	lblVersion.setFont(new Font("Tahoma", Font.PLAIN, 13));
+    	add(lblVersion);
+
+    	versionsDDL = new JComboBox();
+    	versionsDDL.setBounds(61, 44, 125, 26);
+    	versionsDDL.setToolTipText("Select version");
+    	versionsDDL.setModel(new javax.swing.DefaultComboBoxModel(EnviromentHolder.getDdlForVersions()));
+    	add(versionsDDL);
+
+
     }// </editor-fold>//GEN-END:initComponents
-
-    private void endBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_endBTNActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_endBTNActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton checkLogBTN;
-    private javax.swing.JComboBox commandDDL;
+    private javax.swing.JComboBox versionDDL;
     private javax.swing.JButton endBTN;
-    private javax.swing.JLabel commandLabel;
-    private javax.swing.JCheckBox refreshLocalCB;
-    private javax.swing.JCheckBox refreshTlgServerCB;
-    private javax.swing.JCheckBox restartServerCB;
-    private javax.swing.JButton startBTN;
-    // End of variables declaration//GEN-END:variables
+    public javax.swing.JCheckBox refreshLocalCB;
+    public javax.swing.JCheckBox refreshTlgServerCB;
+    public javax.swing.JCheckBox restartServerCB;
+    private javax.swing.JButton localBuildBTN;
+    private JLabel lblVersion;
+    //private javax.swing.JLabel lblVersion;
 }

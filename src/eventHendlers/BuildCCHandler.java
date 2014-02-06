@@ -20,7 +20,7 @@ import javax.swing.JButton;
 
 /**
  *
- * @author IZHAQB
+ * @author Yuval
  */
 public class BuildCCHandler implements ActionListener{
      public LogAreaModel logAreaModel;
@@ -42,13 +42,13 @@ public class BuildCCHandler implements ActionListener{
         
         switch(actionCommand){
                 case Constants.RUN_BUILD_IN_CC:
-                    logAreaModel.setWorker(actionCommand);
+                    logAreaModel.setWorker(UnixCommand);
                     break;
                 case Constants.END:
                     logAreaModel.stopWorker(actionCommand);
                     break;
-                case Constants.CHECK_LOG:
-                    logAreaModel.addTaskToWorker(actionCommand);
+                case Constants.CHECK_CC_LOG:
+                    logAreaModel.addTaskToWorker(UnixCommand);
                     break;
             }
 //        ToolFrame x = EnviermentHolder.getToolFrame();

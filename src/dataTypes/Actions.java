@@ -54,7 +54,7 @@ public class Actions {
                 case Constants.END:
                     logAreaModel.stopWorker(command);
                     break;
-                case Constants.CHECK_LOG:
+                case Constants.CHECK_CC_LOG:
                     break;
             }
         }

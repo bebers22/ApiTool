@@ -107,17 +107,20 @@ public  HashMap<String, LogAreaListiner> loadOutputLogs(final Container c) {
         	localBuildTABLayout.createParallelGroup(Alignment.LEADING)
         		.addGroup(localBuildTABLayout.createSequentialGroup()
         			.addContainerGap()
-        			.addComponent(runLocalBuildPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        			.addGap(18)
-        			.addComponent(localBuildLog, GroupLayout.DEFAULT_SIZE, 767, Short.MAX_VALUE))
+        			.addComponent(runLocalBuildPanel, GroupLayout.PREFERRED_SIZE, 202, GroupLayout.PREFERRED_SIZE)
+        			.addGap(12)
+        			.addComponent(localBuildLog, GroupLayout.DEFAULT_SIZE, 764, Short.MAX_VALUE))
         );
         localBuildTABLayout.setVerticalGroup(
         	localBuildTABLayout.createParallelGroup(Alignment.LEADING)
         		.addGroup(localBuildTABLayout.createSequentialGroup()
-        			.addContainerGap()
         			.addGroup(localBuildTABLayout.createParallelGroup(Alignment.LEADING)
-        				.addComponent(localBuildLog, GroupLayout.PREFERRED_SIZE, 480, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(runLocalBuildPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+        				.addGroup(localBuildTABLayout.createSequentialGroup()
+        					.addContainerGap()
+        					.addComponent(localBuildLog, GroupLayout.PREFERRED_SIZE, 480, GroupLayout.PREFERRED_SIZE))
+        				.addGroup(localBuildTABLayout.createSequentialGroup()
+        					.addGap(37)
+        					.addComponent(runLocalBuildPanel, GroupLayout.PREFERRED_SIZE, 339, GroupLayout.PREFERRED_SIZE)))
         			.addContainerGap(145, Short.MAX_VALUE))
         );
         localBuildTAB.setLayout(localBuildTABLayout);
