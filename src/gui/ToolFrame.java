@@ -107,8 +107,8 @@ public  HashMap<String, LogAreaListiner> loadOutputLogs(final Container c) {
         	localBuildTABLayout.createParallelGroup(Alignment.LEADING)
         		.addGroup(localBuildTABLayout.createSequentialGroup()
         			.addContainerGap()
-        			.addComponent(runLocalBuildPanel, GroupLayout.PREFERRED_SIZE, 202, GroupLayout.PREFERRED_SIZE)
-        			.addGap(12)
+        			.addComponent(runLocalBuildPanel, GroupLayout.PREFERRED_SIZE, 208, GroupLayout.PREFERRED_SIZE)
+        			.addPreferredGap(ComponentPlacement.RELATED)
         			.addComponent(localBuildLog, GroupLayout.DEFAULT_SIZE, 764, Short.MAX_VALUE))
         );
         localBuildTABLayout.setVerticalGroup(

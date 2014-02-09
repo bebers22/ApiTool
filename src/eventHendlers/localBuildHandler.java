@@ -15,6 +15,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
 
+import javax.swing.JButton;
+
 /**
  *
  * @author izhaq
@@ -32,6 +34,8 @@ public class localBuildHandler implements ActionListener{
     public void actionPerformed(ActionEvent e) {
     	
         String actionCommand = e.getActionCommand();
+        
+        String UnixCommand = prepareCommand(((JButton)e.getSource()).getText());
         
         logAreaModel = enviroment.EnviromentHolder.getLogs().get(Constants.LOCAL_BUILD_LOGS);
         
@@ -58,10 +62,16 @@ public class localBuildHandler implements ActionListener{
 		
 		HashMap<String,String> placeHolderValues = new HashMap<>();
 		
-		//placeHolderValues.put(Constants.PLACE_HOLDER_BB, String.valueOf(runBuildCcPanel.getBbDDL().getSelectedItem()));
-		//placeHolderValues.put(Constants.PLACE_HOLDER_VERSION, String.valueOf(runBuildCcPanel.getVersionsDDL().getSelectedItem()));
+		placeHolderValues.put(Constants.PLACE_HOLDER_BB, String.valueOf(runLocalBuildPanel.getBbDDL().getSelectedItem()));
+		placeHolderValues.put(Constants.PLACE_HOLDER_VERSION, String.valueOf(runLocalBuildPanel.getVersionsDDL().getSelectedItem()));
 		
 		String preparedCommand = EnviromentHolder.getCommandsDataInfo().prepareCommand(placeHolderValues, command);
+		
+		if(Constants.RUN_LOCAL_BUILD.equals(command)) {
+			///if TLG server is set
+			preparedCommand = EnviromentHolder.getCommandsDataInfo().addWeblogicCommands(preparedCommand, runLocalBuildPanel.refreshTlgServerCB.isSelected(),
+					runLocalBuildPanel.refreshLocalCB.isSelected(), runLocalBuildPanel.restartServerCB.isSelected());
+		}
 		
 		///Call to prepareCommand (CommandsDataInfo)	
 		

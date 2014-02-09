@@ -8,6 +8,7 @@ public class Constants {
 	public final static String START = "Start";
 	public final static String CHECK_CC_LOG = "Check CC log";
 	public final static String CHECK_LOCAL_BUILD_LOG = "Check local log";
+	public final static String RUN_QUICK_BUILD = "Quick build";
 	public final static String REFRESH_LOCAL = "RefreshLocal";
 	public final static String REFRESH_TLG_SERVER = "Refresh TlgServer";
 	public final static String RESTART_TLG_SERVER = "Restart TlgServer";

@@ -16,6 +16,8 @@ import javax.swing.GroupLayout;
 import javax.swing.JLabel;
 
 import java.awt.Font;
+import javax.swing.JButton;
+import javax.swing.SwingConstants;
 
 /**
  *
@@ -24,9 +26,7 @@ import java.awt.Font;
 public class RunLocalBuildPanel extends javax.swing.JPanel {
 
 
-	private JComponent lblBb;
-	private JComboBox bbDDL;
-	private JComboBox versionsDDL;
+
 	/**
      * Creates new form RunLocalBuildPanel
      */
@@ -40,6 +40,7 @@ public class RunLocalBuildPanel extends javax.swing.JPanel {
         localBuildBTN.addActionListener(new localBuildHandler(this));
         endBTN.addActionListener(new localBuildHandler(this));
         checkLogBTN.addActionListener(new localBuildHandler(this));
+        quickBuildBTN.addActionListener(new localBuildHandler(this));
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -60,11 +61,11 @@ public class RunLocalBuildPanel extends javax.swing.JPanel {
         restartServerCB.setBounds(6, 156, 117, 18);
         
         checkLogBTN = new javax.swing.JButton();
-        checkLogBTN.setBounds(61, 238, 112, 28);
+        checkLogBTN.setBounds(16, 226, 112, 28);
         localBuildBTN = new javax.swing.JButton();
-        localBuildBTN.setBounds(61, 198, 110, 28);
+        localBuildBTN.setBounds(16, 186, 110, 28);
         endBTN = new javax.swing.JButton();
-        endBTN.setBounds(61, 278, 81, 28);
+        endBTN.setBounds(129, 186, 81, 28);
         
        
         refreshLocalCB.setText(Constants.REFRESH_LOCAL);
@@ -107,18 +108,33 @@ public class RunLocalBuildPanel extends javax.swing.JPanel {
     	versionsDDL.setToolTipText("Select version");
     	versionsDDL.setModel(new javax.swing.DefaultComboBoxModel(EnviromentHolder.getDdlForVersions()));
     	add(versionsDDL);
+    	
+    	quickBuildBTN = new JButton(Constants.RUN_QUICK_BUILD);
+    	quickBuildBTN.setBounds(16, 265, 112, 28);
+    	add(quickBuildBTN);
 
 
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton checkLogBTN;
-    private javax.swing.JComboBox versionDDL;
     private javax.swing.JButton endBTN;
     public javax.swing.JCheckBox refreshLocalCB;
     public javax.swing.JCheckBox refreshTlgServerCB;
     public javax.swing.JCheckBox restartServerCB;
     private javax.swing.JButton localBuildBTN;
     private JLabel lblVersion;
-    //private javax.swing.JLabel lblVersion;
+	private JComponent lblBb;
+	private JComboBox bbDDL;
+	private JComboBox versionsDDL;
+	private JButton quickBuildBTN;
+	
+	
+	public JComboBox getBbDDL() {
+		return bbDDL;
+	}
+
+	public JComboBox getVersionsDDL() {
+		return versionsDDL;
+	}
 }

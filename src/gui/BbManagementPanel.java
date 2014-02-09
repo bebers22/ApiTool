@@ -51,7 +51,7 @@ public class BbManagementPanel extends javax.swing.JPanel {
 		add(bbDDL);
 
 		lblVersion = new JLabel("Version:");
-		lblVersion.setBounds(6, 44, 57, 17);
+		lblVersion.setBounds(6, 49, 57, 17);
 		lblVersion.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		add(lblVersion);
 

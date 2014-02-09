@@ -53,7 +53,29 @@ public class CommandsDataInfo {
 		
 		return preparedCommand;
 	}
+	
+	/**
+	 * Add commands to handle the weblogic
+	 * @param commandToRun
+	 * @param refreshTlgServer
+	 * @param refreshLocal
+	 * @param restartTlgServer
+	 * @return
+	 */
+	public String addWeblogicCommands(String commandToRun, boolean refreshTlgServer, boolean refreshLocal, boolean restartTlgServer) {
+		
+		if(restartTlgServer) {
+		
+			commandToRun = refreshTlgServer ? commandToRun + commands.get(Constants.REFRESH_TLG_SERVER) : commandToRun;
+			commandToRun = refreshLocal ? commandToRun + commands.get(Constants.REFRESH_LOCAL) : commandToRun;
+			commandToRun = commandToRun + commands.get(Constants.RESTART_TLG_SERVER);
+				
+		}
+		
+		return commandToRun + "/n";				
+	}
 
+	
 	/**
 	 * load place holders
 	 */
