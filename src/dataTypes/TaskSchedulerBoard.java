@@ -45,6 +45,11 @@ public class TaskSchedulerBoard implements Serializable {
     public void setWorkerScheduler(String key, Actions lisitner) {
         workers.put(key, new TaskScheduler(lisitner));
     }
+    
+    public void stopWorker(String key) {
+    	workers.get(key).stopTask();
+    	workers.remove(key);
+    }
 
     public void killAnimal() {
 

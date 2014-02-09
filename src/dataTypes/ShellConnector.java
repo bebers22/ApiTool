@@ -7,8 +7,7 @@
 package dataTypes;
 
 import ch.ethz.ssh2.*;
-import ch.ethz.ssh2.KnownHosts;
-import ch.ethz.ssh2.Session;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -17,6 +16,7 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.LinkedList;
 
 /**
  *
@@ -40,7 +40,7 @@ public class ShellConnector {
         return shellStream;
     }
     
-    public void setConnection() {
+    public void setConnection(LinkedList<String> lstCommand) {
        try {
             conn = new Connection(host);
             conn.connect();
@@ -48,23 +48,13 @@ public class ShellConnector {
             if (!isAuthenticated) throw new IOException("Authentication failed.");
             sess = conn.openSession();
 
-            //new Thread(new SyncPipe(sess.getStderr(), System.err)).start();
-            //new Thread(new SyncPipe(sess.getStdout(), System.out)).start();
             sess.requestPTY("bash");
             sess.startShell();
-//            BufferedReader x = new BufferedReader(new InputStreamReader(sess.getStdout()));
-//            String s = x.readLine();
-//            sess.getStdout();
-            writer = new OutputStreamWriter(sess.getStdin(), "utf-8");
-            writeCommand("cd weblogic/tlg_domain \n");
-            writeCommand("ant_build_bb -c \n");
-            writeCommand("ant_build_bb \n");
-            writeCommand("ll \n");
-            writeCommand("exit \n");
-            //writeCommand("ant_build_bb -c \n");
-            //writeCommand("ant_build_bb  \n");
-//            sess.waitForCondition(ChannelCondition.CLOSED | ChannelCondition.EOF |
-//                    ChannelCondition.EXIT_STATUS, 10000);
+
+            for (String cmd : lstCommand) {
+            	writeCommand(cmd);
+			}
+
             System.out.println("Exit status : " + sess.getExitStatus());
         } catch (Exception e) {
             e.printStackTrace(System.err);
