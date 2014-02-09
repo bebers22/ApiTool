@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 
 import enviroment.Constants;
 import enviroment.EnviromentHolder;
+import eventHendlers.BbManagementHandler;
 
 /**
  *
@@ -25,8 +26,8 @@ public class BbManagementPanel extends javax.swing.JPanel {
 
 	private void initHandlers() 
 	{
-		//	         checkLogBTN.addActionListener(new BuildCCHandler());
-		//	         runBuildCCBTN.addActionListener(new BuildCCHandler());
+		ChangeProjCCBTN.addActionListener(new BbManagementHandler(this));
+		CreateBBBtn.addActionListener(new BbManagementHandler(this));
 	}
 	/**
 	 * This method is called from within the constructor to initialize the form.
@@ -81,6 +82,14 @@ public class BbManagementPanel extends javax.swing.JPanel {
 	private JLabel lblBb;
 	private JLabel lblVersion;
 	private JComboBox versionsDDL;
+	
+	public javax.swing.JComboBox getBbDDL() {
+		return bbDDL;
+	}
+
+	public JComboBox getVersionsDDL() {
+		return versionsDDL;
+	}
 }
 
 

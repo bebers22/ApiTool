@@ -18,6 +18,7 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
+import javax.swing.JCheckBox;
 
 /**
  *
@@ -54,18 +55,18 @@ public class RunLocalBuildPanel extends javax.swing.JPanel {
     	setLayout(null);
     	
         refreshLocalCB = new javax.swing.JCheckBox();
-        refreshLocalCB.setBounds(6, 92, 96, 22);
+        refreshLocalCB.setBounds(4, 156, 96, 22);
         refreshTlgServerCB = new javax.swing.JCheckBox();
-        refreshTlgServerCB.setBounds(6, 126, 121, 18);
+        refreshTlgServerCB.setBounds(4, 126, 121, 18);
         restartServerCB = new javax.swing.JCheckBox();
-        restartServerCB.setBounds(6, 156, 117, 18);
+        restartServerCB.setBounds(4, 94, 117, 18);
         
         checkLogBTN = new javax.swing.JButton();
-        checkLogBTN.setBounds(16, 226, 112, 28);
+        checkLogBTN.setBounds(4, 238, 112, 28);
         localBuildBTN = new javax.swing.JButton();
-        localBuildBTN.setBounds(16, 186, 110, 28);
+        localBuildBTN.setBounds(6, 198, 110, 28);
         endBTN = new javax.swing.JButton();
-        endBTN.setBounds(129, 186, 81, 28);
+        endBTN.setBounds(128, 198, 81, 28);
         
        
         refreshLocalCB.setText(Constants.REFRESH_LOCAL);
@@ -110,7 +111,7 @@ public class RunLocalBuildPanel extends javax.swing.JPanel {
     	add(versionsDDL);
     	
     	quickBuildBTN = new JButton(Constants.RUN_QUICK_BUILD);
-    	quickBuildBTN.setBounds(16, 265, 112, 28);
+    	quickBuildBTN.setBounds(4, 280, 112, 28);
     	add(quickBuildBTN);
 
 

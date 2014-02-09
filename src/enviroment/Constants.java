@@ -11,14 +11,15 @@ public class Constants {
 	public final static String RUN_QUICK_BUILD = "Quick build";
 	public final static String REFRESH_LOCAL = "RefreshLocal";
 	public final static String REFRESH_TLG_SERVER = "Refresh TlgServer";
+	public final static String CLEAR_CLASSES = "Clear Classes";
 	public final static String RESTART_TLG_SERVER = "Restart TlgServer";
-	public final static String LOCAL_BUILD_LOGS = "Local build logs";
-	public final static String BUILD_CC_LOGS = "Build CC logs";
 	public final static String CHANGE_PROJ = "Change project";
 	public final static String CREATE_NEW_BB = "Create new BB";
-	public final static String BB_MANAGMENT_LOG = "BB managment logs";
 	public final static String CLEAR_BACKEND_FILES = "Clear Backend Generator";
 	
+	public final static String LOCAL_BUILD_LOGS = "Local build logs";
+	public final static String BUILD_CC_LOGS = "Build CC logs";
+	public final static String BB_MANAGMENT_LOG = "BB managment logs";
 	
 	public final static String XML_TAG_PLACEHOLDERS = "PlaceHolder";
 	public final static String XML_TAG_USERNAME = "username";
@@ -27,6 +28,8 @@ public class Constants {
 	public final static String XML_TAG_ID = "id";
 	public final static String XML_TAG_USER = "User";
 	public final static String XML_TAG_BB = "BB";
+
+	public final static String XML_TAG_VERSION_UNDERSCORE = "Version_";
 	public final static String XML_TAG_VERSION = "Version";
 	public final static String XML_TAG_COMMAND = "command";
 	
@@ -37,6 +40,7 @@ public class Constants {
 	
 	public static String PLACE_HOLDER_VERSION;
 	public static String PLACE_HOLDER_BB;
+	public static String PLACE_HOLDER_VERSION_UNDERSCOR;
 	
 	
 }

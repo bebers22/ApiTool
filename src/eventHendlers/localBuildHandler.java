@@ -50,12 +50,7 @@ public class localBuildHandler implements ActionListener{
                     logAreaModel.addTaskToWorker(actionCommand);
                     break;
             }
-//        ToolFrame x = EnviermentHolder.getToolFrame();
-//        if(logAreaModel.getListenr().getListners().capacity()<1)
-//        logAreaModel.getListenr().
-//                addCellListner(EnviermentHolder.getToolFrame().getLocalBuildLog());
-        //logAreaModel.setWorker(actionCommand); 
-        //logAreaModel.getListenr().updateLog();
+
     }
     
 	private String prepareCommand(String command) {
@@ -63,7 +58,9 @@ public class localBuildHandler implements ActionListener{
 		HashMap<String,String> placeHolderValues = new HashMap<>();
 		
 		placeHolderValues.put(Constants.PLACE_HOLDER_BB, String.valueOf(runLocalBuildPanel.getBbDDL().getSelectedItem()));
-		placeHolderValues.put(Constants.PLACE_HOLDER_VERSION, String.valueOf(runLocalBuildPanel.getVersionsDDL().getSelectedItem()));
+		String version = String.valueOf(runLocalBuildPanel.getVersionsDDL().getSelectedItem());
+		placeHolderValues.put(Constants.PLACE_HOLDER_VERSION,version);
+		placeHolderValues.put(Constants.PLACE_HOLDER_VERSION_UNDERSCOR,"v"+ version.substring(0, version.length() - 1) + "_" + version.charAt(version.length()-1));
 		
 		String preparedCommand = EnviromentHolder.getCommandsDataInfo().prepareCommand(placeHolderValues, command);
 		
@@ -72,7 +69,10 @@ public class localBuildHandler implements ActionListener{
 			preparedCommand = EnviromentHolder.getCommandsDataInfo().addWeblogicCommands(preparedCommand, runLocalBuildPanel.refreshTlgServerCB.isSelected(),
 					runLocalBuildPanel.refreshLocalCB.isSelected(), runLocalBuildPanel.restartServerCB.isSelected());
 		}
-		
+		if(Constants.RUN_QUICK_BUILD.equals(command)) {
+			preparedCommand  = EnviromentHolder.getCommandsDataInfo().addWeblogicCommands(preparedCommand, runLocalBuildPanel.refreshTlgServerCB.isSelected(),
+					false, runLocalBuildPanel.restartServerCB.isSelected());
+		}
 		///Call to prepareCommand (CommandsDataInfo)	
 		
 		return preparedCommand;

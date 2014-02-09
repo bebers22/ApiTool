@@ -193,20 +193,24 @@ public  HashMap<String, LogAreaListiner> loadOutputLogs(final Container c) {
         javax.swing.GroupLayout generalTABLayout = new javax.swing.GroupLayout(generalTAB);
         generalTABLayout.setHorizontalGroup(
         	generalTABLayout.createParallelGroup(Alignment.LEADING)
-        		.addGroup(generalTABLayout.createSequentialGroup()
+        		.addGroup(Alignment.TRAILING, generalTABLayout.createSequentialGroup()
         			.addContainerGap()
-        			.addComponent(generalPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        			.addPreferredGap(ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
-        			.addComponent(generalOutputArea, GroupLayout.PREFERRED_SIZE, 709, GroupLayout.PREFERRED_SIZE))
+        			.addComponent(generalPanel, GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
+        			.addPreferredGap(ComponentPlacement.RELATED)
+        			.addComponent(generalOutputArea, GroupLayout.PREFERRED_SIZE, 762, GroupLayout.PREFERRED_SIZE)
+        			.addContainerGap())
         );
         generalTABLayout.setVerticalGroup(
         	generalTABLayout.createParallelGroup(Alignment.LEADING)
         		.addGroup(generalTABLayout.createSequentialGroup()
-        			.addGap(11)
         			.addGroup(generalTABLayout.createParallelGroup(Alignment.LEADING)
-        				.addComponent(generalOutputArea, GroupLayout.PREFERRED_SIZE, 532, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(generalPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-        			.addContainerGap(88, Short.MAX_VALUE))
+        				.addGroup(generalTABLayout.createSequentialGroup()
+        					.addContainerGap()
+        					.addComponent(generalOutputArea, GroupLayout.PREFERRED_SIZE, 470, GroupLayout.PREFERRED_SIZE))
+        				.addGroup(generalTABLayout.createSequentialGroup()
+        					.addGap(11)
+        					.addComponent(generalPanel, GroupLayout.PREFERRED_SIZE, 376, GroupLayout.PREFERRED_SIZE)))
+        			.addContainerGap(155, Short.MAX_VALUE))
         );
         generalTAB.setLayout(generalTABLayout);
 

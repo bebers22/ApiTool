@@ -17,6 +17,7 @@ import java.awt.Insets;
 
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
+import javax.swing.JButton;
 
 /**
  *
@@ -24,7 +25,8 @@ import javax.swing.JComboBox;
  */
 public class GeneralPanel extends javax.swing.JPanel {
 
-    /**
+
+	/**
      * Creates new form GeneralPanel
      */
     public GeneralPanel() {
@@ -39,81 +41,65 @@ public class GeneralPanel extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-    	GridBagLayout gridBagLayout = new GridBagLayout();
-    	gridBagLayout.columnWidths = new int[]{74, 131, 0, 0};
-    	gridBagLayout.rowHeights = new int[]{23, 23, 23, 0, 0, 0, 0};
-    	gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
-    	gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-    	setLayout(gridBagLayout);
+    	setLayout(null);
+
+    	lblBb = new JLabel("BB:");
+    	lblBb.setBounds(6, 6, 25, 26);
+    	lblBb.setFont(new Font("Tahoma", Font.PLAIN, 13));
+    	add(lblBb);
     	
+    	bbDDL = new javax.swing.JComboBox();
+    	bbDDL.setBounds(61, 6, 125, 26);
+    	bbDDL.setToolTipText("Select BB to run build");
+    	bbDDL.setMaximumRowCount(20);
+    	bbDDL.setModel(new javax.swing.DefaultComboBoxModel(EnviromentHolder.getDdlForBB()));
+    	add(bbDDL);
+
     	lblVersion = new JLabel("Version:");
-    	GridBagConstraints gbc_lblVersion = new GridBagConstraints();
-    	gbc_lblVersion.insets = new Insets(0, 0, 5, 5);
+    	lblVersion.setBounds(6, 49, 57, 17);
     	lblVersion.setFont(new Font("Tahoma", Font.PLAIN, 13));
-    	gbc_lblVersion.gridx = 0;
-    	gbc_lblVersion.gridy = 0;
-    	add(lblVersion, gbc_lblVersion);
-    	
-    	ddlVersion = new JComboBox();
-    	GridBagConstraints gbc_ddlVersion = new GridBagConstraints();
-    	gbc_ddlVersion.fill = GridBagConstraints.HORIZONTAL;
-    	gbc_ddlVersion.insets = new Insets(0, 0, 5, 5);
-    	gbc_ddlVersion.gridx = 1;
-    	gbc_ddlVersion.gridy = 0;
-    	ddlVersion.setModel(new javax.swing.DefaultComboBoxModel(EnviromentHolder.setVersionWithUnderScor(EnviromentHolder.getDdlForVersions())));
-    	add(ddlVersion, gbc_ddlVersion);
-    	
-    	clearBackendBTN = new javax.swing.JButton();
-    	clearBackendBTN.setText(Constants.CLEAR_BACKEND_FILES);
-    	GridBagConstraints gbc_setTlgEnvBTN = new GridBagConstraints();
-    	gbc_setTlgEnvBTN.anchor = GridBagConstraints.NORTH;
-    	gbc_setTlgEnvBTN.insets = new Insets(0, 0, 5, 0);
-    	gbc_setTlgEnvBTN.gridx = 2;
-    	gbc_setTlgEnvBTN.gridy = 0;
-    	add(clearBackendBTN, gbc_setTlgEnvBTN);
-    	
-    	startTlgServerBTN = new javax.swing.JButton();
-    	startTlgServerBTN.setText("StartTlgServer");
-    	GridBagConstraints gbc_startTlgServerBTN = new GridBagConstraints();
-    	gbc_startTlgServerBTN.insets = new Insets(0, 0, 5, 5);
-    	gbc_startTlgServerBTN.anchor = GridBagConstraints.NORTHWEST;
-    	gbc_startTlgServerBTN.gridx = 1;
-    	gbc_startTlgServerBTN.gridy = 2;
-    	add(startTlgServerBTN, gbc_startTlgServerBTN);
+    	add(lblVersion);
+
+    	versionsDDL = new JComboBox();
+    	versionsDDL.setBounds(61, 44, 125, 26);
+    	versionsDDL.setToolTipText("Select version");
+    	versionsDDL.setModel(new javax.swing.DefaultComboBoxModel(EnviromentHolder.getDdlForVersions()));
+    	add(versionsDDL);
+
     	stopTlgServerBTN = new javax.swing.JButton();
+    	stopTlgServerBTN.setBounds(40, 174, 105, 28);
 
     	stopTlgServerBTN.setText("StopTlgServer");
 
-    	stopTlgServerBTN.addActionListener(new java.awt.event.ActionListener() {
-    		public void actionPerformed(java.awt.event.ActionEvent evt) {
-    			stopTlgServerBTNActionPerformed(evt);
-    		}
-    	});
-    	GridBagConstraints gbc_stopTlgServerBTN = new GridBagConstraints();
-    	gbc_stopTlgServerBTN.insets = new Insets(0, 0, 5, 5);
-    	gbc_stopTlgServerBTN.anchor = GridBagConstraints.NORTHWEST;
-    	gbc_stopTlgServerBTN.gridx = 1;
-    	gbc_stopTlgServerBTN.gridy = 3;
-    	add(stopTlgServerBTN, gbc_stopTlgServerBTN);
+    	//TODO: handler to general tab and add event listner to each button
+
+    	clearBackendBTN = new javax.swing.JButton();
+    	clearBackendBTN.setBounds(19, 92, 167, 28);
+    	clearBackendBTN.setText(Constants.CLEAR_BACKEND_FILES);
+    	add(clearBackendBTN);
+    	add(stopTlgServerBTN);
     	
-    	    	refreshTlgServerBTN = new javax.swing.JButton();
-    	    	
-    	    	    	refreshTlgServerBTN.setText("RefreshTlgServer");
-    	    	    	GridBagConstraints gbc_refreshTlgServerBTN = new GridBagConstraints();
-    	    	    	gbc_refreshTlgServerBTN.insets = new Insets(0, 0, 5, 5);
-    	    	    	gbc_refreshTlgServerBTN.anchor = GridBagConstraints.NORTHWEST;
-    	    	    	gbc_refreshTlgServerBTN.gridx = 1;
-    	    	    	gbc_refreshTlgServerBTN.gridy = 4;
-    	    	    	add(refreshTlgServerBTN, gbc_refreshTlgServerBTN);
-    	    	    	
-    	    	    	refreahLocalBTN = new javax.swing.JButton();
-    	    	    	refreahLocalBTN.setText("RefreshLocal");
-    	    	    	GridBagConstraints gbc_refreahLocalBTN = new GridBagConstraints();
-    	    	    	gbc_refreahLocalBTN.insets = new Insets(0, 0, 0, 5);
-    	    	    	gbc_refreahLocalBTN.anchor = GridBagConstraints.NORTHWEST;
-    	    	    	gbc_refreahLocalBTN.gridx = 1;
-    	    	    	gbc_refreahLocalBTN.gridy = 5;
-    	    	    	add(refreahLocalBTN, gbc_refreahLocalBTN);
+    	clearClassesBTN = new JButton(Constants.CLEAR_CLASSES);
+    	clearClassesBTN.setBounds(40, 121, 114, 28);
+    	add(clearClassesBTN);
+
+    	refreahLocalBTN = new javax.swing.JButton();
+    	refreahLocalBTN.setBounds(40, 245, 102, 28);
+    	refreahLocalBTN.setText("RefreshLocal");
+    	add(refreahLocalBTN);
+
+    	refreshTlgServerBTN = new javax.swing.JButton();
+    	refreshTlgServerBTN.setBounds(19, 205, 124, 28);
+
+    	refreshTlgServerBTN.setText("RefreshTlgServer");
+    	add(refreshTlgServerBTN);
+
+    	startTlgServerBTN = new javax.swing.JButton();
+    	startTlgServerBTN.setBounds(40, 147, 105, 28);
+    	startTlgServerBTN.setText("StartTlgServer");
+    	add(startTlgServerBTN);
+    	
+
 
     }// </editor-fold>//GEN-END:initComponents
 
@@ -129,5 +115,9 @@ public class GeneralPanel extends javax.swing.JPanel {
     private javax.swing.JButton stopTlgServerBTN;
     private JLabel lblVersion;
     private JComboBox ddlVersion;
+    private JButton clearClassesBTN;
+    private JLabel lblBb;
+	private JComboBox bbDDL;
+	private JComboBox versionsDDL;
     // End of variables declaration//GEN-END:variables
 }

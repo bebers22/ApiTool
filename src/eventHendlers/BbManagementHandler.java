@@ -1,16 +1,16 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
+ * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package eventHendlers;
 
 import dataTypes.LogAreaModel;
 import enviroment.Constants;
 import enviroment.EnviromentHolder;
+import gui.BbManagementPanel;
 import gui.RunBuildCCPanel;
 import gui.RunLocalBuildPanel;
+import gui.ToolFrame;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,17 +18,13 @@ import java.util.HashMap;
 
 import javax.swing.JButton;
 
-/**
- *
- * @author Yuval
- */
-public class BuildCCHandler implements ActionListener{
-     public LogAreaModel logAreaModel;
-     public RunBuildCCPanel runBuildCcPanel;
+public class BbManagementHandler implements ActionListener{
+
+    public LogAreaModel logAreaModel;
+    public BbManagementPanel bbManagementPanel;
     
-    public BuildCCHandler(RunBuildCCPanel rbcp) {
-    	
-    	runBuildCcPanel = rbcp;
+    public BbManagementHandler(BbManagementPanel bbmp) {
+    	bbManagementPanel = bbmp;
     }
     
     @Override
@@ -38,31 +34,33 @@ public class BuildCCHandler implements ActionListener{
         
         String UnixCommand = prepareCommand(((JButton)e.getSource()).getText());
         
-        logAreaModel = enviroment.EnviromentHolder.getLogs().get(Constants.BUILD_CC_LOGS);
+        logAreaModel = enviroment.EnviromentHolder.getLogs().get(Constants.BB_MANAGMENT_LOG);
         
         switch(actionCommand){
-                case Constants.RUN_BUILD_IN_CC:
-                    logAreaModel.setWorker(UnixCommand);
+                case Constants.START:
+                    logAreaModel.setWorker(actionCommand);
                     break;
                 case Constants.END:
                     logAreaModel.stopWorker(actionCommand);
                     break;
-                case Constants.CHECK_CC_LOG:
-                    logAreaModel.addTaskToWorker(UnixCommand);
+                case Constants.CHECK_LOCAL_BUILD_LOG:
+                    logAreaModel.addTaskToWorker(actionCommand);
                     break;
             }
 
     }
-
+    
 	private String prepareCommand(String command) {
 		
 		HashMap<String,String> placeHolderValues = new HashMap<>();
 		
-		placeHolderValues.put(Constants.PLACE_HOLDER_BB, String.valueOf(runBuildCcPanel.getBbDDL().getSelectedItem()));
-		placeHolderValues.put(Constants.PLACE_HOLDER_VERSION, String.valueOf(runBuildCcPanel.getVersionsDDL().getSelectedItem()));
+		placeHolderValues.put(Constants.PLACE_HOLDER_BB, String.valueOf(bbManagementPanel.getBbDDL().getSelectedItem()));
+		String version = String.valueOf(bbManagementPanel.getVersionsDDL().getSelectedItem());
+		placeHolderValues.put(Constants.PLACE_HOLDER_VERSION,version);
+		placeHolderValues.put(Constants.PLACE_HOLDER_VERSION_UNDERSCOR,"v"+ version.substring(0, version.length() - 1) + "_" + version.charAt(version.length()-1));
 		
 		String preparedCommand = EnviromentHolder.getCommandsDataInfo().prepareCommand(placeHolderValues, command);
-		
+
 		///Call to prepareCommand (CommandsDataInfo)	
 		
 		return preparedCommand;

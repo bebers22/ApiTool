@@ -41,7 +41,7 @@ public class CommandsDataInfo {
 			for (Entry<String, String> entry : placeHoldersEntrySet) {
 				String placeHolder = entry.getKey();
 				String value = entry.getValue();
-
+					
 				preparedCommand = preparedCommand.replace("{"+placeHolder+"}", value);
 
 			}
@@ -95,12 +95,17 @@ public class CommandsDataInfo {
 				Element el = (Element) nList.item(i);
 				String attr = el.getAttribute(Constants.XML_TAG_ID);
 				switch (attr) {
+				
 				case Constants.XML_TAG_VERSION : {
 					Constants.PLACE_HOLDER_VERSION = el.getAttribute(Constants.XML_TAG_NAME);
 				}
 				case Constants.XML_TAG_BB : {
 
 					Constants.PLACE_HOLDER_BB = el.getAttribute(Constants.XML_TAG_NAME);
+				}
+				case Constants.XML_TAG_VERSION_UNDERSCORE : {
+
+					Constants.PLACE_HOLDER_VERSION_UNDERSCOR = el.getAttribute(Constants.XML_TAG_NAME);
 				}
 
 				}
