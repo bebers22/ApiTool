@@ -4,6 +4,7 @@
  */
 package enviroment;
 
+import dataInfo.CommandsDataInfo;
 import dataTypes.FrameModel;
 import dataTypes.LogAreaListiner;
 import dataTypes.LogAreaModel;
@@ -54,51 +55,70 @@ public class EnviromentHolder {
 
 	private static HashMap<String,String> ddlFillInBBs;
     private static HashMap<String,String> ddlFillInVersion;
+    private static CommandsDataInfo commandsDataInfo;
     
-    
-    public static void loadPreferences() {
+
+
+	public static void loadPreferences() {
      	try {
 
      		loadUserEnvDetails();
      		loadDdlDetails();
+     		commandsDataInfo = new CommandsDataInfo();
      		
     	} catch (Exception e) {
     		e.printStackTrace();
     	}
     }
 
+
+	/**
+     * Loading the user details
+     */
     private static void loadUserEnvDetails() {
     	try {
     		
     	   	File usernamePasswordfile = new File(Constants.USERNAME_PASSWORD_XML);
 			Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(usernamePasswordfile);
-			NodeList  nList = doc.getElementsByTagName("User");
+			NodeList  nList = doc.getElementsByTagName(Constants.XML_TAG_USER);
 			if( nList.getLength() != 0 ) {
 				Element el = (Element) nList.item(0);
 				usernamePassword = new String[2];
-				usernamePassword[0] = el.getAttribute("username");
-				usernamePassword[1] = el.getAttribute("password");
+				usernamePassword[0] = el.getAttribute(Constants.XML_TAG_USERNAME);
+				usernamePassword[1] = el.getAttribute(Constants.XML_TAG_PASSWORD);
 			}
 		
     	} catch (Exception e) {
-			System.out.println("FAILD to load local file - using default values");
+    		//TODO : error handling
+			System.out.println("FAILD to load local User details file - using default values");
 		}
 	
     	
 		
 	}
 
+    /**
+     * loadind the versions an BBs from xml file
+     * @throws SAXException
+     * @throws IOException
+     * @throws ParserConfigurationException
+     */
 	public static void loadDdlDetails() throws SAXException, IOException, ParserConfigurationException {
     	
 		File fXmlFile = new File(Constants.BB_AND_VERSIONS_XML);
 		Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(fXmlFile);
 		
-		ddlFillInBBs = parsePropertiestoMap("BB",doc);
-		ddlFillInVersion = parsePropertiestoMap("Version",doc);
+		ddlFillInBBs = parsePropertiestoMap(Constants.XML_TAG_BB,doc);
+		ddlFillInVersion = parsePropertiestoMap(Constants.XML_TAG_VERSION,doc);
     	
     }
     
-    
+    /**
+     * Parse the xml of the eviroments and versions
+     * @param tagName
+     * @param doc
+     * @return
+     */
     private static HashMap<String, String> parsePropertiestoMap(String tagName, Document doc) {
 
 		NodeList nList = doc.getElementsByTagName(tagName);
@@ -114,7 +134,7 @@ public class EnviromentHolder {
 				Element el = (Element)node;
 				//System.out.println(el.getAttribute("id"));
 				//System.out.println(el.getAttribute("name"));
-				mapToFill.put(el.getAttribute("id"), el.getAttribute("name"));
+				mapToFill.put(el.getAttribute(Constants.XML_TAG_ID), el.getAttribute(Constants.XML_TAG_NAME));
 				
 			}
 		}
@@ -124,6 +144,14 @@ public class EnviromentHolder {
 	}
 
 
+    public static CommandsDataInfo getCommandsDataInfo() {
+		return commandsDataInfo;
+	}
+
+
+	public static void setCommandsDataInfo(CommandsDataInfo commandsDataInfo) {
+		EnviromentHolder.commandsDataInfo = commandsDataInfo;
+	}
 
 	public static ToolFrame getToolFrame() {
         return toolFrame;
@@ -201,4 +229,20 @@ public class EnviromentHolder {
             ((OutputPanel)entry.getValue()).setLogAreaModel(Logs.get((String)entry.getKey()));
         }
     }
+
+
+    /**
+     * change the versions text from 14023 to v1402_3
+     * @param ddlForVersions
+     * @return
+     */
+	public static String[] setVersionWithUnderScor(String[] ddlForVersions) {
+		
+		for(int i=0;i<ddlForVersions.length;i++) {
+			ddlForVersions[i] = "v"+ ddlForVersions[i].substring(0, ddlForVersions[i].length() - 1) + "_" + ddlForVersions[i].charAt(ddlForVersions[i].length()-1);
+			
+		}
+				
+		return ddlForVersions;
+	}
 }

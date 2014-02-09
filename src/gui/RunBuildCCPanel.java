@@ -36,6 +36,7 @@ import org.eclipse.wb.swing.FocusTraversalOnArray;
 
 import java.awt.Component;
 import java.awt.Rectangle;
+import java.awt.Color;
 
 /**
  *
@@ -53,8 +54,8 @@ public class RunBuildCCPanel extends javax.swing.JPanel {
 
     private void initHandlers() 
     {
-        checkLogBTN.addActionListener(new BuildCCHandler());
-        runBuildCCBTN.addActionListener(new BuildCCHandler());
+        checkLogBTN.addActionListener(new BuildCCHandler(this));
+        runBuildCCBTN.addActionListener(new BuildCCHandler(this));
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -79,7 +80,7 @@ public class RunBuildCCPanel extends javax.swing.JPanel {
     	add(bbDDL);
 
     	lblVersion = new JLabel("Version:");
-    	lblVersion.setBounds(6, 44, 57, 17);
+    	lblVersion.setBounds(6, 49, 57, 17);
     	lblVersion.setFont(new Font("Tahoma", Font.PLAIN, 13));
     	add(lblVersion);
 
@@ -95,17 +96,40 @@ public class RunBuildCCPanel extends javax.swing.JPanel {
     	runBuildCCBTN.setText(Constants.RUN_BUILD_IN_CC);
     	add(runBuildCCBTN);
     	checkLogBTN = new javax.swing.JButton();
-    	checkLogBTN.setBounds(61, 122, 114, 28);
+    	checkLogBTN.setBounds(62, 146, 114, 28);
 
-    	checkLogBTN.setText(Constants.CHECK_LOG);
+    	checkLogBTN.setText(Constants.CHECK_CC_LOG);
     	add(checkLogBTN);
+    	
+    	informationlbl = new JLabel("Build in CC will build all the BBs");
+    	informationlbl.setForeground(Color.BLUE);
+    	informationlbl.setBounds(6, 121, 180, 17);
+    	add(informationlbl);
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox bbDDL;
-    private javax.swing.JButton checkLogBTN;
+	private javax.swing.JButton checkLogBTN;
     private javax.swing.JButton runBuildCCBTN;
     private JLabel lblBb;
     private JLabel lblVersion;
     private JComboBox versionsDDL;
+    private JLabel informationlbl;
+    
+    
+    public javax.swing.JComboBox getBbDDL() {
+		return bbDDL;
+	}
+
+	public void setBbDDL(javax.swing.JComboBox bbDDL) {
+		this.bbDDL = bbDDL;
+	}
+
+	public JComboBox getVersionsDDL() {
+		return versionsDDL;
+	}
+
+	public void setVersionsDDL(JComboBox versionsDDL) {
+		this.versionsDDL = versionsDDL;
+	}
 }

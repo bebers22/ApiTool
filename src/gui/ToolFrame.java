@@ -23,6 +23,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Dimension;
 import java.awt.ComponentOrientation;
 import javax.swing.JPanel;
+import java.awt.Frame;
 
 /**
  *
@@ -34,6 +35,7 @@ public class ToolFrame extends javax.swing.JFrame {
      * Creates new form FramePanel
      */
     public ToolFrame() {
+    	getContentPane().setFocusable(false);
     	getContentPane().setName("aacontentPane");
         preLoadEnvierment();
         initComponents();
@@ -105,17 +107,20 @@ public  HashMap<String, LogAreaListiner> loadOutputLogs(final Container c) {
         	localBuildTABLayout.createParallelGroup(Alignment.LEADING)
         		.addGroup(localBuildTABLayout.createSequentialGroup()
         			.addContainerGap()
-        			.addComponent(runLocalBuildPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        			.addGap(18)
-        			.addComponent(localBuildLog, GroupLayout.DEFAULT_SIZE, 767, Short.MAX_VALUE))
+        			.addComponent(runLocalBuildPanel, GroupLayout.PREFERRED_SIZE, 202, GroupLayout.PREFERRED_SIZE)
+        			.addGap(12)
+        			.addComponent(localBuildLog, GroupLayout.DEFAULT_SIZE, 764, Short.MAX_VALUE))
         );
         localBuildTABLayout.setVerticalGroup(
         	localBuildTABLayout.createParallelGroup(Alignment.LEADING)
         		.addGroup(localBuildTABLayout.createSequentialGroup()
-        			.addContainerGap()
         			.addGroup(localBuildTABLayout.createParallelGroup(Alignment.LEADING)
-        				.addComponent(localBuildLog, GroupLayout.PREFERRED_SIZE, 480, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(runLocalBuildPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+        				.addGroup(localBuildTABLayout.createSequentialGroup()
+        					.addContainerGap()
+        					.addComponent(localBuildLog, GroupLayout.PREFERRED_SIZE, 480, GroupLayout.PREFERRED_SIZE))
+        				.addGroup(localBuildTABLayout.createSequentialGroup()
+        					.addGap(37)
+        					.addComponent(runLocalBuildPanel, GroupLayout.PREFERRED_SIZE, 339, GroupLayout.PREFERRED_SIZE)))
         			.addContainerGap(145, Short.MAX_VALUE))
         );
         localBuildTAB.setLayout(localBuildTABLayout);
@@ -332,18 +337,18 @@ public  HashMap<String, LogAreaListiner> loadOutputLogs(final Container c) {
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         layout.setHorizontalGroup(
-        	layout.createParallelGroup(Alignment.LEADING)
+        	layout.createParallelGroup(Alignment.TRAILING)
         		.addGroup(layout.createSequentialGroup()
+        			.addGap(6)
+        			.addComponent(jPanel3, GroupLayout.DEFAULT_SIZE, 983, Short.MAX_VALUE)
+        			.addContainerGap(328, Short.MAX_VALUE))
+        		.addGroup(Alignment.LEADING, layout.createSequentialGroup()
         			.addGroup(layout.createParallelGroup(Alignment.TRAILING, false)
-        				.addGroup(layout.createSequentialGroup()
-        					.addGap(6)
-        					.addComponent(jPanel3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        				.addComponent(commandsAreaPanel, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 992, Short.MAX_VALUE))
-        			.addContainerGap(325, Short.MAX_VALUE))
-        		.addGroup(layout.createSequentialGroup()
-        			.addContainerGap()
-        			.addComponent(apiProfilePanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        			.addGap(319))
+        				.addGroup(Alignment.LEADING, layout.createSequentialGroup()
+        					.addContainerGap()
+        					.addComponent(apiProfilePanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        				.addComponent(commandsAreaPanel, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 989, GroupLayout.PREFERRED_SIZE))
+        			.addContainerGap(328, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
         	layout.createParallelGroup(Alignment.TRAILING)
