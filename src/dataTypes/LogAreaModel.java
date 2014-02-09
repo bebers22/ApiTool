@@ -24,8 +24,9 @@ public class LogAreaModel {
 	}
     
     public void setWorker(String command) {
-		EnviromentHolder.getWorkersScheduler().
-		getWorkerScheduler(LogAreaId).setScheduler();
+//		EnviromentHolder.getWorkersScheduler().
+//		getWorkerScheduler(LogAreaId).setScheduler();
+    	actionListenr.startActivity(command);
 	}
 
     public void stopWorker(String command) {
