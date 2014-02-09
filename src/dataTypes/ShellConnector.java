@@ -7,14 +7,14 @@
 package dataTypes;
 
 import ch.ethz.ssh2.*;
-
+import ch.ethz.ssh2.KnownHosts;
+import ch.ethz.ssh2.Session;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
-import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -27,7 +27,7 @@ public class ShellConnector {
     static final String idDSAPath = "~/.ssh/id_dsa";
     static final String idRSAPath = "~/.ssh/id_rsa";
     private String host = "snv4914";
-    private String username = "izhaqb";
+    private String username = "yuvalsi";
     private String password = "Unix11!";
     private KnownHosts database = new KnownHosts();
     private OutputStreamWriter writer = null;
@@ -40,7 +40,7 @@ public class ShellConnector {
         return shellStream;
     }
     
-    public void setConnection(LinkedList<String> lstCommand) {
+    public void setConnection() {
        try {
             conn = new Connection(host);
             conn.connect();
@@ -56,14 +56,11 @@ public class ShellConnector {
 //            String s = x.readLine();
 //            sess.getStdout();
             writer = new OutputStreamWriter(sess.getStdin(), "utf-8");
-            for (String cmd : lstCommand) {
-            	writeCommand(cmd);
-			}
-            
-//            writeCommand("ant_build_bb -c \n");
-//            writeCommand("ant_build_bb \n");
-//            writeCommand("ll \n");
-//            writeCommand("exit \n");
+            writeCommand("cd weblogic/tlg_domain \n");
+            writeCommand("ant_build_bb -c \n");
+            writeCommand("ant_build_bb \n");
+            writeCommand("ll \n");
+            writeCommand("exit \n");
             //writeCommand("ant_build_bb -c \n");
             //writeCommand("ant_build_bb  \n");
 //            sess.waitForCondition(ChannelCondition.CLOSED | ChannelCondition.EOF |

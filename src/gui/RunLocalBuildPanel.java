@@ -39,7 +39,7 @@ public class RunLocalBuildPanel extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
- 
+
         commandLabel = new javax.swing.JLabel();
         
         commandDDL = new javax.swing.JComboBox();

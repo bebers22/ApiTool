@@ -35,7 +35,6 @@ public class TaskScheduler extends Thread implements Serializable{
         private  InputStream istrm_;
         private ShellConnector shellConnector;
         String output;
-        private boolean isCommandRunning = false;
 
 	/**
 	 * Constructe the thread.
@@ -52,61 +51,65 @@ public class TaskScheduler extends Thread implements Serializable{
                 output = null;
 	}
 
-//	/**
-//	 * Activated the thread.
-//	 * @param MealsforDay - number of meals in day.
-//	 * @param SurviveTime - number of days the animal can survive without food. 
-//	 */
-//	public void setScheduler(){
-//		isRunning = true;
-//		State x =  this.getState();
-//		if(this.getState() != Thread.State.NEW) {
-//			synchronized (this){
-//				if(ActionToPreform.size() > 0)
-//					return;
-//				int p = ActionToPreform.size();
-//			}
-//			buildTasks();
-//			shellConnector.setConnection(ActionToPreform);
-//			istrm_ = shellConnector.getStream();
-//			synchronized (this){
-//				int p = ActionToPreform.size();
-//				status = "RUN";
-//				this.notify();
-//
-//			}
-//		}
-//		else {
-//			buildTasks();
-//			shellConnector.setConnection(ActionToPreform);
-//			istrm_ = shellConnector.getStream();
-//			status = "RUN";
-//			this.start();
-//		}
-//
-//	}
-
-	
 	/**
 	 * Activated the thread.
+	 * @param MealsforDay - number of meals in day.
+	 * @param SurviveTime - number of days the animal can survive without food. 
 	 */
 	public void setScheduler(){
 		isRunning = true;
-		buildTasks();
-		shellConnector.setConnection(ActionToPreform);
-		istrm_ = shellConnector.getStream();
-		this.start();
+		State x =  this.getState();
+		if(this.getState() != Thread.State.NEW) {
+			synchronized (this){
+				if(ActionToPreform.size() > 0)
+					return;
+				int p = ActionToPreform.size();
+			}
+			buildTasks();
+			shellConnector.setConnection();
+			istrm_ = shellConnector.getStream();
+			synchronized (this){
+				int p = ActionToPreform.size();
+				status = "RUN";
+				this.notify();
+
+			}
+		}
+		else {
+			buildTasks();
+			shellConnector.setConnection();
+			istrm_ = shellConnector.getStream();
+			status = "RUN";
+			this.start();
+		}
+
 	}
-	
+
 	/**
 	 * Build array of tasks to preform
 	 */
 	public void buildTasks(){
 		tasks = new LinkedList<Integer>();
 		ActionToPreform = new LinkedList<String>();
-		ActionToPreform.add("cd weblogic/tlg_domain;ll;refreshLocal.sh;echo Action finished;exit; \n");
+		//                ActionToPreform.add("1");
+		//                ActionToPreform.add("2");
+		//                ActionToPreform.add("3");
+		//                ActionToPreform.add("4");
+		//                ActionToPreform.add("5");
+		ActionToPreform.add("cd weblogic/tlg_domain \n");
 		tasks.add(1);
-		isCommandRunning = true;
+		ActionToPreform.add("ll \n");
+		tasks.add(1);
+		ActionToPreform.add("refreshLocal.sh \n");
+		tasks.add(1);
+		ActionToPreform.add("exit \n");
+		tasks.add(1);
+		//                for(int i = 0; i < 7; i++) {
+		//                    ActionToPreform.add(i+" ");
+		//                    tasks.add(1);
+		//                }
+
+		//ActionToPreform.add("EndOfLifeCicel");
 	}
 
 	/**
@@ -125,92 +128,50 @@ public class TaskScheduler extends Thread implements Serializable{
 	 */
 	public void run() {
 
-		while (isRunning) {
+		while(isRunning) {
+			while(tasks.isEmpty()) {
+				this.action.updateLog(" END. ");
+				synchronized (this) {
+					//this.action.updateLog("awiting .... 1");
+					status = "WAIT";
+					try { this.wait(); } catch (InterruptedException e) { }
+				}			
+			}
 
-			if (!isRunning) {
+			int taskTime = 0;
+			synchronized (this) {   // taking the next action to preform
+				taskTime = tasks.pollFirst();
+				try { wait(taskTime*1000); } catch (InterruptedException e) { }
+			}		
+
+			if(!isRunning){
 				break;
 			}
-			
-			sentToOutput();
-		}
-		ActionToPreform.removeAll(ActionToPreform);
-		actionToPerform("End of action.");
-	}
-	
-	public boolean sentToOutput(){
-		boolean logout = false;
-		
-		String msg = "";
-		try {
-			if(istrm_.available() > 0) {
 
-				int i = istrm_.read(buffer_, 0, 1024);
-				if (i > 0) {
-				msg = new String(buffer_, 0, i);
-				actionToPerform(msg);
+			if(isRunning){
+				while(true) {
+					try {
+						while(istrm_.available()>0){
+
+							int i=istrm_.read(buffer_, 0, 1024);
+							if(i<0)break;
+							String msg = new String(buffer_, 0, i);
+							actionToPerform(msg);
+						}
+					}
+					//                                 istrm_ = shellConnector.getStream();
+					//                                 BufferedReader x = new BufferedReader(new InputStreamReader(istrm_));
+					//                            try {
+						//                               output = x.readLine();
+					//                                if(output != null) tasks.add(1);
+					catch (IOException ex) {
+						Logger.getLogger(TaskScheduler.class.getName()).log(Level.SEVERE, null, ex);
+					}
 				}
+			} 
 
-			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
-
-		if (msg.contains("logout")) stopTask();
-		
-		return logout; 
 	}
-//	@Override
-//	/**
-//	 * the method that make the thread awake and sleep
-//	 */
-//	public void run() {
-//
-//		while(isRunning) {
-//			while(tasks.isEmpty()) {
-//				this.action.updateLog(" END. ");
-//				synchronized (this) {
-//					//this.action.updateLog("awiting .... 1");
-//					status = "WAIT";
-//					try { this.wait(); } catch (InterruptedException e) { }
-//				}			
-//			}
-//
-//			int taskTime = 0;
-//			synchronized (this) {   // taking the next action to preform
-//				taskTime = tasks.pollFirst();
-//				try { wait(taskTime*1000); } catch (InterruptedException e) { }
-//			}		
-//
-//			if(!isRunning){
-//				break;
-//			}
-//			if(isRunning){
-//				while(true) {
-//					try {
-//						String msg = "";
-//						while(istrm_.available()>0){
-//							
-//							int i=istrm_.read(buffer_, 0, 1024);
-//							if(i<0)break;
-//							msg = new String(buffer_, 0, i);
-//							actionToPerform(msg);
-//							
-//						}
-//						
-//						if(msg.contains("Action finished")) 
-//							break;
-//					}
-//					catch (IOException ex) {
-//						Logger.getLogger(TaskScheduler.class.getName()).log(Level.SEVERE, null, ex);
-//					}
-//				}
-//				actionToPerform("End of action.");
-//				ActionToPreform.removeAll(ActionToPreform);
-//			} 
-//
-//		}
-//	}
 
 
 	/**
@@ -225,7 +186,9 @@ public class TaskScheduler extends Thread implements Serializable{
 
 			} 
 		}else{
-			this.action.updateLog("bey bey");
+			this.action.updateLog("bey bey ");
+			//killAnimal();
+			//this.action.setCells(1, 12);
 		}
 	}
 	
@@ -249,8 +212,6 @@ public class TaskScheduler extends Thread implements Serializable{
 
 	public void stopTask(){
 		synchronized (this) {
-			isRunning = false;
-			shellConnector.close();
 			ActionToPreform.removeAll(ActionToPreform);
 			tasks.removeAll(tasks);
 		}
