@@ -9,22 +9,13 @@ import dataTypes.LogAreaListiner;
 import dataTypes.TaskSchedulerBoard;
 import enviroment.Constants;
 import enviroment.EnviromentHolder;
-
 import java.awt.Component;
 import java.awt.Container;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;
 import javax.swing.LayoutStyle.ComponentPlacement;
-
 import java.awt.Dimension;
-import java.awt.ComponentOrientation;
-import javax.swing.JPanel;
-import java.awt.Frame;
-
 /**
  *
  * @author izhaq
@@ -192,8 +183,8 @@ public  HashMap<String, LogAreaListiner> loadOutputLogs(final Container c) {
 
         javax.swing.GroupLayout generalTABLayout = new javax.swing.GroupLayout(generalTAB);
         generalTABLayout.setHorizontalGroup(
-        	generalTABLayout.createParallelGroup(Alignment.LEADING)
-        		.addGroup(Alignment.TRAILING, generalTABLayout.createSequentialGroup()
+        	generalTABLayout.createParallelGroup(Alignment.TRAILING)
+        		.addGroup(generalTABLayout.createSequentialGroup()
         			.addContainerGap()
         			.addComponent(generalPanel, GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
         			.addPreferredGap(ComponentPlacement.RELATED)
@@ -208,7 +199,7 @@ public  HashMap<String, LogAreaListiner> loadOutputLogs(final Container c) {
         					.addContainerGap()
         					.addComponent(generalOutputArea, GroupLayout.PREFERRED_SIZE, 470, GroupLayout.PREFERRED_SIZE))
         				.addGroup(generalTABLayout.createSequentialGroup()
-        					.addGap(11)
+        					.addGap(39)
         					.addComponent(generalPanel, GroupLayout.PREFERRED_SIZE, 376, GroupLayout.PREFERRED_SIZE)))
         			.addContainerGap(155, Short.MAX_VALUE))
         );

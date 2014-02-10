@@ -2,10 +2,8 @@ package gui;
 
 
 import java.awt.Font;
-
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
-
 import enviroment.Constants;
 import enviroment.EnviromentHolder;
 import eventHendlers.BbManagementHandler;

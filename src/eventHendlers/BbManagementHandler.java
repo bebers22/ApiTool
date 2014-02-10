@@ -8,10 +8,6 @@ import dataTypes.LogAreaModel;
 import enviroment.Constants;
 import enviroment.EnviromentHolder;
 import gui.BbManagementPanel;
-import gui.RunBuildCCPanel;
-import gui.RunLocalBuildPanel;
-import gui.ToolFrame;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
@@ -29,24 +25,12 @@ public class BbManagementHandler implements ActionListener{
     
     @Override
     public void actionPerformed(ActionEvent e) {
-    	
-        String actionCommand = e.getActionCommand();
-        
+    	        
         String UnixCommand = prepareCommand(((JButton)e.getSource()).getText());
         
         logAreaModel = enviroment.EnviromentHolder.getLogs().get(Constants.BB_MANAGMENT_LOG);
         
-        switch(actionCommand){
-                case Constants.START:
-                    logAreaModel.setWorker(actionCommand);
-                    break;
-                case Constants.END:
-                    logAreaModel.stopWorker(actionCommand);
-                    break;
-                case Constants.CHECK_LOCAL_BUILD_LOG:
-                    logAreaModel.addTaskToWorker(actionCommand);
-                    break;
-            }
+        logAreaModel.setWorker(UnixCommand);
 
     }
     

@@ -3,18 +3,10 @@
  * and open the template in the editor.
  */
 package gui;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.GroupLayout;
-import javax.swing.LayoutStyle.ComponentPlacement;
 
 import enviroment.Constants;
 import enviroment.EnviromentHolder;
-
 import java.awt.Font;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import javax.swing.JButton;

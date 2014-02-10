@@ -3,26 +3,16 @@
  * and open the template in the editor.
  */
 package gui;
+
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
-
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-
 import java.awt.Color;
-
 import javax.swing.JButton;
-
-import ch.ethz.ssh2.Connection;
-import ch.ethz.ssh2.Session;
-import enviroment.Constants;
 import enviroment.EnviromentHolder;
-
-import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.io.IOException;
 
 /**
  *

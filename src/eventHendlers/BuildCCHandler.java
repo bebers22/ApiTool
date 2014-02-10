@@ -10,8 +10,6 @@ import dataTypes.LogAreaModel;
 import enviroment.Constants;
 import enviroment.EnviromentHolder;
 import gui.RunBuildCCPanel;
-import gui.RunLocalBuildPanel;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
@@ -33,24 +31,12 @@ public class BuildCCHandler implements ActionListener{
     
     @Override
     public void actionPerformed(ActionEvent e) {
-    	
-        String actionCommand = e.getActionCommand();
-        
+    	        
         String UnixCommand = prepareCommand(((JButton)e.getSource()).getText());
         
         logAreaModel = enviroment.EnviromentHolder.getLogs().get(Constants.BUILD_CC_LOGS);
         
-        switch(actionCommand){
-                case Constants.RUN_BUILD_IN_CC:
-                    logAreaModel.setWorker(UnixCommand);
-                    break;
-                case Constants.END:
-                    logAreaModel.stopWorker(actionCommand);
-                    break;
-                case Constants.CHECK_CC_LOG:
-                    logAreaModel.addTaskToWorker(UnixCommand);
-                    break;
-            }
+        logAreaModel.setWorker(UnixCommand);
 
     }
 

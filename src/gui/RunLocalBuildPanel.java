@@ -7,18 +7,12 @@ package gui;
 import enviroment.Constants;
 import enviroment.EnviromentHolder;
 import eventHendlers.localBuildHandler;
-
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.GroupLayout;
 import javax.swing.JLabel;
-
 import java.awt.Font;
 import javax.swing.JButton;
-import javax.swing.SwingConstants;
-import javax.swing.JCheckBox;
+
 
 /**
  *

@@ -5,12 +5,10 @@
 package gui;
 
 import dataTypes.*;
-
 import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 

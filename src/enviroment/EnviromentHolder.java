@@ -8,28 +8,18 @@ import dataInfo.CommandsDataInfo;
 import dataTypes.FrameModel;
 import dataTypes.LogAreaListiner;
 import dataTypes.LogAreaModel;
-import dataTypes.TaskScheduler;
 import dataTypes.TaskSchedulerBoard;
 import gui.OutputPanel;
 import gui.ToolFrame;
-
-import java.awt.Component;
-import java.awt.Container;
 import java.io.File;
 import java.io.IOException;
-import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
-
-import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-
 import org.omg.CORBA.StringHolder;
-import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;

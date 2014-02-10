@@ -7,35 +7,9 @@ package gui;
 import enviroment.Constants;
 import enviroment.EnviromentHolder;
 import eventHendlers.BuildCCHandler;
-import eventHendlers.localBuildHandler;
-
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.GroupLayout;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.UIManager;
 import javax.swing.JLabel;
-
 import java.awt.Font;
-
 import javax.swing.JComboBox;
-
-import java.awt.FlowLayout;
-import java.awt.BorderLayout;
-
-import javax.swing.BoxLayout;
-
-import java.awt.CardLayout;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-
-import net.miginfocom.swing.MigLayout;
-
-import java.awt.Insets;
-
-import org.eclipse.wb.swing.FocusTraversalOnArray;
-
-import java.awt.Component;
-import java.awt.Rectangle;
 import java.awt.Color;
 
 /**
