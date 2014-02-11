@@ -14,6 +14,10 @@ public class LogAreaModel {
     private Actions actionListenr ;
     private String LogAreaId;
     
+    public String getLogAreaId() {
+    	return LogAreaId;
+    }
+    
     public LogAreaModel(String LogAreaId) {
         this.LogAreaId = LogAreaId;
         actionListenr = new Actions(this);

@@ -7,6 +7,7 @@ package dataTypes;
 import java.util.Vector;
 
 import enviroment.Constants;
+import enviroment.EnviromentHolder;
 
 /**
  *
@@ -47,15 +48,17 @@ public class Actions {
 	}
         
         public void startActivity(String command) {
-            switch(command){
-                case Constants.START:
-                    logAreaModel.setWorker(command);
-                    break;
-                case Constants.END:
-                    logAreaModel.stopWorker(command);
-                    break;
-                case Constants.CHECK_CC_LOG:
-                    break;
-            }
+    		EnviromentHolder.getWorkersScheduler().
+    		getWorkerScheduler(logAreaModel.getLogAreaId()).setScheduler();
+//            switch(command){
+//                case Constants.START:
+//                    logAreaModel.setWorker(command);
+//                    break;
+//                case Constants.END:
+//                    logAreaModel.stopWorker(command);
+//                    break;
+//                case Constants.CHECK_CC_LOG:
+//                    break;
+//            }
         }
 }
