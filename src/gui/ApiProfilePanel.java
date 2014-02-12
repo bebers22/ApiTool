@@ -18,7 +18,7 @@ import java.awt.event.ActionEvent;
  *
  * @author izhaq
  */
-public class ApiProfilePanel extends javax.swing.JPanel implements ActionListener {
+public class ApiProfilePanel extends javax.swing.JPanel {
 
     /**
      * Creates new form ApiProfilePanel
@@ -46,121 +46,69 @@ public class ApiProfilePanel extends javax.swing.JPanel implements ActionListene
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-    	GridBagLayout gridBagLayout = new GridBagLayout();
-    	gridBagLayout.columnWidths = new int[]{100, 96, 77, 90, 45, 61, 22, 70, 0, 104, 63, 80, 53, 0};
-    	gridBagLayout.rowHeights = new int[]{33, 0};
-    	gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-    	gridBagLayout.rowWeights = new double[]{0.0, Double.MIN_VALUE};
-    	setLayout(gridBagLayout);
+    	setLayout(null);
     	lblUsername = new javax.swing.JLabel();
+    	lblUsername.setBounds(0, 0, 70, 33);
 
     	lblUsername.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
     	lblUsername.setText("User Name  :");
     	lblUsername.setOpaque(true);
-    	GridBagConstraints gbc_lblUsername = new GridBagConstraints();
-    	gbc_lblUsername.anchor = GridBagConstraints.WEST;
-    	gbc_lblUsername.fill = GridBagConstraints.VERTICAL;
-    	gbc_lblUsername.insets = new Insets(0, 0, 0, 5);
-    	gbc_lblUsername.gridx = 0;
-    	gbc_lblUsername.gridy = 0;
-    	add(lblUsername, gbc_lblUsername);
+    	add(lblUsername);
     	userNameTB = new javax.swing.JTextField();
-    	GridBagConstraints gbc_userNameTB = new GridBagConstraints();
-    	gbc_userNameTB.fill = GridBagConstraints.BOTH;
-    	gbc_userNameTB.insets = new Insets(0, 0, 0, 5);
-    	gbc_userNameTB.gridx = 1;
-    	gbc_userNameTB.gridy = 0;
-    	add(userNameTB, gbc_userNameTB);
+    	userNameTB.setBounds(80, 0, 91, 33);
+    	add(userNameTB);
     	lblPass = new javax.swing.JLabel();
+    	lblPass.setBounds(181, 0, 70, 33);
 
     	lblPass.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
     	lblPass.setText("Password  :");
     	lblPass.setOpaque(true);
-    	GridBagConstraints gbc_lblPass = new GridBagConstraints();
-    	gbc_lblPass.fill = GridBagConstraints.BOTH;
-    	gbc_lblPass.insets = new Insets(0, 0, 0, 5);
-    	gbc_lblPass.gridx = 2;
-    	gbc_lblPass.gridy = 0;
-    	add(lblPass, gbc_lblPass);
+    	add(lblPass);
     	passwordTB = new javax.swing.JTextField();
-    	
-    	GridBagConstraints gbc_passwordTB = new GridBagConstraints();
-    	gbc_passwordTB.fill = GridBagConstraints.BOTH;
-    	gbc_passwordTB.insets = new Insets(0, 0, 0, 5);
-    	gbc_passwordTB.gridx = 3;
-    	gbc_passwordTB.gridy = 0;
-    	add(passwordTB, gbc_passwordTB);
+    	passwordTB.setBounds(251, 0, 84, 33);
+    	add(passwordTB);
 
     	jLabel12 = new javax.swing.JLabel();
+    	jLabel12.setBounds(345, 0, 40, 33);
 
     	jLabel12.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
     	jLabel12.setText("Host  :");
     	jLabel12.setOpaque(true);
-    	GridBagConstraints gbc_jLabel12 = new GridBagConstraints();
-    	gbc_jLabel12.fill = GridBagConstraints.BOTH;
-    	gbc_jLabel12.insets = new Insets(0, 0, 0, 5);
-    	gbc_jLabel12.gridx = 4;
-    	gbc_jLabel12.gridy = 0;
-    	add(jLabel12, gbc_jLabel12);
+    	add(jLabel12);
     	hostTB = new javax.swing.JTextField();
+    	hostTB.setBounds(390, 0, 70, 33);
     	hostTB.setEditable(false);
     	hostTB.setForeground(Color.GRAY);
     	hostTB.setText("snv4914");
-    	GridBagConstraints gbc_hostTB = new GridBagConstraints();
-    	gbc_hostTB.fill = GridBagConstraints.BOTH;
-    	gbc_hostTB.insets = new Insets(0, 0, 0, 5);
-    	gbc_hostTB.gridx = 5;
-    	gbc_hostTB.gridy = 0;
-    	add(hostTB, gbc_hostTB);
+    	add(hostTB);
 
     	btnConnect = new JButton("Connect");
-    	btnConnect.addActionListener(this);
-    	
-    	
-    	GridBagConstraints gbc_btnConnect = new GridBagConstraints();
-    	gbc_btnConnect.gridwidth = 2;
-    	gbc_btnConnect.insets = new Insets(0, 0, 0, 5);
-    	gbc_btnConnect.gridx = 6;
-    	gbc_btnConnect.gridy = 0;
-    	add(btnConnect, gbc_btnConnect);
+    	btnConnect.setBounds(469, 4, 91, 23);
+    	add(btnConnect);
     	lblBB = new javax.swing.JLabel();
+    	lblBB.setBounds(608, 0, 23, 33);
 
     	lblBB.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
     	lblBB.setText("BB  :");
     	lblBB.setOpaque(true);
-    	GridBagConstraints gbc_lblBB = new GridBagConstraints();
-    	gbc_lblBB.insets = new Insets(0, 0, 0, 5);
-    	gbc_lblBB.fill = GridBagConstraints.BOTH;
-    	gbc_lblBB.gridx = 8;
-    	gbc_lblBB.gridy = 0;
-    	add(lblBB, gbc_lblBB);
+    	add(lblBB);
 
     	lblLblbuildingblock = new JLabel("1");
+    	lblLblbuildingblock.setBounds(641, 4, 40, 24);
     	lblLblbuildingblock.setForeground(Color.RED);
-    	GridBagConstraints gbc_lblLblbuildingblock = new GridBagConstraints();
-    	gbc_lblLblbuildingblock.insets = new Insets(0, 0, 0, 5);
-    	gbc_lblLblbuildingblock.gridx = 9;
-    	gbc_lblLblbuildingblock.gridy = 0;
-    	add(lblLblbuildingblock, gbc_lblLblbuildingblock);
+    	add(lblLblbuildingblock);
     	lblHost = new javax.swing.JLabel();
+    	lblHost.setBounds(749, 0, 45, 33);
 
     	lblHost.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
     	lblHost.setText("CCVR  :");
     	lblHost.setOpaque(true);
-    	GridBagConstraints gbc_lblHost = new GridBagConstraints();
-    	gbc_lblHost.fill = GridBagConstraints.BOTH;
-    	gbc_lblHost.insets = new Insets(0, 0, 0, 5);
-    	gbc_lblHost.gridx = 10;
-    	gbc_lblHost.gridy = 0;
-    	add(lblHost, gbc_lblHost);
+    	add(lblHost);
 
     	lblLblccversion = new JLabel("1");
+    	lblLblccversion.setBounds(804, 4, 40, 24);
     	lblLblccversion.setForeground(Color.RED);
-    	GridBagConstraints gbc_lblLblccversion = new GridBagConstraints();
-    	gbc_lblLblccversion.insets = new Insets(0, 0, 0, 5);
-    	gbc_lblLblccversion.gridx = 11;
-    	gbc_lblLblccversion.gridy = 0;
-    	add(lblLblccversion, gbc_lblLblccversion);
+    	add(lblLblccversion);
 
     }// </editor-fold>//GEN-END:initComponents
 
@@ -176,36 +124,5 @@ public class ApiProfilePanel extends javax.swing.JPanel implements ActionListene
     private JLabel lblLblbuildingblock;
     private JLabel lblLblccversion;
     private JButton btnConnect;
-    
-    // End of variables declaration//GEN-END:variables
-	public void actionPerformed(ActionEvent arg0) {
 		
-//        boolean isAuthenticated;
-//		try {
-//			
-//			Connection conn = null;Session sess = null;
-//	        conn = new Connection(hostTB.getText());
-//	        conn.connect();
-//			isAuthenticated = conn.authenticateWithPassword(userNameTB.getText(), passwordTB.getText());
-//	        if (!isAuthenticated) throw new IOException("Authentication failed.");
-//	        sess = conn.openSession();
-//
-//	        //new Thread(new SyncPipe(sess.getStderr(), System.err)).start();
-//	        //new Thread(new SyncPipe(sess.getStdout(), System.out)).start();
-//	        sess.requestPTY("bash");
-//	        sess.startShell();
-//	        
-//	
-//	        byte[] output = new byte[500];
-//	        sess.getStdout().read(output);
-//	        System.out.println(sess);
-//	        
-//	        
-//		} catch (IOException e) {
-//
-//			e.printStackTrace();
-//		}
-
-		
-	}
 }

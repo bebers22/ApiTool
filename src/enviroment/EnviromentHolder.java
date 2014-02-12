@@ -41,8 +41,8 @@ public class EnviromentHolder {
     public static FrameModel frameModel;
     private static TaskSchedulerBoard workersScheduler;
     
-    private static String[] usernamePassword;
-
+    private static String[] usernamePassword; ///[0] username , [1] password
+    
 	private static HashMap<String,String> ddlFillInBBs;
     private static HashMap<String,String> ddlFillInVersion;
     private static CommandsDataInfo commandsDataInfo;
@@ -82,9 +82,6 @@ public class EnviromentHolder {
     		//TODO : error handling
 			System.out.println("FAILD to load local User details file - using default values");
 		}
-	
-    	
-		
 	}
 
     /**
@@ -120,17 +117,11 @@ public class EnviromentHolder {
 		for(int i=0 ; i<nListLenght ; i++) {
 			Node node = nList.item(i);
 			if(node.getNodeType() == Node.ELEMENT_NODE) {
-				
 				Element el = (Element)node;
-				//System.out.println(el.getAttribute("id"));
-				//System.out.println(el.getAttribute("name"));
 				mapToFill.put(el.getAttribute(Constants.XML_TAG_ID), el.getAttribute(Constants.XML_TAG_NAME));
-				
 			}
 		}
-		
 		return mapToFill;
-		
 	}
 
 
