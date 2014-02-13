@@ -11,14 +11,19 @@ import dataTypes.LogAreaModel;
 import dataTypes.TaskSchedulerBoard;
 import gui.OutputPanel;
 import gui.ToolFrame;
+
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
+
+import javax.swing.JOptionPane;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+
 import org.omg.CORBA.StringHolder;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -33,7 +38,7 @@ import org.xml.sax.SAXException;
 public class EnviromentHolder {
     
     public static ToolFrame toolFrame; 
-    public static StringHolder logAreaNames = new StringHolder(Constants.LOCAL_BUILD_LOGS+"@"+Constants.BUILD_CC_LOGS+"@"+Constants.BB_MANAGMENT_LOG); //localBuildLog@buildCCLog@generalLog@consolLog);
+    public static StringHolder logAreaNames = new StringHolder(Constants.GENERAL_LOGS+"@"+Constants.LOCAL_BUILD_LOGS+"@"+Constants.BUILD_CC_LOGS+"@"+Constants.BB_MANAGMENT_LOG); //localBuildLog@buildCCLog@generalLog@consolLog);
     public static HashMap<String, LogAreaModel> Logs;
     public static HashMap componentMap = new HashMap<String, LogAreaListiner>();
     
@@ -47,19 +52,27 @@ public class EnviromentHolder {
     private static HashMap<String,String> ddlFillInVersion;
     private static CommandsDataInfo commandsDataInfo;
     
-
-
-	public static void loadPreferences() {
-     	try {
-
-     		//loadUserEnvDetails();
-     		loadDdlDetails();
-     		commandsDataInfo = new CommandsDataInfo();
-     		
-    	} catch (Exception e) {
-    		e.printStackTrace();
-    	}
+    ///////////// error logs handling//////////////////
+    private static ArrayList<String> errorLogs = new ArrayList<>();
+    
+    public static void writeToErrorLog(String error) {
+    	errorLogs.add(Constants.LOG_SEPARATOR + error);
     }
+    
+    public static String getErrorLogs() {
+    	return errorLogs.toString();
+    }
+    ///////////////////////////////////////////////////
+    
+    /**
+     * here we are loading all the preferences from the xml files
+     */
+	public static void loadPreferences() {
+
+		loadDdlDetails();
+		commandsDataInfo = new CommandsDataInfo();
+
+	}
 
 
 	/**
@@ -78,30 +91,47 @@ public class EnviromentHolder {
 				usernamePassword[1] = el.getAttribute(Constants.XML_TAG_PASSWORD);
 			}
 		
-    	} catch (Exception e) {
-    		//TODO : error handling
-			System.out.println("FAILD to load local User details file - using default values");
-		}
+			
+		} catch (SAXException | ParserConfigurationException sx) {
+			JOptionPane.showMessageDialog(null, ErrorMsgs.USER_PROPERTIES_FILE_ERROR, ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, JOptionPane.WARNING_MESSAGE);
+			EnviromentHolder.writeToErrorLog(sx.toString());
+		} catch (IOException ioe) {
+			JOptionPane.showMessageDialog(null, ErrorMsgs.FAILD_TO_OPEN_FILE +": user properties", ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, JOptionPane.WARNING_MESSAGE);
+			EnviromentHolder.writeToErrorLog(ioe.toString());
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, ErrorMsgs.FILE_IS_EMPTY +": user properties", ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, JOptionPane.WARNING_MESSAGE);
+			EnviromentHolder.writeToErrorLog(e.toString());
+		}	
 	}
 
     /**
-     * loadind the versions an BBs from xml file
-     * @throws SAXException
-     * @throws IOException
-     * @throws ParserConfigurationException
+     * loading the versions an BBs from xml file
      */
-	public static void loadDdlDetails() throws SAXException, IOException, ParserConfigurationException {
-    	
-		File fXmlFile = new File(Constants.BB_AND_VERSIONS_XML);
-		Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(fXmlFile);
-		
-		ddlFillInBBs = parsePropertiestoMap(Constants.XML_TAG_BB,doc);
-		ddlFillInVersion = parsePropertiestoMap(Constants.XML_TAG_VERSION,doc);
-    	
+    public static void loadDdlDetails() {
+
+    	try {
+    		File fXmlFile = new File(Constants.BB_AND_VERSIONS_XML);
+    		Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(fXmlFile);
+
+    		ddlFillInBBs = parsePropertiestoMap(Constants.XML_TAG_BB,doc);
+    		ddlFillInVersion = parsePropertiestoMap(Constants.XML_TAG_VERSION,doc);
+    		
+    		
+    	} catch (SAXException | ParserConfigurationException sx) {
+    		JOptionPane.showMessageDialog(null, ErrorMsgs.USER_PROPERTIES_FILE_ERROR, ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, JOptionPane.WARNING_MESSAGE);
+    		EnviromentHolder.writeToErrorLog(sx.toString());
+    	} catch (IOException ioe) {
+    		JOptionPane.showMessageDialog(null, ErrorMsgs.FAILD_TO_OPEN_FILE +": user properties", ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, JOptionPane.WARNING_MESSAGE);
+    		EnviromentHolder.writeToErrorLog(ioe.toString());
+    	} catch (Exception e) {
+    		JOptionPane.showMessageDialog(null, ErrorMsgs.FILE_IS_EMPTY +": versions and bb", ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, JOptionPane.WARNING_MESSAGE);
+    		EnviromentHolder.writeToErrorLog(e.toString());
+    	}
+
     }
     
     /**
-     * Parse the xml of the eviroments and versions
+     * Parse the xml of the environments and versions
      * @param tagName
      * @param doc
      * @return
@@ -124,6 +154,35 @@ public class EnviromentHolder {
 		return mapToFill;
 	}
 
+    /**
+     * get ddl BB content
+     * @return
+     */
+    public static String[] getDdlForBB() {
+    	
+    	String[] bbsString = {"TlgServer"};
+    	
+    	if(ddlFillInBBs != null) {
+    		bbsString = ddlFillInBBs.values().toArray(new String[ddlFillInBBs.size()]);
+    	}
+    		
+    	return bbsString;
+    }
+    
+    /**
+     * get ddl versions content
+     * @return
+     */
+    public static String[] getDdlForVersions() {
+    	
+    	String[] versionsString = {"14063"};
+    	
+    	if(ddlFillInVersion != null) {
+    		versionsString = (String[])ddlFillInVersion.values().toArray(new String[ddlFillInVersion.size()]);
+    	}
+    		
+    	return versionsString;
+    }
 
     public static CommandsDataInfo getCommandsDataInfo() {
 		return commandsDataInfo;
@@ -183,19 +242,6 @@ public class EnviromentHolder {
         registerLisitners();
     }
     
-    public static String[] getDdlForBB() {
-    	
-    	String[] bbsString = ddlFillInBBs.values().toArray(new String[ddlFillInBBs.size()]);
-    		
-    	return bbsString;
-    }
-    
-    public static String[] getDdlForVersions() {
-    	
-    	String[] versionsString = (String[])ddlFillInVersion.values().toArray(new String[ddlFillInVersion.size()]);
-    		
-    	return versionsString;
-    }
     
     public static String[] getUsernamePassword() {
 		return usernamePassword;
@@ -206,6 +252,7 @@ public class EnviromentHolder {
     public static void registerLisitners() {
 
         Set<Map.Entry<String, String>> entrySet = componentMap.entrySet();
+       
         for (Entry entry : entrySet) {
             ((OutputPanel)entry.getValue()).setLogAreaModel(Logs.get((String)entry.getKey()));
         }

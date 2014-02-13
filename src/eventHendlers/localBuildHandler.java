@@ -14,10 +14,7 @@ import java.util.HashMap;
 
 import javax.swing.JButton;
 
-/**
- *
- * @author izhaq
- */
+
 public class localBuildHandler implements ActionListener{
 
     public LogAreaModel logAreaModel;
@@ -30,11 +27,15 @@ public class localBuildHandler implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
     	        
-        String UnixCommand = prepareCommand(((JButton)e.getSource()).getText());
+        String unixCommand = prepareCommand(((JButton)e.getSource()).getText());
+        
+        if(unixCommand.isEmpty()) {
+        	return;
+        }
         
         logAreaModel = enviroment.EnviromentHolder.getLogs().get(Constants.LOCAL_BUILD_LOGS);
         
-        logAreaModel.setWorker(UnixCommand);
+        logAreaModel.setWorker(unixCommand);
 
     }
     

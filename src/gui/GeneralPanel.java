@@ -6,7 +6,10 @@ package gui;
 
 import enviroment.Constants;
 import enviroment.EnviromentHolder;
+import eventHendlers.GeneralHandler;
+
 import java.awt.Font;
+
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
@@ -23,7 +26,14 @@ public class GeneralPanel extends javax.swing.JPanel {
      */
     public GeneralPanel() {
         initComponents();
+        initHandlers();
     }
+
+	private void initHandlers() {
+		clearBackendBTN.addActionListener(new GeneralHandler(this));
+		clearClassesBTN.addActionListener(new GeneralHandler(this));
+		
+	}
 
 	/**
      * This method is called from within the constructor to initialize the form.
@@ -59,7 +69,7 @@ public class GeneralPanel extends javax.swing.JPanel {
     	add(versionsDDL);
 
     	stopTlgServerBTN = new javax.swing.JButton();
-    	stopTlgServerBTN.setBounds(40, 174, 105, 28);
+    	stopTlgServerBTN.setBounds(40, 189, 105, 28);
 
     	stopTlgServerBTN.setText("StopTlgServer");
 
@@ -76,18 +86,18 @@ public class GeneralPanel extends javax.swing.JPanel {
     	add(clearClassesBTN);
 
     	refreahLocalBTN = new javax.swing.JButton();
-    	refreahLocalBTN.setBounds(40, 245, 102, 28);
+    	refreahLocalBTN.setBounds(40, 266, 102, 28);
     	refreahLocalBTN.setText("RefreshLocal");
     	add(refreahLocalBTN);
 
     	refreshTlgServerBTN = new javax.swing.JButton();
-    	refreshTlgServerBTN.setBounds(19, 205, 124, 28);
+    	refreshTlgServerBTN.setBounds(30, 226, 124, 28);
 
     	refreshTlgServerBTN.setText("RefreshTlgServer");
     	add(refreshTlgServerBTN);
 
     	startTlgServerBTN = new javax.swing.JButton();
-    	startTlgServerBTN.setBounds(40, 147, 105, 28);
+    	startTlgServerBTN.setBounds(40, 161, 105, 28);
     	startTlgServerBTN.setText("StartTlgServer");
     	add(startTlgServerBTN);
     	
@@ -95,9 +105,6 @@ public class GeneralPanel extends javax.swing.JPanel {
 
     }// </editor-fold>//GEN-END:initComponents
 
-    private void stopTlgServerBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopTlgServerBTNActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_stopTlgServerBTNActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton refreahLocalBTN;
@@ -106,10 +113,21 @@ public class GeneralPanel extends javax.swing.JPanel {
     private javax.swing.JButton startTlgServerBTN;
     private javax.swing.JButton stopTlgServerBTN;
     private JLabel lblVersion;
-    private JComboBox ddlVersion;
     private JButton clearClassesBTN;
     private JLabel lblBb;
 	private JComboBox bbDDL;
+	
+	public JComboBox getversionsDDL() {
+		return versionsDDL;
+	}
+
+	public JComboBox getBbDDL() {
+		return bbDDL;
+	}
+
+
 	private JComboBox versionsDDL;
     // End of variables declaration//GEN-END:variables
+
+	
 }

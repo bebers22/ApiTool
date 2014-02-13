@@ -9,27 +9,65 @@ import dataTypes.LogAreaListiner;
 import dataTypes.TaskSchedulerBoard;
 import enviroment.Constants;
 import enviroment.EnviromentHolder;
+import eventHendlers.MenuHandler;
 import java.awt.Component;
 import java.awt.Container;
 import java.util.HashMap;
 import java.awt.Dimension;
-/**
- *
- * @author izhaq
- */
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+
 public class ToolFrame extends javax.swing.JFrame {
+
 
     /**
      * Creates new form FramePanel
      */
-    public ToolFrame() {}
+    public /*void*/ ToolFrame() {
+    	
+    	////////////DELETE IT AFTER TESTING////////////
+        EnviromentHolder.loadPreferences();
+    	getContentPane().setMaximumSize(new Dimension(500, 500));
+    	getContentPane().setFocusable(false);
+    	getContentPane().setName("aacontentPane");
+    	
+    	loadMenuItems();
+        preLoadEnvierment();
+        initComponents();
+        postLoadEnvierment();
+    	
+    }
+
+
+	private void loadMenuItems() {
+		
+		menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
+    	
+    	mnNewMenu = new JMenu("File");
+    	menuBar.add(mnNewMenu);
+    	
+    	openLogsmnit = new JMenuItem(Constants.LOG_MENU_ITEM);
+    	openLogsmnit.addActionListener(new MenuHandler(this));
+    	mnNewMenu.add(openLogsmnit);
+    	
+    	reloadEnvmnit = new JMenuItem(Constants.RELOAD_ENV_MENU_ITEM);
+    	reloadEnvmnit.addActionListener(new MenuHandler(this));
+    	mnNewMenu.add(reloadEnvmnit);
+    	
+	}
+    
+    
     
     public void LoadToolFrame() {
         
         EnviromentHolder.loadPreferences();
     	getContentPane().setMaximumSize(new Dimension(500, 500));
     	getContentPane().setFocusable(false);
-    	getContentPane().setName("aacontentPane");
+    	//getContentPane().setName("aacontentPane");
+    	
+    	loadMenuItems();
         preLoadEnvierment();
         initComponents();
         postLoadEnvierment();
@@ -74,7 +112,6 @@ public  HashMap<String, LogAreaListiner> loadOutputLogs(final Container c) {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        outputPanel1 = new gui.OutputPanel();
         commandsAreaPanel = new javax.swing.JPanel();
         commandsAreaPanel.setBounds(0, 63, 989, 540);
         commandsPanel = new javax.swing.JPanel();
@@ -97,8 +134,8 @@ public  HashMap<String, LogAreaListiner> loadOutputLogs(final Container c) {
         APITeam = new javax.swing.JPanel();
         APITeam.setBounds(6, 0, 983, 57);
         APITeam.setMaximumSize(new Dimension(100, 100));
-        jLabel15 = new javax.swing.JLabel();
-        jLabel15.setBounds(497, 24, 92, 17);
+        apilbl = new javax.swing.JLabel();
+        apilbl.setBounds(404, 18, 210, 17); 
         bbManagementPanel = new BbManagementPanel();
         bbManagementPanel.setBounds(6, 33, 206, 305);
 
@@ -127,17 +164,14 @@ public  HashMap<String, LogAreaListiner> loadOutputLogs(final Container c) {
         bbTAB.setLayout(null);
         bbTAB.add(bbManagementPanel);
         bbTAB.add(bbManagementLog);
-        generalOutputArea = new javax.swing.JTextArea();
-        generalOutputArea.setBounds(216, 6, 762, 470);
-        generalOutputArea.setMaximumSize(new Dimension(20, 20));
-        
-                generalOutputArea.setColumns(20);
-                generalOutputArea.setRows(5);
-
+        generalLogs = new OutputPanel();
+        generalLogs.setBounds(216, 6, 762, 470);
+        generalLogs.setMaximumSize(new Dimension(20, 20));
+        generalLogs.setName(Constants.GENERAL_LOGS);
         commandsTabbedPane.addTab("General", generalTAB);
         generalTAB.setLayout(null);
         generalTAB.add(generalPanel);
-        generalTAB.add(generalOutputArea);
+        generalTAB.add(generalLogs);
 
         commandsTabbedPane.getAccessibleContext().setAccessibleName("CC Build");
         commandsPanel.setLayout(null);
@@ -146,17 +180,17 @@ public  HashMap<String, LogAreaListiner> loadOutputLogs(final Container c) {
 
         APITeam.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Amdocs", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, null, new java.awt.Color(255, 0, 0)));
 
-        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(255, 51, 0));
-        jLabel15.setText("API Team");
-        jLabel15.setOpaque(true);
+        apilbl.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        apilbl.setForeground(new java.awt.Color(255, 51, 0));
+        apilbl.setText(Constants.TOOL_TITLE);
+        apilbl.setOpaque(true);
         APITeam.setLayout(null);
-        APITeam.add(jLabel15);
+        APITeam.add(apilbl);
         getContentPane().add(APITeam);
         getContentPane().add(commandsAreaPanel);
         commandsAreaPanel.setLayout(null);
         commandsAreaPanel.add(commandsPanel);
-        this.setSize(998, 629);
+        this.setSize(1004, 637);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         //pack();
@@ -168,19 +202,22 @@ public  HashMap<String, LogAreaListiner> loadOutputLogs(final Container c) {
     private javax.swing.JPanel commandsAreaPanel;
     private javax.swing.JPanel commandsPanel;
     private javax.swing.JTabbedPane commandsTabbedPane;
-    private javax.swing.JTextArea generalOutputArea;
-    private gui.GeneralPanel generalPanel;
+    private gui.OutputPanel generalLogs;
+	private gui.GeneralPanel generalPanel;
     private javax.swing.JPanel generalTAB;
-    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel apilbl;
     private javax.swing.JPanel bbTAB;
     private javax.swing.JPanel APITeam;
     private gui.OutputPanel localBuildLog;
     private javax.swing.JPanel localBuildTAB;
-    private gui.OutputPanel outputPanel1;
     private gui.RunBuildCCPanel runBuildCCPanel;
     private gui.RunLocalBuildPanel runLocalBuildPanel;
     private BbManagementPanel bbManagementPanel;
-    private OutputPanel bbManagementLog;
+    private gui.OutputPanel bbManagementLog;
+    private JMenuBar menuBar;
+    private JMenu mnNewMenu;
+    private JMenuItem openLogsmnit;
+    private JMenuItem reloadEnvmnit;
 
     
     // End of variables declaration//GEN-END:variables
@@ -196,4 +233,8 @@ public  HashMap<String, LogAreaListiner> loadOutputLogs(final Container c) {
     public RunBuildCCPanel getRunBuildCCPanel() {
         return runBuildCCPanel;
     }
+    
+    public gui.OutputPanel getGeneralLogs() {
+		return generalLogs;
+	}
 }

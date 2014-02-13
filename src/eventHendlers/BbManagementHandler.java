@@ -26,11 +26,15 @@ public class BbManagementHandler implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
     	        
-        String UnixCommand = prepareCommand(((JButton)e.getSource()).getText());
+        String unixCommand = prepareCommand(((JButton)e.getSource()).getText());
+        
+        if(unixCommand.isEmpty()) {
+        	return;
+        }
         
         logAreaModel = enviroment.EnviromentHolder.getLogs().get(Constants.BB_MANAGMENT_LOG);
         
-        logAreaModel.setWorker(UnixCommand);
+        logAreaModel.setWorker(unixCommand);
 
     }
     

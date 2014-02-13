@@ -16,10 +16,6 @@ import java.util.HashMap;
 
 import javax.swing.JButton;
 
-/**
- *
- * @author Yuval
- */
 public class BuildCCHandler implements ActionListener{
      public LogAreaModel logAreaModel;
      public RunBuildCCPanel runBuildCcPanel;
@@ -32,11 +28,15 @@ public class BuildCCHandler implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
     	        
-        String UnixCommand = prepareCommand(((JButton)e.getSource()).getText());
+        String unixCommand = prepareCommand(((JButton)e.getSource()).getText());
+        
+        if(unixCommand.isEmpty()) {
+        	return;
+        }
         
         logAreaModel = enviroment.EnviromentHolder.getLogs().get(Constants.BUILD_CC_LOGS);
         
-        logAreaModel.setWorker(UnixCommand);
+        logAreaModel.setWorker(unixCommand);
 
     }
 

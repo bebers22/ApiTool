@@ -1,6 +1,10 @@
 package enviroment;
 
+import javax.swing.Icon;
+
 public class Constants {
+	
+	public static final String TOOL_TITLE = "AT&T API Team - Unix tool";
 	
 	public final static String RUN_BUILD_IN_CC = "Run build in CC";
 	public final static String RUN_LOCAL_BUILD = "Run local build";
@@ -20,6 +24,7 @@ public class Constants {
 	public final static String LOCAL_BUILD_LOGS = "Local build logs";
 	public final static String BUILD_CC_LOGS = "Build CC logs";
 	public final static String BB_MANAGMENT_LOG = "BB managment logs";
+	public static final String GENERAL_LOGS = "General logs";
 	
 	public final static String XML_TAG_PLACEHOLDERS = "PlaceHolder";
 	public final static String XML_TAG_USERNAME = "username";
@@ -39,11 +44,18 @@ public class Constants {
 	public final static String USERNAME_PASSWORD_XML = "V:/API Knowledge Base/prop/usernamePassword.xml";
 	public final static String COMMANDS_XML = "V:/API Knowledge Base/prop/commands.xml";
 	public final static String SUCESS_CONNECT_ICON = "V:/API Knowledge Base/prop/sucess.jpg";
+
+	public static final String LOG_MENU_ITEM = "Logs";
+	public static final String RELOAD_ENV_MENU_ITEM = "Reload files";
+
+	
 	
 	public static String PLACE_HOLDER_VERSION;
 	public static String PLACE_HOLDER_BB;
 	public static String PLACE_HOLDER_VERSION_UNDERSCOR;
 	public static String PLACE_HOLDER_TLG_DOMAIN;
+	
+	public static String LOG_SEPARATOR = "\n---------------------------------------------------------------\n";
 	
 	
 }

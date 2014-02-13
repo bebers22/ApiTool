@@ -6,13 +6,18 @@ package eventHendlers;
 
 import enviroment.ErrorMsgs;
 import gui.LoginPanel;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.IOException;
+
 import javax.swing.JOptionPane;
+
 import ch.ethz.ssh2.Connection;
 
-public class LoginHandler implements ActionListener{
+public class LoginHandler implements ActionListener,KeyListener{
 
 
     public LoginPanel loginPanel;
@@ -23,6 +28,18 @@ public class LoginHandler implements ActionListener{
     
     @Override
     public void actionPerformed(ActionEvent e) {
+    	
+    	doAction();
+    }
+    
+	@Override
+	public void keyPressed(KeyEvent kv) {
+		if(kv.getKeyChar() == KeyEvent.VK_ENTER) {
+			doAction();
+		}
+	}
+    
+    public void doAction() {
 
     	loginPanel.parentContainer.isConnected = false;
 
@@ -65,6 +82,20 @@ public class LoginHandler implements ActionListener{
 
         return isAuthenticated;
 
+	}
+
+
+
+	@Override
+	public void keyReleased(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyTyped(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+		
 	}
     
 }
