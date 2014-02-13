@@ -52,7 +52,7 @@ public class EnviromentHolder {
 	public static void loadPreferences() {
      	try {
 
-     		loadUserEnvDetails();
+     		//loadUserEnvDetails();
      		loadDdlDetails();
      		commandsDataInfo = new CommandsDataInfo();
      		
@@ -65,7 +65,7 @@ public class EnviromentHolder {
 	/**
      * Loading the user details
      */
-    private static void loadUserEnvDetails() {
+    public static void loadUserEnvDetails() {
     	try {
     		
     	   	File usernamePasswordfile = new File(Constants.USERNAME_PASSWORD_XML);

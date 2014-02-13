@@ -11,6 +11,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.MatteBorder;
+import java.awt.Color;
 
 /**
  *
@@ -44,6 +48,8 @@ public class OutputPanel extends javax.swing.JPanel implements LogAreaListiner{
     private void initComponents() {
 
         logScroll = new javax.swing.JScrollPane();
+        logScroll.setViewportBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
+        logScroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         logScroll.setAutoscrolls(true);
         outputlog = new javax.swing.JTextPane();
 
@@ -51,7 +57,7 @@ public class OutputPanel extends javax.swing.JPanel implements LogAreaListiner{
         
         ///scroll down to the bottom allways
         logScroll.getVerticalScrollBar().addAdjustmentListener(new AdjustmentListener() {  
-            public void adjustmentValueChanged(AdjustmentEvent e) {  
+            public void adjustmentValueChanged(AdjustmentEvent e) {
                 e.getAdjustable().setValue(e.getAdjustable().getMaximum());  
             }
         });
@@ -67,10 +73,10 @@ public class OutputPanel extends javax.swing.JPanel implements LogAreaListiner{
             .addComponent(logScroll, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+
     private javax.swing.JScrollPane logScroll;
     private javax.swing.JTextPane outputlog;
-    // End of variables declaration//GEN-END:variables
+
 
     @Override
     public synchronized void updateLog(String dataToAdd) {

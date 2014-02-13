@@ -47,8 +47,8 @@ public class localBuildHandler implements ActionListener{
 		placeHolderValues.put(Constants.PLACE_HOLDER_VERSION,version);
 		placeHolderValues.put(Constants.PLACE_HOLDER_VERSION_UNDERSCOR,"v"+ version.substring(0, version.length() - 1) + "_" + version.charAt(version.length()-1));
 		
-		String preparedCommand = EnviromentHolder.getCommandsDataInfo().prepareCommand(placeHolderValues, command);
-		
+		String preparedCommand = "";
+				
 		if(Constants.RUN_LOCAL_BUILD.equals(command)) {
 			///if TLG server is set
 			preparedCommand = EnviromentHolder.getCommandsDataInfo().addWeblogicCommands(preparedCommand, runLocalBuildPanel.refreshTlgServerCB.isSelected(),
@@ -58,6 +58,8 @@ public class localBuildHandler implements ActionListener{
 			preparedCommand  = EnviromentHolder.getCommandsDataInfo().addWeblogicCommands(preparedCommand, runLocalBuildPanel.refreshTlgServerCB.isSelected(),
 					false, runLocalBuildPanel.restartServerCB.isSelected());
 		}
+		
+		preparedCommand = EnviromentHolder.getCommandsDataInfo().prepareCommand(placeHolderValues, command);
 		///Call to prepareCommand (CommandsDataInfo)	
 		
 		return preparedCommand;

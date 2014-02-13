@@ -32,6 +32,8 @@ public class Constants {
 	public final static String XML_TAG_VERSION_UNDERSCORE = "Version_";
 	public final static String XML_TAG_VERSION = "Version";
 	public final static String XML_TAG_COMMAND = "command";
+	public final static String XML_TAG_TLG_DOMAIN = "Tlg_domain";
+	
 	
 	public final static String BB_AND_VERSIONS_XML = "V:/API Knowledge Base/prop/BBAndVersions.xml";
 	public final static String USERNAME_PASSWORD_XML = "V:/API Knowledge Base/prop/usernamePassword.xml";
@@ -41,6 +43,7 @@ public class Constants {
 	public static String PLACE_HOLDER_VERSION;
 	public static String PLACE_HOLDER_BB;
 	public static String PLACE_HOLDER_VERSION_UNDERSCOR;
+	public static String PLACE_HOLDER_TLG_DOMAIN;
 	
 	
 }

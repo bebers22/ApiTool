@@ -107,6 +107,11 @@ public class CommandsDataInfo {
 
 					Constants.PLACE_HOLDER_VERSION_UNDERSCOR = el.getAttribute(Constants.XML_TAG_NAME);
 				}
+				
+				case Constants.XML_TAG_TLG_DOMAIN: {
+					
+					Constants.PLACE_HOLDER_TLG_DOMAIN = el.getAttribute(Constants.XML_TAG_NAME);
+				}
 
 				}
 			}
