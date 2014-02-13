@@ -1,23 +1,27 @@
 package dataInfo;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import javax.swing.JOptionPane;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
 import enviroment.Constants;
+import enviroment.EnviromentHolder;
+import enviroment.ErrorMsgs;
 
 public class CommandsDataInfo {
 
-	private HashMap<String,String> commands;  ///name of command - the unix command (with place holders)
-	//private HashMap<String,String> placeHolderValue; //name of place holder - value of it
-
+	private HashMap<String,String> commands = new HashMap<>(0);  ///name of command - the unix command (with place holders)
 
 	public CommandsDataInfo() {
 		loadPlaceHolders();
@@ -33,7 +37,7 @@ public class CommandsDataInfo {
 	public String prepareCommand(HashMap<String, String> placeHoldersValue , String commandToPerform) {
 		
 		Set<Entry<String, String>> placeHoldersEntrySet = placeHoldersValue.entrySet();
-		String preparedCommand = ""; //TODO: change it after erro handling
+		String preparedCommand = "";
 		
 		if(commands.containsKey(commandToPerform)) {
 			preparedCommand = new String(commands.get(commandToPerform));
@@ -43,12 +47,12 @@ public class CommandsDataInfo {
 				String value = entry.getValue();
 					
 				preparedCommand = preparedCommand.replace("{"+placeHolder+"}", value);
-
 			}
 		}
 		else
 		{
-			///TODO: create an event that preventing continue
+			JOptionPane.showMessageDialog(null, ErrorMsgs.COMMAND_IS_MISSING, ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, JOptionPane.WARNING_MESSAGE);
+			EnviromentHolder.writeToErrorLog(commandToPerform + ErrorMsgs.COMMAND_IS_MISSING_DESCRIPTION);
 		}
 		
 		return preparedCommand;
@@ -77,7 +81,7 @@ public class CommandsDataInfo {
 
 	
 	/**
-	 * load place holders
+	 * load place holders from commands file
 	 */
 	private void loadPlaceHolders() {
 
@@ -86,51 +90,64 @@ public class CommandsDataInfo {
 			File commandsFile = new File(Constants.COMMANDS_XML);
 			Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(commandsFile);
 			NodeList  nList = doc.getElementsByTagName(Constants.XML_TAG_PLACEHOLDERS);
-			
+
 			if(nList.getLength() == 0) {
 				throw new Exception();
 			}
-					
+
 			for(int i=0;i<nList.getLength();i++) {
 				Element el = (Element) nList.item(i);
 				String attr = el.getAttribute(Constants.XML_TAG_ID);
 				switch (attr) {
-				
+
 				case Constants.XML_TAG_VERSION : {
 					Constants.PLACE_HOLDER_VERSION = el.getAttribute(Constants.XML_TAG_NAME);
+					break;
 				}
 				case Constants.XML_TAG_BB : {
 
 					Constants.PLACE_HOLDER_BB = el.getAttribute(Constants.XML_TAG_NAME);
+					break;
 				}
 				case Constants.XML_TAG_VERSION_UNDERSCORE : {
 
 					Constants.PLACE_HOLDER_VERSION_UNDERSCOR = el.getAttribute(Constants.XML_TAG_NAME);
+					break;
 				}
-				
+
 				case Constants.XML_TAG_TLG_DOMAIN: {
-					
+
 					Constants.PLACE_HOLDER_TLG_DOMAIN = el.getAttribute(Constants.XML_TAG_NAME);
+					break;
 				}
 
 				}
 			}
-
+		} catch (SAXException | ParserConfigurationException sx) {
+			JOptionPane.showMessageDialog(null, ErrorMsgs.COMMANDS_FILE_PARSING_ERROR_PH, ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, JOptionPane.WARNING_MESSAGE);
+			EnviromentHolder.writeToErrorLog(sx.toString());
+		} catch (IOException ioe) {
+			JOptionPane.showMessageDialog(null, ErrorMsgs.FAILD_TO_OPEN_FILE+": Commands file", ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, JOptionPane.WARNING_MESSAGE);
+			EnviromentHolder.writeToErrorLog(ioe.toString());
 		} catch (Exception e) {
-			//TODO : error handling
-			System.out.println("FAILD to load place holder file - using default values");
+			JOptionPane.showMessageDialog(null, ErrorMsgs.FILE_IS_EMPTY, ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, JOptionPane.WARNING_MESSAGE);
+			EnviromentHolder.writeToErrorLog(e.toString());
 		}
+
 
 	}
 
 	/**
-	 * load commands
+	 * load commands from file
 	 */
 	private void loadCommands() {
 
-		try {
+	try {
 			File commandsFile = new File(Constants.COMMANDS_XML);
-			Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(commandsFile);
+			Document doc;
+
+			doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(commandsFile);
+
 			
 			NodeList  nList = doc.getElementsByTagName(Constants.XML_TAG_COMMAND);
 			commands = new HashMap<>();
@@ -146,16 +163,18 @@ public class CommandsDataInfo {
 				commands.put(command_name, command);
 			}
 			
-		} catch (Exception e) {
-			//TODO : error handling
-			System.out.println("FAILD to load Commands file - using default values");
-		}
+			} catch (SAXException | ParserConfigurationException sx) {
+				JOptionPane.showMessageDialog(null, ErrorMsgs.COMMANDS_FILE_PARSING_ERROR_CO, ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, JOptionPane.WARNING_MESSAGE);
+				EnviromentHolder.writeToErrorLog(sx.toString());
+			} catch (IOException ioe) {
+				JOptionPane.showMessageDialog(null, ErrorMsgs.FAILD_TO_OPEN_FILE+": Commands file", ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, JOptionPane.WARNING_MESSAGE);
+				EnviromentHolder.writeToErrorLog(ioe.toString());
+			} catch (Exception e) {
+				JOptionPane.showMessageDialog(null, ErrorMsgs.FILE_IS_EMPTY, ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, JOptionPane.WARNING_MESSAGE);
+				EnviromentHolder.writeToErrorLog(e.toString());
+			}
 
 	}
-
-//	public HashMap<String,String> getPlaceHolderValue() {
-//		return (HashMap<String, String>) placeHolderValue.clone();
-//	}
 
 }
 
