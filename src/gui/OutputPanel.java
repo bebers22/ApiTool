@@ -29,6 +29,7 @@ public class OutputPanel extends javax.swing.JPanel implements LogAreaListiner{
     public OutputPanel() {
         
         initComponents();
+        setBounds(218, 6, 760, 482);
         //outputlog.getDocument().addDocumentListener(new LimitLinesDocumentListener(10));
         //EnviermentHolder.getComponentMap().put(this.getName(), this);
     }

@@ -120,14 +120,14 @@ public  HashMap<String, LogAreaListiner> loadOutputLogs(final Container c) {
         commandsTabbedPane.setBounds(6, 0, 984, 661);
         localBuildTAB = new javax.swing.JPanel();
         localBuildLog = new gui.OutputPanel();
-        localBuildLog.setBounds(220, 6, 764, 480);
+        //localBuildLog.setBounds(220, 6, 764, 480);
         runLocalBuildPanel = new gui.RunLocalBuildPanel();
         runLocalBuildPanel.setBounds(6, 37, 208, 339);
         buildCCPanelTAB = new javax.swing.JPanel();
         runBuildCCPanel = new gui.RunBuildCCPanel();
         runBuildCCPanel.setBounds(6, 34, 207, 314);
         buildCCLog = new gui.OutputPanel();
-        buildCCLog.setBounds(219, 6, 765, 482);
+        //buildCCLog.setBounds(219, 6, 765, 482);
         generalTAB = new javax.swing.JPanel();
         generalPanel = new gui.GeneralPanel();
         generalPanel.setBounds(6, 39, 204, 376);
@@ -159,14 +159,14 @@ public  HashMap<String, LogAreaListiner> loadOutputLogs(final Container c) {
         commandsTabbedPane.addTab("BB management", bbTAB);
         
         bbManagementLog = new OutputPanel();
-        bbManagementLog.setBounds(218, 6, 760, 482);
+        //bbManagementLog.setBounds(218, 6, 760, 482);
         bbManagementLog.setName(Constants.BB_MANAGMENT_LOG);
         bbTAB.setLayout(null);
         bbTAB.add(bbManagementPanel);
         bbTAB.add(bbManagementLog);
         generalLogs = new OutputPanel();
-        generalLogs.setBounds(216, 6, 762, 470);
-        generalLogs.setMaximumSize(new Dimension(20, 20));
+        //generalLogs.setBounds(216, 6, 762, 470);
+        //generalLogs.setMaximumSize(new Dimension(20, 20));
         generalLogs.setName(Constants.GENERAL_LOGS);
         commandsTabbedPane.addTab("General", generalTAB);
         generalTAB.setLayout(null);
