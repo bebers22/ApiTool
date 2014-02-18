@@ -40,12 +40,12 @@ public class ShellConnector {
         return shellStream;
     }
     
-    public void setConnection(LinkedList<String> lstCommand) {
+    public boolean setConnection(LinkedList<String> lstCommand) {
        try {
             conn = new Connection(host);
             conn.connect();
             boolean isAuthenticated = conn.authenticateWithPassword(username, password);
-            if (!isAuthenticated) throw new IOException("Authentication failed.");
+            if (!isAuthenticated) return isAuthenticated;
             sess = conn.openSession();
 
             sess.requestPTY("bash");
@@ -60,6 +60,8 @@ public class ShellConnector {
             e.printStackTrace(System.err);
             System.exit(2);
         }
+       
+       return true;
     }
     
     public void writeCommand(String s) {
