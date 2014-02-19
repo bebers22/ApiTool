@@ -1,8 +1,10 @@
 package dataInfo;
 
+import java.awt.HeadlessException;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
@@ -34,7 +36,7 @@ public class CommandsDataInfo {
 	 * 
 	 * @return a string representing the command
 	 */
-	public String prepareCommand(HashMap<String, String> placeHoldersValue , String commandToPerform) {
+	public String prepareCommand(Map<String, String> placeHoldersValue , String commandToPerform) {
 		
 		Set<Entry<String, String>> placeHoldersEntrySet = placeHoldersValue.entrySet();
 		String preparedCommand = "";
@@ -51,12 +53,18 @@ public class CommandsDataInfo {
 		}
 		else
 		{
-			JOptionPane.showMessageDialog(null, ErrorMsgs.COMMAND_IS_MISSING, ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, JOptionPane.WARNING_MESSAGE);
-			EnviromentHolder.writeToErrorLog(commandToPerform + ErrorMsgs.COMMAND_IS_MISSING_DESCRIPTION);
+			ErrorMsgs.handleException(commandToPerform,JOptionPane.WARNING_MESSAGE ,ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE,ErrorMsgs.COMMAND_IS_MISSING, ErrorMsgs.COMMAND_IS_MISSING_DESCRIPTION  );
 		}
 		
 		return preparedCommand;
 	}
+
+//	public void handleException(String commandToPerform,int jOptionPaneMessageType,String popupTitle,String popupError, String errorLogDescription) {
+//		JOptionPane.showMessageDialog(null, ErrorMsgs.COMMAND_IS_MISSING, ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, JOptionPane.WARNING_MESSAGE);
+//		EnviromentHolder.writeToErrorLog(commandToPerform + ErrorMsgs.COMMAND_IS_MISSING_DESCRIPTION);
+//	}
+	
+
 	
 	/**
 	 * Add commands to handle the weblogic
@@ -124,14 +132,17 @@ public class CommandsDataInfo {
 				}
 			}
 		} catch (SAXException | ParserConfigurationException sx) {
-			JOptionPane.showMessageDialog(null, ErrorMsgs.COMMANDS_FILE_PARSING_ERROR_PH, ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, JOptionPane.WARNING_MESSAGE);
-			EnviromentHolder.writeToErrorLog(sx.toString());
+			ErrorMsgs.handleException("", JOptionPane.WARNING_MESSAGE, ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, ErrorMsgs.COMMANDS_FILE_PARSING_ERROR_PH, sx.toString());
+//			JOptionPane.showMessageDialog(null, ErrorMsgs.COMMANDS_FILE_PARSING_ERROR_PH, ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, JOptionPane.WARNING_MESSAGE);
+//			EnviromentHolder.writeToErrorLog(sx.toString());
 		} catch (IOException ioe) {
-			JOptionPane.showMessageDialog(null, ErrorMsgs.FAILD_TO_OPEN_FILE+": Commands file", ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, JOptionPane.WARNING_MESSAGE);
-			EnviromentHolder.writeToErrorLog(ioe.toString());
+			ErrorMsgs.handleException("", JOptionPane.WARNING_MESSAGE,  ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, ErrorMsgs.FAILD_TO_OPEN_FILE+": Commands file", ioe.toString());
+//			JOptionPane.showMessageDialog(null, ErrorMsgs.FAILD_TO_OPEN_FILE+": Commands file", ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, JOptionPane.WARNING_MESSAGE);
+//			EnviromentHolder.writeToErrorLog(ioe.toString());
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, ErrorMsgs.FILE_IS_EMPTY, ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, JOptionPane.WARNING_MESSAGE);
-			EnviromentHolder.writeToErrorLog(e.toString());
+			ErrorMsgs.handleException("", JOptionPane.WARNING_MESSAGE, ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, ErrorMsgs.FILE_IS_EMPTY, e.toString());
+//			JOptionPane.showMessageDialog(null, ErrorMsgs.FILE_IS_EMPTY, ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, JOptionPane.WARNING_MESSAGE);
+//			EnviromentHolder.writeToErrorLog(e.toString());
 		}
 
 
@@ -164,16 +175,35 @@ public class CommandsDataInfo {
 			}
 			
 			} catch (SAXException | ParserConfigurationException sx) {
-				JOptionPane.showMessageDialog(null, ErrorMsgs.COMMANDS_FILE_PARSING_ERROR_CO, ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, JOptionPane.WARNING_MESSAGE);
-				EnviromentHolder.writeToErrorLog(sx.toString());
+				ErrorMsgs.handleException("", JOptionPane.WARNING_MESSAGE, ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, ErrorMsgs.COMMANDS_FILE_PARSING_ERROR_CO, sx.toString());
+//				JOptionPane.showMessageDialog(null, ErrorMsgs.COMMANDS_FILE_PARSING_ERROR_CO, ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, JOptionPane.WARNING_MESSAGE);
+//				EnviromentHolder.writeToErrorLog(sx.toString());
 			} catch (IOException ioe) {
-				JOptionPane.showMessageDialog(null, ErrorMsgs.FAILD_TO_OPEN_FILE+": Commands file", ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, JOptionPane.WARNING_MESSAGE);
-				EnviromentHolder.writeToErrorLog(ioe.toString());
+				ErrorMsgs.handleException("", JOptionPane.WARNING_MESSAGE, ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, ErrorMsgs.FAILD_TO_OPEN_FILE+": Commands file", ioe.toString());
+//				JOptionPane.showMessageDialog(null, ErrorMsgs.FAILD_TO_OPEN_FILE+": Commands file", ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, JOptionPane.WARNING_MESSAGE);
+//				EnviromentHolder.writeToErrorLog(ioe.toString());
 			} catch (Exception e) {
-				JOptionPane.showMessageDialog(null, ErrorMsgs.FILE_IS_EMPTY, ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, JOptionPane.WARNING_MESSAGE);
-				EnviromentHolder.writeToErrorLog(e.toString());
+				ErrorMsgs.handleException("", JOptionPane.WARNING_MESSAGE,  ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, ErrorMsgs.FILE_IS_EMPTY, e.toString());
+//				JOptionPane.showMessageDialog(null, ErrorMsgs.FILE_IS_EMPTY, ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, JOptionPane.WARNING_MESSAGE);
+//				EnviromentHolder.writeToErrorLog(e.toString());
 			}
 
+	}
+	
+	/**
+	 * prepare the map of the placeHolders values
+	 * @param placeHolderMap - an instance of the place holder
+	 * @param bbValue - the value of the bb
+	 * @param versionValue - the value of the version
+	 * @return a filled form with the values that should be replaced in the command
+	 */
+	public Map<String,String> preparePlaceHoldersMap(Map<String,String> placeHolderMap, String bbValue, String versionValue) {
+		
+		placeHolderMap.put(Constants.PLACE_HOLDER_BB,bbValue);
+		placeHolderMap.put(Constants.PLACE_HOLDER_VERSION,versionValue);
+		placeHolderMap.put(Constants.PLACE_HOLDER_VERSION_UNDERSCOR,"v"+ versionValue.substring(0, versionValue.length() - 1) + "_" + versionValue.charAt(versionValue.length()-1));
+		
+		return placeHolderMap;
 	}
 
 }

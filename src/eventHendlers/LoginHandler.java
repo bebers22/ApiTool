@@ -72,12 +72,12 @@ public class LoginHandler implements ActionListener,KeyListener{
             }
         }
         catch (IOException iox) {
-
-	    	JOptionPane.showMessageDialog(null,ErrorMsgs.FAILD_TO_CREATE_CONNECTION_WITH_MACHINE,"Connection refused",JOptionPane.ERROR_MESSAGE);
+        	ErrorMsgs.handleException("Login : ", JOptionPane.ERROR_MESSAGE, "Connection refused", ErrorMsgs.FAILD_TO_CREATE_CONNECTION_WITH_MACHINE, ErrorMsgs.FAILD_TO_CREATE_CONNECTION_WITH_MACHINE);
+	    	//JOptionPane.showMessageDialog(null,ErrorMsgs.FAILD_TO_CREATE_CONNECTION_WITH_MACHINE,"Connection refused",JOptionPane.ERROR_MESSAGE);
         }
         catch (Exception ex) {
-        	
-        	JOptionPane.showMessageDialog(null,ErrorMsgs.USERNAME_OR_PASSWORD_INCORRECT,"Login Faild",JOptionPane.ERROR_MESSAGE);
+        	ErrorMsgs.handleException("Login : ", JOptionPane.ERROR_MESSAGE, "Login Faild", ErrorMsgs.USERNAME_OR_PASSWORD_INCORRECT, ErrorMsgs.USERNAME_OR_PASSWORD_INCORRECT);
+        	//JOptionPane.showMessageDialog(null,ErrorMsgs.USERNAME_OR_PASSWORD_INCORRECT,"Login Faild",JOptionPane.ERROR_MESSAGE);
         }
 
         return isAuthenticated;

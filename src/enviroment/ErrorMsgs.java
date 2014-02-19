@@ -1,5 +1,7 @@
 package enviroment;
 
+import javax.swing.JOptionPane;
+
 public class ErrorMsgs {
 	
 	public final static String FAILD_TO_CREATE_CONNECTION_WITH_MACHINE = "Faild to create connection with machine";
@@ -19,4 +21,17 @@ public class ErrorMsgs {
 	public final static String TITLE_WRONG_DETAILS = "Wrong Detaild"; 
 	public final static String TITLE_FAILD_TO_LOAD_FILE = "Faild to load from file"; 
 
+	
+	/**
+	 * Handle an error event
+	 * @param commandToPerform - the command that failed
+	 * @param jOptionPaneMessageType - the type of the Pop-up message
+	 * @param popupTitle - the title of the popup 
+	 * @param popupError - the description of the error 
+	 * @param errorLogDescription - the description to the log
+	 */
+	public static void handleException(String commandToPerform, int jOptionPaneMessageType, String popupTitle, String popupError, String errorLogDescription) {
+		JOptionPane.showMessageDialog(null, popupError, popupTitle, jOptionPaneMessageType);
+		EnviromentHolder.writeToErrorLog(commandToPerform + errorLogDescription);
+	}
 }

@@ -8,9 +8,11 @@ import dataTypes.LogAreaModel;
 import enviroment.Constants;
 import enviroment.EnviromentHolder;
 import gui.BbManagementPanel;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.JButton;
 
@@ -39,17 +41,12 @@ public class BbManagementHandler implements ActionListener{
     }
     
 	private String prepareCommand(String command) {
+				
+		Map<String,String> placeHolderValues = EnviromentHolder.getCommandsDataInfo().preparePlaceHoldersMap(new HashMap<String, String>(),String.valueOf(bbManagementPanel.getBbDDL().getSelectedItem()), String.valueOf(bbManagementPanel.getVersionsDDL().getSelectedItem()));
 		
-		HashMap<String,String> placeHolderValues = new HashMap<>();
+		String preparedCommand ="";
 		
-		placeHolderValues.put(Constants.PLACE_HOLDER_BB, String.valueOf(bbManagementPanel.getBbDDL().getSelectedItem()));
-		String version = String.valueOf(bbManagementPanel.getVersionsDDL().getSelectedItem());
-		placeHolderValues.put(Constants.PLACE_HOLDER_VERSION,version);
-		placeHolderValues.put(Constants.PLACE_HOLDER_VERSION_UNDERSCOR,"v"+ version.substring(0, version.length() - 1) + "_" + version.charAt(version.length()-1));
-		
-		String preparedCommand = EnviromentHolder.getCommandsDataInfo().prepareCommand(placeHolderValues, command);
-
-		///Call to prepareCommand (CommandsDataInfo)	
+		preparedCommand = EnviromentHolder.getCommandsDataInfo().prepareCommand(placeHolderValues, command);
 		
 		return preparedCommand;
 	}
