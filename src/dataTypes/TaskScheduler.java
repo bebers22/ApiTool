@@ -60,6 +60,7 @@ public class TaskScheduler extends Thread implements Serializable{
 //	 * @param SurviveTime - number of days the animal can survive without food. 
 //	 */
 	public void setScheduler(String command){
+		command = "set_proj -p sbmsIrd14023 -b TlgServer ; rm -rf ~/weblogic/tlg_domain/classes/amdocs ; ant_build_bb -c ; ant_build_bb ; \n";
 	buildTasks(command);
 	System.out.println(command);
 	shellConnector.setConnection(ActionToPreform);
