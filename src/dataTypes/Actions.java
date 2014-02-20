@@ -38,8 +38,9 @@ public class Actions {
 	public void removeCellListner( LogAreaListiner listner) {
 		listners.remove(listner);
 	}
-        
-        public void updateLog(String str) {
+	
+	
+    public void updateLog(String str) {
 
 		for(LogAreaListiner listner : listners) {
 			listner.updateLog(str); 
@@ -49,7 +50,7 @@ public class Actions {
         
         public void startActivity(String command) {
     		EnviromentHolder.getWorkersScheduler().
-    		getWorkerScheduler(logAreaModel.getLogAreaId()).setScheduler();
+    		getWorkerScheduler(logAreaModel.getLogAreaId()).setScheduler(command);
 //            switch(command){
 //                case Constants.START:
 //                    logAreaModel.setWorker(command);

@@ -57,9 +57,9 @@ public class TaskScheduler extends Thread implements Serializable{
 //	 * @param MealsforDay - number of meals in day.
 //	 * @param SurviveTime - number of days the animal can survive without food. 
 //	 */
-	public void setScheduler(){
+	public void setScheduler(String command){
 	
-	buildTasks();
+	buildTasks(command);
 	shellConnector.setConnection(ActionToPreform);
 	istrm_ = shellConnector.getStream();
 	this.start();
@@ -97,13 +97,13 @@ public class TaskScheduler extends Thread implements Serializable{
 	/**
 	 * Build array of tasks to preform
 	 */
-	public void buildTasks(){
+	public void buildTasks(String command){
 		tasks = new LinkedList<Integer>();
 				
 		ActionToPreform = new LinkedList<String>();
-		ActionToPreform.add("cd weblogic/tlg_domain;ll;refreshLocal.sh;echo Action finished;exit; \n");
+		ActionToPreform.add(command);
 		tasks.add(1);
-		isCommandRunning = true;
+		isRunning = true;
 
 	}
 
