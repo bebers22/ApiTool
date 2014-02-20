@@ -50,7 +50,7 @@ public class ShellConnector {
 
             sess.requestPTY("bash");
             sess.startShell();
-
+            writer = writer = new OutputStreamWriter(sess.getStdin(), "utf-8");
             for (String cmd : lstCommand) {
             	writeCommand(cmd);
 			}
@@ -68,7 +68,9 @@ public class ShellConnector {
         try {
             writer.write(s);
             writer.flush();
-        } catch(Exception ex) {}
+        } catch(Exception ex) {
+        	ex.printStackTrace();
+        }
     }
     public void close() {
         if (writer==null) return;
@@ -76,7 +78,9 @@ public class ShellConnector {
             writer.close();
             sess.close();
             conn.close();
-        } catch(Exception ex) {}
+        } catch(Exception ex) {
+        	ex.printStackTrace();
+        }
         if (writer!=null) writer = null;
     }
 //    public void run() {

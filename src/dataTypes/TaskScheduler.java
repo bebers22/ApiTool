@@ -5,7 +5,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.Serializable;
+
 import static java.lang.Thread.MIN_PRIORITY;
+
 import java.util.LinkedList;
 import java.util.Random;
 import java.util.logging.Level;
@@ -13,11 +15,11 @@ import java.util.logging.Logger;
 
 /**
  * This class responsible timing of actions
- * @author ���
+ * @author
  *
  */
 /**
- * @author ���
+ * @author
  *
  */
 public class TaskScheduler extends Thread implements Serializable{
@@ -58,8 +60,8 @@ public class TaskScheduler extends Thread implements Serializable{
 //	 * @param SurviveTime - number of days the animal can survive without food. 
 //	 */
 	public void setScheduler(String command){
-	
 	buildTasks(command);
+	System.out.println(command);
 	shellConnector.setConnection(ActionToPreform);
 	istrm_ = shellConnector.getStream();
 	this.start();
