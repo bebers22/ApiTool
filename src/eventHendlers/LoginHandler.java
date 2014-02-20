@@ -1,9 +1,6 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package eventHendlers;
 
+import enviroment.EnviromentHolder;
 import enviroment.ErrorMsgs;
 import gui.LoginPanel;
 
@@ -28,7 +25,6 @@ public class LoginHandler implements ActionListener,KeyListener{
     
     @Override
     public void actionPerformed(ActionEvent e) {
-    	
     	doAction();
     }
     
@@ -45,57 +41,47 @@ public class LoginHandler implements ActionListener,KeyListener{
 
     	if(checkConnection()) {
     		loginPanel.parentContainer.isConnected = true;
+    		///TODO: add handler to handle changing the xml file content for the new username password that typed
+    		EnviromentHolder.setUsernamePassword(loginPanel.getUserName(), loginPanel.getPassword());
     		loginPanel.parentContainer.setVisible(false);
     	}
-
     }
 
     /**
      * Perform login with provided username and password
      * @return
      */
-	private boolean checkConnection() {
-		
-	    String host = "snv4914";
-	    String username = loginPanel.userNameTB.getText();
-	    String password = loginPanel.passwordTB.getText();
-	    
-	    Connection conn = null;
-	    boolean isAuthenticated = false;
-	    
-        conn = new Connection(host);
-        try{
-            conn.connect();
-            isAuthenticated = conn.authenticateWithPassword(username, password);
-            if(!isAuthenticated) {
-            	throw new Exception();
-            }
-        }
-        catch (IOException iox) {
+    private boolean checkConnection() {
 
-	    	JOptionPane.showMessageDialog(null,ErrorMsgs.FAILD_TO_CREATE_CONNECTION_WITH_MACHINE,"Connection refused",JOptionPane.ERROR_MESSAGE);
-        }
-        catch (Exception ex) {
-        	
-        	JOptionPane.showMessageDialog(null,ErrorMsgs.USERNAME_OR_PASSWORD_INCORRECT,"Login Faild",JOptionPane.ERROR_MESSAGE);
-        }
+    	String host = "snv4914";
+    	String username = loginPanel.getUserName();
+    	String password = loginPanel.getPassword();
 
-        return isAuthenticated;
+    	Connection conn = null;
+    	boolean isAuthenticated = false;
 
-	}
+    	conn = new Connection(host);
+    	try{
+    		conn.connect();
+    		isAuthenticated = conn.authenticateWithPassword(username, password);
+    		if(!isAuthenticated) {
+    			ErrorMsgs.handleException("Login : ", JOptionPane.ERROR_MESSAGE, "Login Faild", ErrorMsgs.USERNAME_OR_PASSWORD_INCORRECT, ErrorMsgs.USERNAME_OR_PASSWORD_INCORRECT);
+    		}
+    	}
+    	catch (IOException iox) {
+    		ErrorMsgs.handleException("Login : ", JOptionPane.ERROR_MESSAGE, "Connection refused", ErrorMsgs.FAILD_TO_CREATE_CONNECTION_WITH_MACHINE, ErrorMsgs.FAILD_TO_CREATE_CONNECTION_WITH_MACHINE);
+    	}
+    	return isAuthenticated;
+    }
 
 
 
 	@Override
 	public void keyReleased(KeyEvent arg0) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void keyTyped(KeyEvent arg0) {
-		// TODO Auto-generated method stub
-		
 	}
     
 }

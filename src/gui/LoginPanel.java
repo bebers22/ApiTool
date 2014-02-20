@@ -28,6 +28,9 @@ public class LoginPanel extends javax.swing.JPanel {
     	passwordTB.addActionListener(new LoginHandler(this));
 	}
 
+    /**
+     * Loads username and password from xml
+     */
 	private void initUserPassword() {
     	
     	EnviromentHolder.loadUserEnvDetails();
@@ -68,13 +71,13 @@ public class LoginPanel extends javax.swing.JPanel {
     	passwordTB.setBounds(101, 55, 91, 33);
     	add(passwordTB);
 
-    	jLabel12 = new javax.swing.JLabel();
-    	jLabel12.setBounds(10, 101, 40, 33);
+    	lblHost = new javax.swing.JLabel();
+    	lblHost.setBounds(10, 101, 40, 33);
 
-    	jLabel12.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-    	jLabel12.setText("Host  :");
-    	jLabel12.setOpaque(true);
-    	add(jLabel12);
+    	lblHost.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+    	lblHost.setText("Host  :");
+    	lblHost.setOpaque(true);
+    	add(lblHost);
     	hostTB = new javax.swing.JTextField();
     	hostTB.setBounds(101, 100, 70, 33);
     	hostTB.setEditable(false);
@@ -90,11 +93,24 @@ public class LoginPanel extends javax.swing.JPanel {
 
 
     private javax.swing.JTextField hostTB;
-    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel lblHost;
     private javax.swing.JLabel lblUsername;
     private javax.swing.JLabel lblPass;
-    public javax.swing.JTextField passwordTB;
+	public javax.swing.JTextField passwordTB;
     public javax.swing.JTextField userNameTB;
     private JButton btnConnect;
+    
+    
+    public String getPassword() {
+		return passwordTB.getText();
+	}
+
+	public String getUserName() {
+		return userNameTB.getText();
+	}
+
+
+
+    
 		
 }

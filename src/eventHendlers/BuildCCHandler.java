@@ -10,9 +10,11 @@ import dataTypes.LogAreaModel;
 import enviroment.Constants;
 import enviroment.EnviromentHolder;
 import gui.RunBuildCCPanel;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.JButton;
 
@@ -42,14 +44,11 @@ public class BuildCCHandler implements ActionListener{
 
 	private String prepareCommand(String command) {
 		
-		HashMap<String,String> placeHolderValues = new HashMap<>();
+		Map<String,String> placeHolderValues = EnviromentHolder.getCommandsDataInfo().preparePlaceHoldersMap(new HashMap<String, String>(),String.valueOf(runBuildCcPanel.getBbDDL().getSelectedItem()), String.valueOf(runBuildCcPanel.getVersionsDDL().getSelectedItem()));
 		
-		placeHolderValues.put(Constants.PLACE_HOLDER_BB, String.valueOf(runBuildCcPanel.getBbDDL().getSelectedItem()));
-		placeHolderValues.put(Constants.PLACE_HOLDER_VERSION, String.valueOf(runBuildCcPanel.getVersionsDDL().getSelectedItem()));
+		String preparedCommand ="";
 		
-		String preparedCommand = EnviromentHolder.getCommandsDataInfo().prepareCommand(placeHolderValues, command);
-		
-		///Call to prepareCommand (CommandsDataInfo)	
+		preparedCommand = EnviromentHolder.getCommandsDataInfo().prepareCommand(placeHolderValues, command);
 		
 		return preparedCommand;
 	}
