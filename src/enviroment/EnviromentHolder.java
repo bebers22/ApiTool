@@ -86,21 +86,14 @@ public class EnviromentHolder {
 			NodeList  nList = doc.getElementsByTagName(Constants.XML_TAG_USER);
 			if( nList.getLength() != 0 ) {
 				Element el = (Element) nList.item(0);
-				usernamePassword = new String[2];
-				usernamePassword[0] = el.getAttribute(Constants.XML_TAG_USERNAME);
-				usernamePassword[1] = el.getAttribute(Constants.XML_TAG_PASSWORD);
+				setUsernamePassword(el.getAttribute(Constants.XML_TAG_USERNAME), el.getAttribute(Constants.XML_TAG_PASSWORD));
 			}
-		
-			
 		} catch (SAXException | ParserConfigurationException sx) {
-			JOptionPane.showMessageDialog(null, ErrorMsgs.USER_PROPERTIES_FILE_ERROR, ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, JOptionPane.WARNING_MESSAGE);
-			EnviromentHolder.writeToErrorLog(sx.toString());
+			ErrorMsgs.handleException("", JOptionPane.WARNING_MESSAGE, ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE,  ErrorMsgs.USER_PROPERTIES_FILE_ERROR, sx.toString());
 		} catch (IOException ioe) {
-			JOptionPane.showMessageDialog(null, ErrorMsgs.FAILD_TO_OPEN_FILE +": user properties", ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, JOptionPane.WARNING_MESSAGE);
-			EnviromentHolder.writeToErrorLog(ioe.toString());
+			ErrorMsgs.handleException("", JOptionPane.WARNING_MESSAGE, ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, ErrorMsgs.FAILD_TO_OPEN_FILE +": user properties", ioe.toString());
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, ErrorMsgs.FILE_IS_EMPTY +": user properties", ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, JOptionPane.WARNING_MESSAGE);
-			EnviromentHolder.writeToErrorLog(e.toString());
+			ErrorMsgs.handleException("", JOptionPane.WARNING_MESSAGE, ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, ErrorMsgs.FILE_IS_EMPTY +": user properties", e.toString());
 		}	
 	}
 
@@ -118,14 +111,11 @@ public class EnviromentHolder {
     		
     		
     	} catch (SAXException | ParserConfigurationException sx) {
-    		JOptionPane.showMessageDialog(null, ErrorMsgs.USER_PROPERTIES_FILE_ERROR, ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, JOptionPane.WARNING_MESSAGE);
-    		EnviromentHolder.writeToErrorLog(sx.toString());
+    		ErrorMsgs.handleException("", JOptionPane.WARNING_MESSAGE, ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, ErrorMsgs.USER_PROPERTIES_FILE_ERROR, sx.toString());
     	} catch (IOException ioe) {
-    		JOptionPane.showMessageDialog(null, ErrorMsgs.FAILD_TO_OPEN_FILE +": user properties", ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, JOptionPane.WARNING_MESSAGE);
-    		EnviromentHolder.writeToErrorLog(ioe.toString());
+    		ErrorMsgs.handleException("", JOptionPane.WARNING_MESSAGE, ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, ErrorMsgs.FAILD_TO_OPEN_FILE +": user properties", ioe.toString());
     	} catch (Exception e) {
-    		JOptionPane.showMessageDialog(null, ErrorMsgs.FILE_IS_EMPTY +": versions and bb", ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, JOptionPane.WARNING_MESSAGE);
-    		EnviromentHolder.writeToErrorLog(e.toString());
+    		ErrorMsgs.handleException("", JOptionPane.WARNING_MESSAGE, ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, ErrorMsgs.FILE_IS_EMPTY +": versions and bb", e.toString());
     	}
 
     }
@@ -245,6 +235,10 @@ public class EnviromentHolder {
     
     public static String[] getUsernamePassword() {
 		return usernamePassword;
+	}
+    
+	public static void setUsernamePassword(String userName, String password) {
+		EnviromentHolder.usernamePassword = new String[] {userName,password};
 	}
 
     

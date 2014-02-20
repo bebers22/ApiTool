@@ -6,7 +6,6 @@ import javax.swing.JFrame;
 public class APIApplicationManager{
 
 
-	private JFrame ToolFrame;
 	private LoginDialogFrame loginDialog;
 	private ToolFrame toolFrame;
 	
@@ -19,16 +18,20 @@ public class APIApplicationManager{
 
 	}
 
+	/**
+	 * Show the login Dialog and wait for connection.
+	 */
 	public void Go() {
 		
 		loginDialog.showDialog();
 
 		if(loginDialog.getIsConnected()) {
 			
-			toolFrame.LoadToolFrame();;
+			toolFrame.LoadToolFrame();
+			
 			toolFrame.setVisible(true);
+			
 		}
-		
 		else {
 			System.exit(0);
 		}
