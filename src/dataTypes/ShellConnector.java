@@ -87,32 +87,7 @@ public class ShellConnector {
         }
         if (writer!=null) writer = null;
     }
-//    public void run() {
-//        try {
-//            conn = new Connection(host);
-//            conn.connect();
-//            boolean isAuthenticated = conn.authenticateWithPassword(username, password);
-//            if (!isAuthenticated) throw new IOException("Authentication failed.");
-//            sess = conn.openSession();
-//            new Thread(new SyncPipe(sess.getStderr(), System.err)).start();
-//            new Thread(new SyncPipe(sess.getStdout(), System.out)).start();
-//            sess.requestPTY("bash");
-//            sess.startShell();
-//            writer = new OutputStreamWriter(sess.getStdin(), "utf-8");
-//            writeCommand("cd weblogic/tlg_domain \n");
-//            writeCommand("refreshLocal.sh \n");
-//            writeCommand("ll \n");
-//            writeCommand("exit \n");
-//            //writeCommand("ant_build_bb -c \n");
-//            //writeCommand("ant_build_bb  \n");
-//            sess.waitForCondition(ChannelCondition.CLOSED | ChannelCondition.EOF |
-//                    ChannelCondition.EXIT_STATUS, 10000);
-//            System.out.println("Exit status : " + sess.getExitStatus());
-//        } catch (Exception e) {
-//            e.printStackTrace(System.err);
-//            System.exit(2);
-//        }
-//    }
+
 
     class SyncPipe implements Runnable {
         String CVS_VERSION = "$Revision: 1.1 $ $Id: SyncPipe.java,v 1.1 2008-09-30 03:47:56 sabre Exp $ ";
