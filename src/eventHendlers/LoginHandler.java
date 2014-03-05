@@ -1,5 +1,6 @@
 package eventHendlers;
 
+import enviroment.Constants;
 import enviroment.EnviromentHolder;
 import enviroment.ErrorMsgs;
 import gui.LoginPanel;
@@ -8,9 +9,23 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.File;
 import java.io.IOException;
 
 import javax.swing.JOptionPane;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.Result;
+import javax.xml.transform.Source;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
 import ch.ethz.ssh2.Connection;
 
@@ -41,13 +56,52 @@ public class LoginHandler implements ActionListener,KeyListener{
 
     	if(checkConnection()) {
     		loginPanel.parentContainer.isConnected = true;
-    		///TODO: add handler to handle changing the xml file content for the new username password that typed
-    		EnviromentHolder.setUsernamePassword(loginPanel.getUserName(), loginPanel.getPassword());
+    		updateLocalDetails(loginPanel.getUserName(), loginPanel.getPassword());
     		loginPanel.parentContainer.setVisible(false);
     	}
     }
 
     /**
+     * This method is updating the user name and password in the local XML file<BR>
+     *  according to the last successfully connect
+     * @param userName
+     * @param password
+     */
+    private void updateLocalDetails(String userName, String password) {
+    	
+		if(userName.equals(EnviromentHolder.getUsernamePassword()[0]) && password.equals(EnviromentHolder.getUsernamePassword()[1])) {
+			return;
+		}
+		
+    	try{ 
+    		File usernamePasswordfile = new File(Constants.USERNAME_PASSWORD_XML);
+    		Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(usernamePasswordfile);
+    		NodeList  nList = doc.getElementsByTagName(Constants.XML_TAG_USER);
+    		
+    		if(nList.getLength() != 0 ) {
+    			Element el = (Element) nList.item(0);
+    			el.setAttribute(Constants.XML_TAG_USERNAME, userName);
+    			el.setAttribute(Constants.XML_TAG_PASSWORD, password);
+    		}
+    		
+    		Transformer transformer = TransformerFactory.newInstance().newTransformer();
+    		Result output = new StreamResult(new File(Constants.USERNAME_PASSWORD_XML));
+    		Source input = new DOMSource(doc);
+    		transformer.transform(input, output);
+    		
+    	} catch (SAXException | ParserConfigurationException sx) {
+    		ErrorMsgs.handleException("", JOptionPane.WARNING_MESSAGE, ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE,  ErrorMsgs.USER_PROPERTIES_FILE_ERROR, sx.toString());
+    	} catch (IOException ioe) {
+    		ErrorMsgs.handleException("", JOptionPane.WARNING_MESSAGE, ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, ErrorMsgs.FAILD_TO_OPEN_FILE +": user properties", ioe.toString());
+    	} catch (Exception e) {
+    		ErrorMsgs.handleException("", JOptionPane.WARNING_MESSAGE, ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, ErrorMsgs.FILE_IS_EMPTY +": user properties", e.toString());
+    	}
+    	
+    	EnviromentHolder.setUsernamePassword(loginPanel.getUserName(), loginPanel.getPassword());
+    }
+
+
+	/**
      * Perform login with provided username and password
      * @return
      */

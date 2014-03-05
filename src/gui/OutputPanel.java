@@ -52,7 +52,8 @@ public class OutputPanel extends javax.swing.JPanel implements LogAreaListiner{
         logScroll.setViewportBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
         logScroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         logScroll.setAutoscrolls(true);
-        outputlog = new javax.swing.JTextPane();
+        outputlog = new javax.swing.JTextArea();
+        outputlog.setEditable(false);
 
         logScroll.setViewportView(outputlog);
         
@@ -76,7 +77,7 @@ public class OutputPanel extends javax.swing.JPanel implements LogAreaListiner{
     }// </editor-fold>//GEN-END:initComponents
 
     private javax.swing.JScrollPane logScroll;
-    private javax.swing.JTextPane outputlog;
+    private javax.swing.JTextArea outputlog;
 
 
     @Override
