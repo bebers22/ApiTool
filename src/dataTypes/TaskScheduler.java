@@ -60,8 +60,7 @@ public class TaskScheduler extends Thread implements Serializable{
 //	 * @param SurviveTime - number of days the animal can survive without food. 
 //	 */
 	public void setScheduler(String command){
-		command = "set_proj -p sbmsIrd14023 -b TlgServer ; rm -rf ~/weblogic/tlg_domain/classes/amdocs ; ant_build_bb -c ; ant_build_bb ; \n";
-	buildTasks(command);
+		buildTasks(command);
 	System.out.println(command);
 	shellConnector.setConnection(ActionToPreform);
 	istrm_ = shellConnector.getStream();
@@ -69,33 +68,6 @@ public class TaskScheduler extends Thread implements Serializable{
 	
 	}
 
-//		isRunning = true;
-//		State x =  this.getState();
-//		if(this.getState() != Thread.State.NEW) {
-//			synchronized (this){
-//				if(ActionToPreform.size() > 0)
-//					return;
-//				int p = ActionToPreform.size();
-//			}
-//			buildTasks();
-//			shellConnector.setConnection();
-//			istrm_ = shellConnector.getStream();
-//			synchronized (this){
-//				int p = ActionToPreform.size();
-//				status = "RUN";
-//				this.notify();
-//
-//			}
-//		}
-//		else {
-//			buildTasks();
-//			shellConnector.setConnection();
-//			istrm_ = shellConnector.getStream();
-//			status = "RUN";
-//			this.start();
-//		}
-//
-//	}
 
 	/**
 	 * Build array of tasks to preform
@@ -157,7 +129,7 @@ public class TaskScheduler extends Thread implements Serializable{
 			e.printStackTrace();
 		}
 
-		if (msg.contains("logout")) stopTask();
+		if (msg.contains("logout")) this.action.stopActivity();
 
 		return logout; 
 	}
@@ -178,8 +150,6 @@ public class TaskScheduler extends Thread implements Serializable{
 			} 
 		}else{
 			this.action.updateLog("bey bey");
-			//killAnimal();
-			//this.action.setCells(1, 12);
 		}
 	}
 	

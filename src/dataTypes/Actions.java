@@ -13,7 +13,7 @@ import enviroment.EnviromentHolder;
  *
  * @author izhaq
  */
-public class Actions {
+public abstract class Actions {
     
     private LogAreaModel logAreaModel;
     private Vector< LogAreaListiner> listners ;
@@ -22,6 +22,8 @@ public class Actions {
          this.logAreaModel = logAreaModel;
          listners = new Vector<LogAreaListiner>(0,1);
     }
+    
+    public abstract String checkLog(String str);
     
     public  Vector<LogAreaListiner> getListners() {
 		return listners;
@@ -41,25 +43,23 @@ public class Actions {
 	
 	
     public void updateLog(String str) {
-
+    	
+    	str = checkLog(str);
 		for(LogAreaListiner listner : listners) {
 			listner.updateLog(str); 
 		}
 
 	}
         
-        public void startActivity(String command) {
+    public void startActivity(String command) {
     		EnviromentHolder.getWorkersScheduler().
     		getWorkerScheduler(logAreaModel.getLogAreaId()).setScheduler(command);
-//            switch(command){
-//                case Constants.START:
-//                    logAreaModel.setWorker(command);
-//                    break;
-//                case Constants.END:
-//                    logAreaModel.stopWorker(command);
-//                    break;
-//                case Constants.CHECK_CC_LOG:
-//                    break;
-//            }
+
         }
+    
+    public void stopActivity()
+    {
+    	EnviromentHolder.getWorkersScheduler().stopWorker(logAreaModel.getLogAreaId());
+    }
+    
 }

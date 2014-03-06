@@ -20,13 +20,16 @@ public class LogAreaModel {
     
     public LogAreaModel(String LogAreaId) {
         this.LogAreaId = LogAreaId;
-        actionListenr = new Actions(this);
+        actionListenr = null;
     }
     
     public Actions getListenr() {
 		return actionListenr;
 	}
     
+    public void setAction(Actions action){
+    	actionListenr = action;
+    }
     public void setWorker(String command) {
 //		EnviromentHolder.getWorkersScheduler().
 //		getWorkerScheduler(LogAreaId).setScheduler();

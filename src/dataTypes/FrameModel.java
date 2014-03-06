@@ -4,6 +4,7 @@
  */
 package dataTypes;
 
+import enviroment.Constants;
 import enviroment.EnviromentHolder;
 
 import java.util.HashMap;
@@ -24,9 +25,17 @@ public class FrameModel {
     public void initiate() {
     	
         String[] logAreaNames = EnviromentHolder.logAreaNames.value.split("@");
+
+        for(int i=0; i<logAreaNames.length; i++) {
+        	LogAreaModel logAreaModel = new LogAreaModel(logAreaNames[i]);
+            Logs.put(logAreaNames[i], logAreaModel);
+        }
+        
+        EnviromentHolder.setLogs(Logs);
         
         for(int i=0; i<logAreaNames.length; i++) {
-            Logs.put(logAreaNames[i], new LogAreaModel(logAreaNames[i]));
+        	LogAreaModel logAreaModel = new LogAreaModel(logAreaNames[i]);
+            Logs.get(logAreaNames[i]).setAction(EnviromentHolder.getActionType(logAreaNames[i]));;
         }
         
         EnviromentHolder.setLogs(Logs);

@@ -28,7 +28,16 @@ public class localBuildHandler implements ActionListener{
     
     @Override
     public void actionPerformed(ActionEvent e) {
-    	        
+    	  
+    	String command = ((JButton)e.getSource()).getText();
+    	switch(command) {
+    	case Constants.END:
+    		break;
+    		default:
+    			String unixCommand = prepareCommand(command);
+    			break;
+    	}
+    	
         String unixCommand = prepareCommand(((JButton)e.getSource()).getText());
         
         if(unixCommand.isEmpty()) {

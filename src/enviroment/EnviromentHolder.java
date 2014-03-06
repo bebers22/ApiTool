@@ -5,7 +5,9 @@
 package enviroment;
 
 import dataInfo.CommandsDataInfo;
+import dataTypes.Actions;
 import dataTypes.FrameModel;
+import dataTypes.LocalBuildAction;
 import dataTypes.LogAreaListiner;
 import dataTypes.LogAreaModel;
 import dataTypes.TaskSchedulerBoard;
@@ -267,4 +269,23 @@ public class EnviromentHolder {
 				
 		return ddlForVersions;
 	}
+	
+    public static Actions getActionType (String type) {
+    	Actions actionType = null;
+    	switch(type) {
+    	case Constants.LOCAL_BUILD_LOGS:
+			actionType = new LocalBuildAction(EnviromentHolder.Logs.get(type));
+    		break;
+    	case Constants.BUILD_CC_LOGS:
+    		actionType = new LocalBuildAction(EnviromentHolder.Logs.get(type));
+    		break;
+    	case Constants.BB_MANAGMENT_LOG:
+    		actionType = new LocalBuildAction(EnviromentHolder.Logs.get(type));
+    		break;
+    	case Constants.GENERAL_LOGS:
+    		actionType = new LocalBuildAction(EnviromentHolder.Logs.get(type));
+    		break;
+    	}
+    	return actionType;
+    }
 }

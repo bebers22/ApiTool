@@ -83,8 +83,8 @@ public class CommandsDataInfo {
 			commandToRun = commandToRun + commands.get(Constants.RESTART_TLG_SERVER);
 				
 		}
-		
-		return commandToRun + "/n";				
+	
+		return commandToRun + " \n";				
 	}
 
 	
