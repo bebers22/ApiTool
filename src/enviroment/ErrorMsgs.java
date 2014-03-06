@@ -12,6 +12,7 @@ public class ErrorMsgs {
 	public final static String USER_PROPERTIES_FILE_ERROR = "Error while parsing the User properties file\n using default values";
 	public final static String VERSIONS_BB_FILE_ERROR = "Error while parsing the Versions and BB file\n using default values";
 	public final static String FAILD_TO_OPEN_FILE = "Faild to open file";
+	public final static String FAILD_TO_CREATE_FILE = "Faild to create file";
 	public final static String FILE_IS_EMPTY = "File is empty";
 	public final static String COMMAND_IS_MISSING_DESCRIPTION = " : command is missing from the commands xml file";
 	
@@ -20,6 +21,7 @@ public class ErrorMsgs {
 	public final static String TITLE_CONNECTION_REFUSED = "Connection refused";
 	public final static String TITLE_WRONG_DETAILS = "Wrong Detaild"; 
 	public final static String TITLE_FAILD_TO_LOAD_FILE = "Faild to load from file"; 
+	public final static String TITLE_FAILD_TO_CREATE_FILE = "Faild to create file"; 
 
 	
 	/**

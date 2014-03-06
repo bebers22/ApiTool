@@ -4,6 +4,7 @@ import java.awt.Color;
 
 import javax.swing.JButton;
 
+import enviroment.Constants;
 import enviroment.EnviromentHolder;
 import eventHendlers.LoginHandler;
 
@@ -36,8 +37,8 @@ public class LoginPanel extends javax.swing.JPanel {
     	EnviromentHolder.loadUserEnvDetails();
     	String[] usernamePassword = EnviromentHolder.getUsernamePassword();
     	if(usernamePassword != null) {
-    		this.userNameTB.setText(usernamePassword[0]);
-    		this.passwordTB.setText(usernamePassword[1]);
+    		this.userNameTB.setText(usernamePassword[Constants.USERNAME_INDEX]);
+    		this.passwordTB.setText(usernamePassword[Constants.PASSWORD_INDEX]);
     	}
 	}
 

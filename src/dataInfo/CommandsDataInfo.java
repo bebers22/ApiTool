@@ -1,24 +1,19 @@
 package dataInfo;
 
-import java.awt.HeadlessException;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
-
 import javax.swing.JOptionPane;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
-
 import enviroment.Constants;
-import enviroment.EnviromentHolder;
 import enviroment.ErrorMsgs;
 
 public class CommandsDataInfo {
@@ -58,13 +53,6 @@ public class CommandsDataInfo {
 		
 		return preparedCommand;
 	}
-
-//	public void handleException(String commandToPerform,int jOptionPaneMessageType,String popupTitle,String popupError, String errorLogDescription) {
-//		JOptionPane.showMessageDialog(null, ErrorMsgs.COMMAND_IS_MISSING, ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, JOptionPane.WARNING_MESSAGE);
-//		EnviromentHolder.writeToErrorLog(commandToPerform + ErrorMsgs.COMMAND_IS_MISSING_DESCRIPTION);
-//	}
-	
-
 	
 	/**
 	 * Add commands to handle the weblogic
@@ -133,16 +121,10 @@ public class CommandsDataInfo {
 			}
 		} catch (SAXException | ParserConfigurationException sx) {
 			ErrorMsgs.handleException("", JOptionPane.WARNING_MESSAGE, ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, ErrorMsgs.COMMANDS_FILE_PARSING_ERROR_PH, sx.toString());
-//			JOptionPane.showMessageDialog(null, ErrorMsgs.COMMANDS_FILE_PARSING_ERROR_PH, ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, JOptionPane.WARNING_MESSAGE);
-//			EnviromentHolder.writeToErrorLog(sx.toString());
 		} catch (IOException ioe) {
 			ErrorMsgs.handleException("", JOptionPane.WARNING_MESSAGE,  ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, ErrorMsgs.FAILD_TO_OPEN_FILE+": Commands file", ioe.toString());
-//			JOptionPane.showMessageDialog(null, ErrorMsgs.FAILD_TO_OPEN_FILE+": Commands file", ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, JOptionPane.WARNING_MESSAGE);
-//			EnviromentHolder.writeToErrorLog(ioe.toString());
 		} catch (Exception e) {
 			ErrorMsgs.handleException("", JOptionPane.WARNING_MESSAGE, ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, ErrorMsgs.FILE_IS_EMPTY, e.toString());
-//			JOptionPane.showMessageDialog(null, ErrorMsgs.FILE_IS_EMPTY, ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, JOptionPane.WARNING_MESSAGE);
-//			EnviromentHolder.writeToErrorLog(e.toString());
 		}
 
 
@@ -176,16 +158,10 @@ public class CommandsDataInfo {
 			
 			} catch (SAXException | ParserConfigurationException sx) {
 				ErrorMsgs.handleException("", JOptionPane.WARNING_MESSAGE, ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, ErrorMsgs.COMMANDS_FILE_PARSING_ERROR_CO, sx.toString());
-//				JOptionPane.showMessageDialog(null, ErrorMsgs.COMMANDS_FILE_PARSING_ERROR_CO, ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, JOptionPane.WARNING_MESSAGE);
-//				EnviromentHolder.writeToErrorLog(sx.toString());
 			} catch (IOException ioe) {
 				ErrorMsgs.handleException("", JOptionPane.WARNING_MESSAGE, ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, ErrorMsgs.FAILD_TO_OPEN_FILE+": Commands file", ioe.toString());
-//				JOptionPane.showMessageDialog(null, ErrorMsgs.FAILD_TO_OPEN_FILE+": Commands file", ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, JOptionPane.WARNING_MESSAGE);
-//				EnviromentHolder.writeToErrorLog(ioe.toString());
 			} catch (Exception e) {
 				ErrorMsgs.handleException("", JOptionPane.WARNING_MESSAGE,  ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, ErrorMsgs.FILE_IS_EMPTY, e.toString());
-//				JOptionPane.showMessageDialog(null, ErrorMsgs.FILE_IS_EMPTY, ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, JOptionPane.WARNING_MESSAGE);
-//				EnviromentHolder.writeToErrorLog(e.toString());
 			}
 
 	}
@@ -195,13 +171,15 @@ public class CommandsDataInfo {
 	 * @param placeHolderMap - an instance of the place holder
 	 * @param bbValue - the value of the bb
 	 * @param versionValue - the value of the version
+	 * @param tlgDomain - folder of tld domain
 	 * @return a filled form with the values that should be replaced in the command
 	 */
-	public Map<String,String> preparePlaceHoldersMap(Map<String,String> placeHolderMap, String bbValue, String versionValue) {
+	public Map<String,String> preparePlaceHoldersMap(Map<String,String> placeHolderMap, String bbValue, String versionValue, String tlgDomain) {
 		
 		placeHolderMap.put(Constants.PLACE_HOLDER_BB,bbValue);
 		placeHolderMap.put(Constants.PLACE_HOLDER_VERSION,versionValue);
 		placeHolderMap.put(Constants.PLACE_HOLDER_VERSION_UNDERSCOR,"v"+ versionValue.substring(0, versionValue.length() - 1) + "_" + versionValue.charAt(versionValue.length()-1));
+		placeHolderMap.put(Constants.PLACE_HOLDER_TLG_DOMAIN,tlgDomain);
 		
 		return placeHolderMap;
 	}

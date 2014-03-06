@@ -52,7 +52,9 @@ public class localBuildHandler implements ActionListener{
     
 	private String prepareCommand(String command) {
 		
-		Map<String,String> placeHolderValues = EnviromentHolder.getCommandsDataInfo().preparePlaceHoldersMap(new HashMap<String, String>(),String.valueOf(runLocalBuildPanel.getBbDDL().getSelectedItem()), String.valueOf(runLocalBuildPanel.getVersionsDDL().getSelectedItem()));
+		Map<String,String> placeHolderValues = EnviromentHolder.getCommandsDataInfo().preparePlaceHoldersMap(new HashMap<String, String>(),
+				String.valueOf(runLocalBuildPanel.getBbDDL().getSelectedItem()), String.valueOf(runLocalBuildPanel.getVersionsDDL().getSelectedItem()), 
+				String.valueOf(runLocalBuildPanel.getTlgDomainDDL().getSelectedItem()));
 
 		String preparedCommand = "";
 		

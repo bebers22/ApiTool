@@ -44,7 +44,8 @@ public class BuildCCHandler implements ActionListener{
 
 	private String prepareCommand(String command) {
 		
-		Map<String,String> placeHolderValues = EnviromentHolder.getCommandsDataInfo().preparePlaceHoldersMap(new HashMap<String, String>(),String.valueOf(runBuildCcPanel.getBbDDL().getSelectedItem()), String.valueOf(runBuildCcPanel.getVersionsDDL().getSelectedItem()));
+		Map<String,String> placeHolderValues = EnviromentHolder.getCommandsDataInfo().preparePlaceHoldersMap(new HashMap<String, String>(),
+				String.valueOf(runBuildCcPanel.getBbDDL().getSelectedItem()), String.valueOf(runBuildCcPanel.getVersionsDDL().getSelectedItem()), "");
 		
 		String preparedCommand ="";
 		

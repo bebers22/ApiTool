@@ -47,7 +47,7 @@ public class RunBuildCCPanel extends javax.swing.JPanel {
     	add(lblBb);
     	
     	bbDDL = new javax.swing.JComboBox();
-    	bbDDL.setBounds(61, 6, 125, 26);
+    	bbDDL.setBounds(75, 6, 128, 26);
     	bbDDL.setToolTipText("Select BB to run build");
     	bbDDL.setMaximumRowCount(20);
     	bbDDL.setModel(new javax.swing.DefaultComboBoxModel(EnviromentHolder.getDdlForBB()));
@@ -59,7 +59,7 @@ public class RunBuildCCPanel extends javax.swing.JPanel {
     	add(lblVersion);
 
     	versionsDDL = new JComboBox();
-    	versionsDDL.setBounds(61, 44, 125, 26);
+    	versionsDDL.setBounds(75, 44, 128, 26);;
     	versionsDDL.setToolTipText("Select version");
     	versionsDDL.setModel(new javax.swing.DefaultComboBoxModel(EnviromentHolder.getDdlForVersions()));
     	add(versionsDDL);

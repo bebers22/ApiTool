@@ -1,15 +1,10 @@
 package enviroment;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import javax.swing.Icon;
-
 public class Constants {
 	
 	public static final String TOOL_TITLE = "AT&T API Team - Unix tool";
 	
+	public static final String TLG_DOMAIN = "TlgDomain:";
 	public final static String RUN_BUILD_IN_CC = "Run build in CC";
 	public final static String RUN_LOCAL_BUILD = "Run local build";
 	public final static String END = "End";
@@ -52,6 +47,11 @@ public class Constants {
 	public static final String LOG_MENU_ITEM = "Logs";
 	public static final String RELOAD_ENV_MENU_ITEM = "Reload files";
 
+	public static final int USERNAME_INDEX = 0;
+	public static final int PASSWORD_INDEX = 1;
+
+	
+
 	
 	
 	public static String PLACE_HOLDER_VERSION;
@@ -60,6 +60,9 @@ public class Constants {
 	public static String PLACE_HOLDER_TLG_DOMAIN;
 	
 	public static String LOG_SEPARATOR = "\n---------------------------------------------------------------\n";
+	
+	public static String LOCAL_XML_USER_DETAILS_FILE = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\" standalone=\"no\"?><UserDetails> <User id=\"1\" password=\"somePassword\" type=\"string\" username=\"guest\"/> </UserDetails>";
+;
 	
 	
 }

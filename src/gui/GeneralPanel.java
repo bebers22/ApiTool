@@ -51,7 +51,7 @@ public class GeneralPanel extends javax.swing.JPanel {
     	add(lblBb);
     	
     	bbDDL = new javax.swing.JComboBox();
-    	bbDDL.setBounds(61, 6, 125, 26);
+    	bbDDL.setBounds(75, 6, 128, 26);
     	bbDDL.setToolTipText("Select BB to run build");
     	bbDDL.setMaximumRowCount(20);
     	bbDDL.setModel(new javax.swing.DefaultComboBoxModel(EnviromentHolder.getDdlForBB()));
@@ -63,41 +63,49 @@ public class GeneralPanel extends javax.swing.JPanel {
     	add(lblVersion);
 
     	versionsDDL = new JComboBox();
-    	versionsDDL.setBounds(61, 44, 125, 26);
+    	versionsDDL.setBounds(75, 44, 128, 26);
     	versionsDDL.setToolTipText("Select version");
     	versionsDDL.setModel(new javax.swing.DefaultComboBoxModel(EnviromentHolder.getDdlForVersions()));
     	add(versionsDDL);
+    	
+    	lblweblogic = new JLabel(Constants.TLG_DOMAIN);
+    	lblweblogic.setBounds(6, 87, 73, 16);
+    	lblweblogic.setFont(new Font("Tahoma", Font.PLAIN, 13));
+    	add(lblweblogic);
+    	
+    	tlgDomainDDL = new JComboBox();
+    	tlgDomainDDL.setBounds(75, 82, 128, 26);
+    	tlgDomainDDL.setModel(new javax.swing.DefaultComboBoxModel(EnviromentHolder.getTlgDomains()));
+    	add(tlgDomainDDL);
 
     	stopTlgServerBTN = new javax.swing.JButton();
-    	stopTlgServerBTN.setBounds(40, 189, 105, 28);
+    	stopTlgServerBTN.setBounds(30, 255, 105, 28);
 
     	stopTlgServerBTN.setText("StopTlgServer");
 
-    	//TODO: handler to general tab and add event listner to each button
-
     	clearBackendBTN = new javax.swing.JButton();
-    	clearBackendBTN.setBounds(19, 92, 167, 28);
+    	clearBackendBTN.setBounds(16, 126, 167, 28);
     	clearBackendBTN.setText(Constants.CLEAR_BACKEND_FILES);
     	add(clearBackendBTN);
     	add(stopTlgServerBTN);
     	
     	clearClassesBTN = new JButton(Constants.CLEAR_CLASSES);
-    	clearClassesBTN.setBounds(40, 121, 114, 28);
+    	clearClassesBTN.setBounds(40, 159, 114, 28);
     	add(clearClassesBTN);
 
     	refreahLocalBTN = new javax.swing.JButton();
-    	refreahLocalBTN.setBounds(40, 266, 102, 28);
+    	refreahLocalBTN.setBounds(43, 319, 102, 28);
     	refreahLocalBTN.setText("RefreshLocal");
     	add(refreahLocalBTN);
 
     	refreshTlgServerBTN = new javax.swing.JButton();
-    	refreshTlgServerBTN.setBounds(30, 226, 124, 28);
+    	refreshTlgServerBTN.setBounds(30, 288, 124, 28);
 
     	refreshTlgServerBTN.setText("RefreshTlgServer");
     	add(refreshTlgServerBTN);
 
     	startTlgServerBTN = new javax.swing.JButton();
-    	startTlgServerBTN.setBounds(40, 161, 105, 28);
+    	startTlgServerBTN.setBounds(30, 228, 105, 28);
     	startTlgServerBTN.setText("StartTlgServer");
     	add(startTlgServerBTN);
     	
@@ -116,6 +124,9 @@ public class GeneralPanel extends javax.swing.JPanel {
     private JButton clearClassesBTN;
     private JLabel lblBb;
 	private JComboBox bbDDL;
+	private JLabel lblweblogic;
+	private JComboBox tlgDomainDDL;
+	private JComboBox versionsDDL;
 	
 	public JComboBox getversionsDDL() {
 		return versionsDDL;
@@ -124,9 +135,12 @@ public class GeneralPanel extends javax.swing.JPanel {
 	public JComboBox getBbDDL() {
 		return bbDDL;
 	}
+    public JComboBox getTlgDomainDDL() {
+		return tlgDomainDDL;
+	}
 
 
-	private JComboBox versionsDDL;
+
     // End of variables declaration//GEN-END:variables
 
 	
