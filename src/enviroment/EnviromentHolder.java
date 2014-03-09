@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package enviroment;
 
 import dataInfo.CommandsDataInfo;
@@ -13,22 +9,20 @@ import dataTypes.LogAreaModel;
 import dataTypes.TaskSchedulerBoard;
 import gui.OutputPanel;
 import gui.ToolFrame;
-
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
-
 import javax.swing.JOptionPane;
-import javax.swing.SpringLayout.Constraints;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-
 import org.omg.CORBA.StringHolder;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -36,10 +30,6 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-/**
- *
- * @author izhaq
- */
 public class EnviromentHolder {
     
     public static ToolFrame toolFrame; 
@@ -88,19 +78,25 @@ public class EnviromentHolder {
 	 * @param dir - the path of the weblogic directorys
 	 * @return
 	 */
-	public static String [] getWeblogicDomains(File dir) {
+	public static String[] getWeblogicDomains(File dir) {
 		
 		File[] files = dir.listFiles();
-		String[] str= new String[dir.listFiles().length];
-		
-		for(int i=0; dir.listFiles().length>i;i++) {
-			
-			if(files[i].isDirectory()) {
-				
-				str[i]= files[i].getName();
+		if(files != null) {
+			String[] str= new String[dir.listFiles().length];
+
+			for(int i=0; dir.listFiles().length>i;i++) {
+
+				if(files[i].isDirectory()) {
+
+					str[i]= files[i].getName();
+				}
 			}
+			return str;
 		}
-		return str;
+		else {
+			ErrorMsgs.handleException("Get weblogic folders: ", JOptionPane.WARNING_MESSAGE, ErrorMsgs.TITLE_CONNECTION_REFUSED,  ErrorMsgs.FAILD_TO_CREATE_CONNECTION_WITH_MACHINE, ErrorMsgs.FAILD_TO_CREATE_CONNECTION_WITH_MACHINE);
+			return new String[0];
+		}
 	}
 
 	/**
@@ -200,7 +196,7 @@ public class EnviromentHolder {
     	if(ddlFillInBBs != null) {
     		bbsString = ddlFillInBBs.values().toArray(new String[ddlFillInBBs.size()]);
     	}
-    		
+
     	return bbsString;
     }
     
@@ -215,7 +211,8 @@ public class EnviromentHolder {
     	if(ddlFillInVersion != null) {
     		versionsString = (String[])ddlFillInVersion.values().toArray(new String[ddlFillInVersion.size()]);
     	}
-    		
+    	Arrays.sort(versionsString, Collections.reverseOrder());
+    	
     	return versionsString;
     }
 
