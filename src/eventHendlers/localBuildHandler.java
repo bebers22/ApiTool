@@ -22,6 +22,7 @@ public class localBuildHandler implements ActionListener{
     public LogAreaModel logAreaModel;
     public RunLocalBuildPanel runLocalBuildPanel;
     
+    
     public localBuildHandler(RunLocalBuildPanel rlbp) {
     	runLocalBuildPanel = rlbp;
     }
@@ -30,30 +31,27 @@ public class localBuildHandler implements ActionListener{
     public void actionPerformed(ActionEvent e) {
     	  
     	String command = ((JButton)e.getSource()).getText();
+    	logAreaModel = enviroment.EnviromentHolder.getLogs().get(Constants.LOCAL_BUILD_LOGS);
     	switch(command) {
     	case Constants.END:
+    		logAreaModel.stopWorker(command);
     		break;
     		default:
-    			String unixCommand = prepareCommand(command);
+    			String unixCommand = prepareCommand(((JButton)e.getSource()).getText());
+    			if(unixCommand.isEmpty()) {
+    	        	return;
+    	        }
+    	        logAreaModel.setWorker(unixCommand);
     			break;
     	}
-    	
-        String unixCommand = prepareCommand(((JButton)e.getSource()).getText());
-        
-        if(unixCommand.isEmpty()) {
-        	return;
-        }
-        
-        logAreaModel = enviroment.EnviromentHolder.getLogs().get(Constants.LOCAL_BUILD_LOGS);
-        
-        logAreaModel.setWorker(unixCommand);
-
     }
     
 	private String prepareCommand(String command) {
 		
-		Map<String,String> placeHolderValues = EnviromentHolder.getCommandsDataInfo().preparePlaceHoldersMap(new HashMap<String, String>(),String.valueOf(runLocalBuildPanel.getBbDDL().getSelectedItem()), String.valueOf(runLocalBuildPanel.getVersionsDDL().getSelectedItem()));
-
+		Map<String,String> placeHolderValues = EnviromentHolder.getCommandsDataInfo().preparePlaceHoldersMap(new HashMap<String, String>(),
+				String.valueOf(runLocalBuildPanel.getBbDDL().getSelectedItem()), String.valueOf(runLocalBuildPanel.getVersionsDDL().getSelectedItem()), 
+				String.valueOf(runLocalBuildPanel.getTlgDomainDDL().getSelectedItem()));
+		
 		String preparedCommand = "";
 		
 		preparedCommand = EnviromentHolder.getCommandsDataInfo().prepareCommand(placeHolderValues, command);
@@ -69,6 +67,8 @@ public class localBuildHandler implements ActionListener{
 		}
 				
 		return preparedCommand;
+		
+		 
 	}
 
 

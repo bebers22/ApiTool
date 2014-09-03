@@ -62,9 +62,14 @@ public class TaskScheduler extends Thread implements Serializable{
 	public void setScheduler(String command){
 		buildTasks(command);
 	System.out.println(command);
-	shellConnector.setConnection(ActionToPreform);
-	istrm_ = shellConnector.getStream();
-	this.start();
+	try {
+		shellConnector.setConnection(ActionToPreform);
+		istrm_ = shellConnector.getStream();
+		this.start();
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
 	
 	}
 
@@ -129,7 +134,7 @@ public class TaskScheduler extends Thread implements Serializable{
 			e.printStackTrace();
 		}
 
-		if (msg.contains("logout")) this.action.stopActivity();
+		//if (msg.contains("logout")) this.action.stopActivity();
 
 		return logout; 
 	}
@@ -149,6 +154,7 @@ public class TaskScheduler extends Thread implements Serializable{
 
 			} 
 		}else{
+			this.action.updateLog(ToDo);
 			this.action.updateLog("bey bey");
 		}
 	}

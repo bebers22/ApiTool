@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package gui;
 
 import dataTypes.FrameModel;
@@ -21,23 +17,24 @@ import javax.swing.JMenuItem;
 public class ToolFrame extends javax.swing.JFrame {
 
 
-    /**
-     * Creates new form FramePanel
-     */
-    public /*void*/ ToolFrame() {
-    	
-    	////////////DELETE IT AFTER TESTING////////////
-        EnviromentHolder.loadPreferences();
-    	getContentPane().setMaximumSize(new Dimension(500, 500));
-    	getContentPane().setFocusable(false);
-    	getContentPane().setName("aacontentPane");
-    	
-    	loadMenuItems();
-        preLoadEnvierment();
-        initComponents();
-        postLoadEnvierment();
-    	
-    }
+
+//    /**
+//     * Creates new form FramePanel
+//     */
+//    public /*void*/ ToolFrame() {
+//    	
+//    	////////////DELETE IT AFTER TESTING////////////
+//        EnviromentHolder.loadPreferences();
+//    	getContentPane().setMaximumSize(new Dimension(500, 500));
+//    	getContentPane().setFocusable(false);
+//    	getContentPane().setName("aacontentPane");
+//    	
+//    	loadMenuItems();
+//        preLoadEnvierment();
+//        initComponents();
+//        postLoadEnvierment();
+//    	
+//    }
 
 
 	private void loadMenuItems() {
@@ -159,14 +156,11 @@ public  HashMap<String, LogAreaListiner> loadOutputLogs(final Container c) {
         commandsTabbedPane.addTab("BB management", bbTAB);
         
         bbManagementLog = new OutputPanel();
-        //bbManagementLog.setBounds(218, 6, 760, 482);
         bbManagementLog.setName(Constants.BB_MANAGMENT_LOG);
         bbTAB.setLayout(null);
         bbTAB.add(bbManagementPanel);
         bbTAB.add(bbManagementLog);
         generalLogs = new OutputPanel();
-        //generalLogs.setBounds(216, 6, 762, 470);
-        //generalLogs.setMaximumSize(new Dimension(20, 20));
         generalLogs.setName(Constants.GENERAL_LOGS);
         commandsTabbedPane.addTab("General", generalTAB);
         generalTAB.setLayout(null);
@@ -178,7 +172,7 @@ public  HashMap<String, LogAreaListiner> loadOutputLogs(final Container c) {
         commandsPanel.add(commandsTabbedPane);
         getContentPane().setLayout(null);
 
-        APITeam.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Amdocs", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, null, new java.awt.Color(255, 0, 0)));
+        APITeam.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "amdocs", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, null, new java.awt.Color(255, 0, 0)));
 
         apilbl.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         apilbl.setForeground(new java.awt.Color(255, 51, 0));

@@ -9,7 +9,7 @@ import javax.swing.Icon;
 public class Constants {
 	
 	public static final String TOOL_TITLE = "AT&T API Team - Unix tool";
-	
+	public final static String TLG_DOMAIN = "TlgDomain:";
 	public final static String RUN_BUILD_IN_CC = "Run build in CC";
 	public final static String RUN_LOCAL_BUILD = "Run local build";
 	public final static String END = "End";
@@ -44,10 +44,14 @@ public class Constants {
 	public final static String XML_TAG_TLG_DOMAIN = "Tlg_domain";
 	
 	
-	public final static String BB_AND_VERSIONS_XML = "V:/API Knowledge Base/prop/BBAndVersions.xml";
-	public final static String USERNAME_PASSWORD_XML = "V:/API Knowledge Base/prop/usernamePassword.xml";
-	public final static String COMMANDS_XML = "V:/API Knowledge Base/prop/commands.xml";
-	public final static String SUCESS_CONNECT_ICON = "V:/API Knowledge Base/prop/sucess.jpg";
+//	public final static String BB_AND_VERSIONS_XML = "V:/API Knowledge Base/prop/BBAndVersions.xml";
+//	public final static String USERNAME_PASSWORD_XML = "V:/API Knowledge Base/prop/usernamePassword.xml";
+//	public final static String COMMANDS_XML = "V:/API Knowledge Base/prop/commands.xml";
+//	public final static String SUCESS_CONNECT_ICON = "V:/API Knowledge Base/prop/sucess.jpg";
+	public final static String BB_AND_VERSIONS_XML = "X:/prop/BBAndVersions.xml";
+	public final static String USERNAME_PASSWORD_XML = "X:/prop/usernamePassword.xml";
+	public final static String COMMANDS_XML = "X:/prop/commands.xml";
+	public final static String SUCESS_CONNECT_ICON = "X:/prop/sucess.jpg";
 
 	public static final String LOG_MENU_ITEM = "Logs";
 	public static final String RELOAD_ENV_MENU_ITEM = "Reload files";
@@ -59,6 +63,16 @@ public class Constants {
 	public static String PLACE_HOLDER_VERSION_UNDERSCOR;
 	public static String PLACE_HOLDER_TLG_DOMAIN;
 	
+	public static String END_ACTIVITY_COMMANED = "Activiy Ended";
+	public static String BUILD_SUCCESSFUL = "BUILD SUCCESSFUL";
+	public static String BUILD_FAILED = "BUILD FAILED";
+	
+	public static final int USERNAME_INDEX = 0;
+	public static final int PASSWORD_INDEX = 1;
+	public static final String LOCAL_XML_USER_DETAILS_FILE = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\" standalone=\"no\"?><UserDetails> <User id=\"1\" password=\"somePassword\" type=\"string\" username=\"guest\"/> </UserDetails>";
+	
+	
+	public static String EMPTY_STRING = "";
 	public static String LOG_SEPARATOR = "\n---------------------------------------------------------------\n";
 	
 	

@@ -37,8 +37,9 @@ public class LogAreaModel {
 	}
 
     public void stopWorker(String command) {
-      EnviromentHolder.getWorkersScheduler().
-		getWorkerScheduler(LogAreaId).stopTask();
+    	actionListenr.stopActivity(command);
+//      EnviromentHolder.getWorkersScheduler().
+//		getWorkerScheduler(LogAreaId).stopTask();
     }
     
     public void addTaskToWorker(String command) {

@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package gui;
 
 import enviroment.Constants;
@@ -49,18 +45,18 @@ public class RunLocalBuildPanel extends javax.swing.JPanel {
     	setLayout(null);
     	
         refreshLocalCB = new javax.swing.JCheckBox();
-        refreshLocalCB.setBounds(4, 156, 96, 22);
+        refreshLocalCB.setBounds(6, 200, 96, 22);
         refreshTlgServerCB = new javax.swing.JCheckBox();
-        refreshTlgServerCB.setBounds(4, 126, 121, 18);
+        refreshTlgServerCB.setBounds(6, 170, 121, 18);
         restartServerCB = new javax.swing.JCheckBox();
-        restartServerCB.setBounds(4, 94, 117, 18);
+        restartServerCB.setBounds(6, 140, 117, 18);
         
         checkLogBTN = new javax.swing.JButton();
-        checkLogBTN.setBounds(4, 238, 112, 28);
+        checkLogBTN.setBounds(6, 297, 112, 28);
         localBuildBTN = new javax.swing.JButton();
-        localBuildBTN.setBounds(6, 198, 110, 28);
+        localBuildBTN.setBounds(6, 257, 110, 28);
         endBTN = new javax.swing.JButton();
-        endBTN.setBounds(128, 198, 81, 28);
+        endBTN.setBounds(122, 257, 81, 28);
         
        
         refreshLocalCB.setText(Constants.REFRESH_LOCAL);
@@ -70,9 +66,6 @@ public class RunLocalBuildPanel extends javax.swing.JPanel {
         checkLogBTN.setText(Constants.CHECK_LOCAL_BUILD_LOG);
         localBuildBTN.setText(Constants.RUN_LOCAL_BUILD);
         endBTN.setText(Constants.END);
-        
-
-               
         
         add(endBTN);
         add(checkLogBTN);
@@ -87,7 +80,7 @@ public class RunLocalBuildPanel extends javax.swing.JPanel {
     	add(lblBb);
     	
     	bbDDL = new javax.swing.JComboBox();
-    	bbDDL.setBounds(61, 6, 125, 26);
+    	bbDDL.setBounds(75, 6, 128, 26);
     	bbDDL.setToolTipText("Select BB to run build");
     	bbDDL.setMaximumRowCount(20);
     	bbDDL.setModel(new javax.swing.DefaultComboBoxModel(EnviromentHolder.getDdlForBB()));
@@ -99,19 +92,31 @@ public class RunLocalBuildPanel extends javax.swing.JPanel {
     	add(lblVersion);
 
     	versionsDDL = new JComboBox();
-    	versionsDDL.setBounds(61, 44, 125, 26);
+    	versionsDDL.setBounds(75, 44, 128, 26);
     	versionsDDL.setToolTipText("Select version");
     	versionsDDL.setModel(new javax.swing.DefaultComboBoxModel(EnviromentHolder.getDdlForVersions()));
     	add(versionsDDL);
     	
     	quickBuildBTN = new JButton(Constants.RUN_QUICK_BUILD);
-    	quickBuildBTN.setBounds(4, 280, 112, 28);
+    	quickBuildBTN.setBounds(4, 337, 112, 28);
     	add(quickBuildBTN);
+    	
+    	lblweblogic = new JLabel(Constants.TLG_DOMAIN);
+    	lblweblogic.setBounds(6, 87, 73, 16);
+    	lblweblogic.setFont(new Font("Tahoma", Font.PLAIN, 13));
+    	add(lblweblogic);
+    	
+    	tlgDomainDDL = new JComboBox();
+    	tlgDomainDDL.setBounds(75, 82, 128, 26);
+    	tlgDomainDDL.setModel(new javax.swing.DefaultComboBoxModel(EnviromentHolder.getTlgDomains()));
+    	add(tlgDomainDDL);
 
 
     }// </editor-fold>//GEN-END:initComponents
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+
+
+	// Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton checkLogBTN;
     private javax.swing.JButton endBTN;
     public javax.swing.JCheckBox refreshLocalCB;
@@ -123,6 +128,8 @@ public class RunLocalBuildPanel extends javax.swing.JPanel {
 	private JComboBox bbDDL;
 	private JComboBox versionsDDL;
 	private JButton quickBuildBTN;
+	private JLabel lblweblogic;
+	private JComboBox tlgDomainDDL;
 	
 	
 	public JComboBox getBbDDL() {
@@ -131,5 +138,9 @@ public class RunLocalBuildPanel extends javax.swing.JPanel {
 
 	public JComboBox getVersionsDDL() {
 		return versionsDDL;
+	}
+	
+    public JComboBox getTlgDomainDDL() {
+		return tlgDomainDDL;
 	}
 }

@@ -37,12 +37,16 @@ public class GeneralHandler implements ActionListener{
     }
     
 	private String prepareCommand(String command) {
-				
-		Map<String,String> placeHolderValues = EnviromentHolder.getCommandsDataInfo().preparePlaceHoldersMap(new HashMap<String, String>(),String.valueOf(generalPanel.getBbDDL().getSelectedItem()), String.valueOf(generalPanel.getversionsDDL().getSelectedItem()));
+			
+		Map<String,String> placeHolderValues = EnviromentHolder.getCommandsDataInfo().preparePlaceHoldersMap(new HashMap<String, String>(),
+				String.valueOf(generalPanel.getBbDDL().getSelectedItem()), String.valueOf(generalPanel.getversionsDDL().getSelectedItem()), 
+				String.valueOf(generalPanel.getTlgDomainDDL().getSelectedItem()));
 	
 		String preparedCommand = "";
 						
 		preparedCommand = EnviromentHolder.getCommandsDataInfo().prepareCommand(placeHolderValues, command);
+		
+		preparedCommand += " \n";
 		
 		return preparedCommand;
 	}

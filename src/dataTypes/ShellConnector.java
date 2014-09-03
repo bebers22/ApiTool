@@ -18,6 +18,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.LinkedList;
 
+import enviroment.Constants;
 import enviroment.EnviromentHolder;
 
 /**
@@ -46,8 +47,8 @@ public class ShellConnector {
        try {
             conn = new Connection(host);
             conn.connect();
-            username = EnviromentHolder.getUsernamePassword()[0]; 
-            password = EnviromentHolder.getUsernamePassword()[1];
+            username = EnviromentHolder.getUsernamePassword()[Constants.USERNAME_INDEX]; 
+            password = EnviromentHolder.getUsernamePassword()[Constants.PASSWORD_INDEX];
             boolean isAuthenticated = conn.authenticateWithPassword(username, password);
             if (!isAuthenticated) return isAuthenticated;
             sess = conn.openSession();

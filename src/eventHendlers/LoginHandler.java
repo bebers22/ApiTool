@@ -69,7 +69,7 @@ public class LoginHandler implements ActionListener,KeyListener{
      */
     private void updateLocalDetails(String userName, String password) {
     	
-		if(userName.equals(EnviromentHolder.getUsernamePassword()[0]) && password.equals(EnviromentHolder.getUsernamePassword()[1])) {
+		if(userName.equals(EnviromentHolder.getUsernamePassword()[Constants.USERNAME_INDEX]) && password.equals(EnviromentHolder.getUsernamePassword()[Constants.PASSWORD_INDEX])) {
 			return;
 		}
 		

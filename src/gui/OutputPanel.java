@@ -85,7 +85,7 @@ public class OutputPanel extends javax.swing.JPanel implements LogAreaListiner{
         Document doc = outputlog.getDocument();
         try {
             doc.insertString(doc.getLength() , dataToAdd, null);
-            System.out.println(dataToAdd);
+            System.out.print(dataToAdd);
         } catch (BadLocationException ex) {
             Logger.getLogger(OutputPanel.class.getName()).log(Level.SEVERE, null, ex);
         }

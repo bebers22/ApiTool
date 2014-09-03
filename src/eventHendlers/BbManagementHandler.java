@@ -42,11 +42,14 @@ public class BbManagementHandler implements ActionListener{
     
 	private String prepareCommand(String command) {
 				
-		Map<String,String> placeHolderValues = EnviromentHolder.getCommandsDataInfo().preparePlaceHoldersMap(new HashMap<String, String>(),String.valueOf(bbManagementPanel.getBbDDL().getSelectedItem()), String.valueOf(bbManagementPanel.getVersionsDDL().getSelectedItem()));
+		Map<String,String> placeHolderValues = EnviromentHolder.getCommandsDataInfo().preparePlaceHoldersMap(new HashMap<String, String>(),
+				String.valueOf(bbManagementPanel.getBbDDL().getSelectedItem()), String.valueOf(bbManagementPanel.getVersionsDDL().getSelectedItem()), "");
 		
 		String preparedCommand ="";
 		
 		preparedCommand = EnviromentHolder.getCommandsDataInfo().prepareCommand(placeHolderValues, command);
+		
+		preparedCommand += " \n";
 		
 		return preparedCommand;
 	}

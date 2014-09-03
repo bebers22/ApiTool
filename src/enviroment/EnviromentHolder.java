@@ -1,10 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package enviroment;
 
 import dataInfo.CommandsDataInfo;
+import dataInfo.MyUserInfo;
 import dataTypes.Actions;
 import dataTypes.FrameModel;
 import dataTypes.LocalBuildAction;
@@ -14,9 +11,13 @@ import dataTypes.TaskSchedulerBoard;
 import gui.OutputPanel;
 import gui.ToolFrame;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -33,10 +34,6 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-/**
- *
- * @author izhaq
- */
 public class EnviromentHolder {
     
     public static ToolFrame toolFrame; 
@@ -53,6 +50,8 @@ public class EnviromentHolder {
 	private static HashMap<String,String> ddlFillInBBs;
     private static HashMap<String,String> ddlFillInVersion;
     private static CommandsDataInfo commandsDataInfo;
+    
+    private static String[] webLogicDomains; 
     
     ///////////// error logs handling//////////////////
     private static ArrayList<String> errorLogs = new ArrayList<>();
@@ -73,9 +72,36 @@ public class EnviromentHolder {
 
 		loadDdlDetails();
 		commandsDataInfo = new CommandsDataInfo();
+		webLogicDomains = getWeblogicDomains(new File("\\\\snv4914\\"+getUsernamePassword()[Constants.USERNAME_INDEX]+"\\weblogic"));
 
 	}
 
+
+	/**
+	 * 
+	 * @param dir - the path of the weblogic directorys
+	 * @return
+	 */
+	public static String[] getWeblogicDomains(File dir) {
+		
+		File[] files = dir.listFiles();
+		if(files != null) {
+			String[] str= new String[dir.listFiles().length];
+
+			for(int i=0; dir.listFiles().length>i;i++) {
+
+				if(files[i].isDirectory()) {
+
+					str[i]= files[i].getName();
+				}
+			}
+			return str;
+		}
+		else {
+			ErrorMsgs.handleException("Get weblogic folders: ", JOptionPane.WARNING_MESSAGE, ErrorMsgs.TITLE_CONNECTION_REFUSED,  ErrorMsgs.FAILD_TO_CREATE_CONNECTION_WITH_MACHINE, ErrorMsgs.FAILD_TO_CREATE_CONNECTION_WITH_MACHINE);
+			return new String[0];
+		}
+	}
 
 	/**
      * Loading the user details
@@ -94,12 +120,29 @@ public class EnviromentHolder {
 			ErrorMsgs.handleException("", JOptionPane.WARNING_MESSAGE, ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE,  ErrorMsgs.USER_PROPERTIES_FILE_ERROR, sx.toString());
 		} catch (IOException ioe) {
 			ErrorMsgs.handleException("", JOptionPane.WARNING_MESSAGE, ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, ErrorMsgs.FAILD_TO_OPEN_FILE +": user properties", ioe.toString());
+			createLocalUserDetailsXMLFile();
 		} catch (Exception e) {
 			ErrorMsgs.handleException("", JOptionPane.WARNING_MESSAGE, ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, ErrorMsgs.FILE_IS_EMPTY +": user properties", e.toString());
 		}	
 	}
 
     /**
+     * Creating the local XML file of username and password
+     */
+    public static void createLocalUserDetailsXMLFile() {
+    	
+    	try(BufferedWriter writer = new BufferedWriter(new FileWriter(Constants.USERNAME_PASSWORD_XML, true))) {
+    		
+    		writer.write(Constants.LOCAL_XML_USER_DETAILS_FILE);
+    		
+    	} catch (IOException e) {
+    		ErrorMsgs.handleException("", JOptionPane.WARNING_MESSAGE, ErrorMsgs.TITLE_FAILD_TO_CREATE_FILE, ErrorMsgs.FAILD_TO_CREATE_FILE +": user properties", e.toString());
+		}
+		
+    	setUsernamePassword("", "");
+	}
+
+	/**
      * loading the versions an BBs from xml file
      */
     public static void loadDdlDetails() {
@@ -157,7 +200,7 @@ public class EnviromentHolder {
     	if(ddlFillInBBs != null) {
     		bbsString = ddlFillInBBs.values().toArray(new String[ddlFillInBBs.size()]);
     	}
-    		
+
     	return bbsString;
     }
     
@@ -172,7 +215,8 @@ public class EnviromentHolder {
     	if(ddlFillInVersion != null) {
     		versionsString = (String[])ddlFillInVersion.values().toArray(new String[ddlFillInVersion.size()]);
     	}
-    		
+    	Arrays.sort(versionsString, Collections.reverseOrder());
+    	
     	return versionsString;
     }
 
@@ -225,6 +269,10 @@ public class EnviromentHolder {
         EnviromentHolder.workersScheduler = workersScheduler;
     }
     
+	public static String[] getTlgDomains() {
+		return webLogicDomains;
+	}
+    
     public static HashMap getComponentMap() {
         return componentMap;
     }
@@ -243,7 +291,15 @@ public class EnviromentHolder {
 		EnviromentHolder.usernamePassword = new String[] {userName,password};
 	}
 
-    
+	public static void setUserInfo(String userName, String password) {
+		MyUserInfo myUserInfo = new MyUserInfo();
+		//myUserInfo.
+		EnviromentHolder.usernamePassword = new String[] {userName,password};
+	}
+	
+	public static MyUserInfo getUserInfo() {
+		return null;
+	}
 
     public static void registerLisitners() {
 
@@ -288,4 +344,5 @@ public class EnviromentHolder {
     	}
     	return actionType;
     }
+
 }
