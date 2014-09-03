@@ -49,6 +49,8 @@ public class BbManagementHandler implements ActionListener{
 		
 		preparedCommand = EnviromentHolder.getCommandsDataInfo().prepareCommand(placeHolderValues, command);
 		
+		preparedCommand += " \n";
+		
 		return preparedCommand;
 	}
 }

@@ -21,23 +21,24 @@ import javax.swing.JMenuItem;
 public class ToolFrame extends javax.swing.JFrame {
 
 
-    /**
-     * Creates new form FramePanel
-     */
-    public /*void*/ ToolFrame() {
-    	
-    	////////////DELETE IT AFTER TESTING////////////
-        EnviromentHolder.loadPreferences();
-    	getContentPane().setMaximumSize(new Dimension(500, 500));
-    	getContentPane().setFocusable(false);
-    	getContentPane().setName("aacontentPane");
-    	
-    	loadMenuItems();
-        preLoadEnvierment();
-        initComponents();
-        postLoadEnvierment();
-    	
-    }
+
+//    /**
+//     * Creates new form FramePanel
+//     */
+//    public /*void*/ ToolFrame() {
+//    	
+//    	////////////DELETE IT AFTER TESTING////////////
+//        EnviromentHolder.loadPreferences();
+//    	getContentPane().setMaximumSize(new Dimension(500, 500));
+//    	getContentPane().setFocusable(false);
+//    	getContentPane().setName("aacontentPane");
+//    	
+//    	loadMenuItems();
+//        preLoadEnvierment();
+//        initComponents();
+//        postLoadEnvierment();
+//    	
+//    }
 
 
 	private void loadMenuItems() {

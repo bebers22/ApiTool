@@ -116,7 +116,7 @@ public class TaskScheduler extends Thread implements Serializable{
 		String msg = "";
 		try {
 			if(istrm_.available() > 0) {
-				int i = istrm_.read(buffer_, 0, 1024);
+				int i = istrm_.read(buffer_, 0, 2048);
 				if (i > 0) {
 					msg = new String(buffer_, 0, i);
 					actionToPerform(msg);

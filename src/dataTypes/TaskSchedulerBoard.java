@@ -33,7 +33,7 @@ public class TaskSchedulerBoard implements Serializable {
 
         Set<String> keys = Logs.keySet();
         for (String key : keys) {
-            workers.put(key, new TaskScheduler(Logs.get(key).getListenr()));
+            workers.put(key, null);
         }
 
     }
@@ -48,7 +48,7 @@ public class TaskSchedulerBoard implements Serializable {
     
     public void stopWorker(String key) {
     	workers.get(key).stopTask();
-    	workers.remove(key);
+    	workers.put(key, null);
     }
 
     public void killAnimal() {

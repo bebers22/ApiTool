@@ -33,7 +33,9 @@ public class ErrorMsgs {
 	 * @param errorLogDescription - the description to the log
 	 */
 	public static void handleException(String commandToPerform, int jOptionPaneMessageType, String popupTitle, String popupError, String errorLogDescription) {
+		
 		JOptionPane.showMessageDialog(null, popupError, popupTitle, jOptionPaneMessageType);
 		EnviromentHolder.writeToErrorLog(commandToPerform + errorLogDescription);
+		
 	}
 }
