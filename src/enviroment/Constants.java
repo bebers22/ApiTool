@@ -1,10 +1,6 @@
 package enviroment;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import javax.swing.Icon;
+import java.util.Map;
 
 public class Constants {
 	
@@ -43,15 +39,14 @@ public class Constants {
 	public final static String XML_TAG_COMMAND = "command";
 	public final static String XML_TAG_TLG_DOMAIN = "Tlg_domain";
 	
-	
-//	public final static String BB_AND_VERSIONS_XML = "V:/API Knowledge Base/prop/BBAndVersions.xml";
-//	public final static String USERNAME_PASSWORD_XML = "V:/API Knowledge Base/prop/usernamePassword.xml";
-//	public final static String COMMANDS_XML = "V:/API Knowledge Base/prop/commands.xml";
-//	public final static String SUCESS_CONNECT_ICON = "V:/API Knowledge Base/prop/sucess.jpg";
-	public final static String BB_AND_VERSIONS_XML = "X:/prop/BBAndVersions.xml";
-	public final static String USERNAME_PASSWORD_XML = "X:/prop/usernamePassword.xml";
-	public final static String COMMANDS_XML = "X:/prop/commands.xml";
-	public final static String SUCESS_CONNECT_ICON = "X:/prop/sucess.jpg";
+	public final static String BB_AND_VERSIONS_XML = "V:/API Knowledge Base/prop/BBAndVersions.xml";
+	public final static String USERNAME_PASSWORD_XML = "V:/API Knowledge Base/prop/usernamePassword.xml";
+	public final static String COMMANDS_XML = "V:/API Knowledge Base/prop/commands.xml";
+	public final static String SUCESS_CONNECT_ICON = "V:/API Knowledge Base/prop/sucess.jpg";
+//	public final static String BB_AND_VERSIONS_XML = "X:/prop/BBAndVersions.xml";
+//	public final static String USERNAME_PASSWORD_XML = "X:/prop/usernamePassword.xml";
+//	public final static String COMMANDS_XML = "X:/prop/commands.xml";
+//	public final static String SUCESS_CONNECT_ICON = "X:/prop/sucess.jpg";
 
 	public static final String LOG_MENU_ITEM = "Logs";
 	public static final String RELOAD_ENV_MENU_ITEM = "Reload files";

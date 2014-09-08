@@ -58,11 +58,11 @@ public class OutputPanel extends javax.swing.JPanel implements LogAreaListiner{
         logScroll.setViewportView(outputlog);
         
         ///scroll down to the bottom allways
-        logScroll.getVerticalScrollBar().addAdjustmentListener(new AdjustmentListener() {  
-            public void adjustmentValueChanged(AdjustmentEvent e) {
-                e.getAdjustable().setValue(e.getAdjustable().getMaximum());  
-            }
-        });
+//        logScroll.getVerticalScrollBar().addAdjustmentListener(new AdjustmentListener() {  
+//            public void adjustmentValueChanged(AdjustmentEvent e) {
+//                e.getAdjustable().setValue(e.getAdjustable().getMaximum());  
+//            }
+//        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -85,6 +85,7 @@ public class OutputPanel extends javax.swing.JPanel implements LogAreaListiner{
         Document doc = outputlog.getDocument();
         try {
             doc.insertString(doc.getLength() , dataToAdd, null);
+            outputlog.setCaretPosition(doc.getLength());
             System.out.print(dataToAdd);
         } catch (BadLocationException ex) {
             Logger.getLogger(OutputPanel.class.getName()).log(Level.SEVERE, null, ex);

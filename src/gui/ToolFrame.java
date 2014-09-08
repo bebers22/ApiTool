@@ -15,6 +15,8 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 
 public class ToolFrame extends javax.swing.JFrame {
+	public ToolFrame() {
+	}
 
 
 
@@ -147,7 +149,7 @@ public  HashMap<String, LogAreaListiner> loadOutputLogs(final Container c) {
 
         buildCCLog.setName(Constants.BUILD_CC_LOGS);
 
-        commandsTabbedPane.addTab("Buld CC", buildCCPanelTAB);
+        commandsTabbedPane.addTab("Build CC", buildCCPanelTAB);
         buildCCPanelTAB.setLayout(null);
         buildCCPanelTAB.add(runBuildCCPanel);
         buildCCPanelTAB.add(buildCCLog);
