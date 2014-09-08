@@ -6,14 +6,18 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
+
 import javax.swing.JOptionPane;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
+
 import enviroment.Constants;
+import enviroment.EnviromentHolder;
 import enviroment.ErrorMsgs;
 
 public class CommandsDataInfo {
@@ -63,17 +67,20 @@ public class CommandsDataInfo {
 	 * @param restartTlgServer
 	 * @return
 	 */
-	public String addWeblogicCommands(String commandToRun, boolean refreshTlgServer, boolean refreshLocal, boolean restartTlgServer) {
+	public String addWeblogicCommands(String commandToRun, boolean refreshTlgServer, boolean refreshLocal,
+			boolean restartTlgServer, Map<String,String> placeHolderValues) {
 		
 		/*if(restartTlgServer) {*/
 		
-		commandToRun = refreshTlgServer ? commandToRun + commands.get(Constants.REFRESH_TLG_SERVER) : commandToRun;
-		commandToRun = refreshLocal ? commandToRun + commands.get(Constants.REFRESH_LOCAL) : commandToRun;
-		commandToRun = restartTlgServer ? commandToRun + commands.get(Constants.RESTART_TLG_SERVER) : commandToRun;
+		
+		commandToRun = refreshTlgServer ? commandToRun + EnviromentHolder.getCommandsDataInfo().prepareCommand(placeHolderValues, Constants.REFRESH_TLG_SERVER) : commandToRun;
+		commandToRun = refreshLocal ? commandToRun + EnviromentHolder.getCommandsDataInfo().prepareCommand(placeHolderValues, Constants.REFRESH_LOCAL) : commandToRun;
+		commandToRun = restartTlgServer ? commandToRun + EnviromentHolder.getCommandsDataInfo().prepareCommand(placeHolderValues, Constants.RESTART_TLG_SERVER) : commandToRun;
 			
+
 	/*}*/
 
-	return commandToRun + endBuildCommand+" \n";			
+	return commandToRun + /*endBuildCommand+*/" \n";			
 	}
 
 	

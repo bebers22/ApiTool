@@ -58,14 +58,15 @@ public class localBuildHandler implements ActionListener{
 				
 		if(Constants.RUN_LOCAL_BUILD.equals(command)) {
 			///if TLG server is set
-			preparedCommand = EnviromentHolder.getCommandsDataInfo().addWeblogicCommands(preparedCommand, runLocalBuildPanel.refreshTlgServerCB.isSelected(),
-					runLocalBuildPanel.refreshLocalCB.isSelected(), runLocalBuildPanel.restartServerCB.isSelected());
+			preparedCommand = EnviromentHolder.getCommandsDataInfo().addWeblogicCommands(preparedCommand, 
+					runLocalBuildPanel.refreshTlgServerCB.isSelected(),runLocalBuildPanel.refreshLocalCB.isSelected(),
+					runLocalBuildPanel.restartServerCB.isSelected(), placeHolderValues);
 		}
 		if(Constants.RUN_QUICK_BUILD.equals(command)) {
 			preparedCommand  = EnviromentHolder.getCommandsDataInfo().addWeblogicCommands(preparedCommand, runLocalBuildPanel.refreshTlgServerCB.isSelected(),
-					false, runLocalBuildPanel.restartServerCB.isSelected());
+					false, runLocalBuildPanel.restartServerCB.isSelected(), placeHolderValues);
 		}
-				
+
 		return preparedCommand;
 		
 		 
