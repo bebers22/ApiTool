@@ -35,7 +35,7 @@ public class TaskScheduler extends Thread implements Serializable{
         private final byte[] buffer_;
         private final OutputStream ostrm_;
         private  InputStream istrm_;
-        private ShellConnector shellConnector;
+        private ShellConnectorJcraft shellConnector;
         String output;
         private boolean isCommandRunning = false;
 
@@ -50,7 +50,7 @@ public class TaskScheduler extends Thread implements Serializable{
                 ostrm_ = null;
                 istrm_ = null;
                 tasks = new LinkedList<Integer>();
-                shellConnector = new ShellConnector();
+                shellConnector = new ShellConnectorJcraft();
                 output = null;
 	}
 
@@ -121,7 +121,7 @@ public class TaskScheduler extends Thread implements Serializable{
 		String msg = "";
 		try {
 			if(istrm_.available() > 0) {
-				int i = istrm_.read(buffer_, 0, 1024);
+				int i = istrm_.read(buffer_, 0, 2048);
 				if (i > 0) {
 					msg = new String(buffer_, 0, i);
 					actionToPerform(msg);

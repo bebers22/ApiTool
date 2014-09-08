@@ -25,6 +25,8 @@ public class ShellConnectorJcraft {
 	    private static final int SSH_PORT = 22;
 	    private MyUserInfo userinfo = new MyUserInfo();
 	    private static final int TIMEOUT = 30000;
+	    private PipedOutputStream pin;
+	    String commands;
 	    
     private Session userSession = null;
     private ChannelShell channel = null;
@@ -127,17 +129,33 @@ public class ShellConnectorJcraft {
         channel.setInputStream(commandInputStream);
         channel.setOutputStream(getOutput());
         channel.connect(TIMEOUT);
+        try {
+        	String[] cmds  = commands.split(";");
+        	for(String st : cmds){
+        		st = st + "\n";
+        		pin.write(st.getBytes("UTF-8"));
+        	}
+//			pin.write(commands.getBytes("UTF-8"));
+//			pin.write("echo this is test \n".getBytes("UTF-8"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
     
     public void setInputSreamCommands (LinkedList<String> lstCommand) {
-    	String commands = "";
+    	commands = "";
     	for (String cmd : lstCommand) {
     		commands = commands + cmd;
+    		
 			}
     	try {
     		//commands = "find ~/bb/TlgServer/v1406_3/amdocs/TlgServer/backend/datalayers_v36 -type f -exec rm -f \'{}\' \\; ;find ~/bb/TlgServer/v1406_3/amdocs/TlgServer/backend/dl_interfaces -type f -exec rm -f \'{}\' \\; ;find ~/bb/TlgServer/v1406_3/amdocs/TlgServer/backend/datatypes -type f -exec rm -i \'{}\' \\;";
-    		commandInputStream = new ByteArrayInputStream(commands.getBytes("UTF-8"));
-		} catch (UnsupportedEncodingException e) {
+    		commandInputStream = new PipedInputStream();
+    		pin = new PipedOutputStream((PipedInputStream) commandInputStream);
+
+    		//commandInputStream = new ByteArrayInputStream(commands.getBytes("UTF-8"));
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

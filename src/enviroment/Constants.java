@@ -63,7 +63,7 @@ public class Constants {
 	public static String PLACE_HOLDER_VERSION_UNDERSCOR;
 	public static String PLACE_HOLDER_TLG_DOMAIN;
 	
-	public static String END_ACTIVITY_COMMANED = "Activiy Ended";
+	public static String END_ACTIVITY_COMMANED = "Activiy Enassded";
 	public static String BUILD_SUCCESSFUL = "BUILD SUCCESSFUL";
 	public static String BUILD_FAILED = "BUILD FAILED";
 	

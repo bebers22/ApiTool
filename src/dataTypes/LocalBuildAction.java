@@ -35,9 +35,7 @@ public class LocalBuildAction extends Actions{
 			return Constants.EMPTY_STRING;
 		}
 		
-		if(str.contains(Constants.BUILD_SUCCESSFUL)){
-			numOfSuccessBuilds ++;
-		}
+		checkLocalBuildResult(str);
 		
 		if(str.contains(Constants.END_ACTIVITY_COMMANED)){
 			isActivityEnded = true;
@@ -59,6 +57,12 @@ public class LocalBuildAction extends Actions{
 		}
 
 		return str;
+	}
+
+	private void checkLocalBuildResult(String str) {
+		if(str.contains(Constants.BUILD_SUCCESSFUL)){
+			numOfSuccessBuilds ++;
+		}
 	}
 	
 	
