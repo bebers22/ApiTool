@@ -39,14 +39,14 @@ public class Constants {
 	public final static String XML_TAG_COMMAND = "command";
 	public final static String XML_TAG_TLG_DOMAIN = "Tlg_domain";
 	
-	public final static String BB_AND_VERSIONS_XML = "V:/API Knowledge Base/prop/BBAndVersions.xml";
-	public final static String USERNAME_PASSWORD_XML = "V:/API Knowledge Base/prop/usernamePassword.xml";
-	public final static String COMMANDS_XML = "V:/API Knowledge Base/prop/commands.xml";
-	public final static String SUCESS_CONNECT_ICON = "V:/API Knowledge Base/prop/sucess.jpg";
-//	public final static String BB_AND_VERSIONS_XML = "X:/prop/BBAndVersions.xml";
-//	public final static String USERNAME_PASSWORD_XML = "X:/prop/usernamePassword.xml";
-//	public final static String COMMANDS_XML = "X:/prop/commands.xml";
-//	public final static String SUCESS_CONNECT_ICON = "X:/prop/sucess.jpg";
+//	public final static String BB_AND_VERSIONS_XML = "V:/API Knowledge Base/prop/BBAndVersions.xml";
+//	public final static String USERNAME_PASSWORD_XML = "V:/API Knowledge Base/prop/usernamePassword.xml";
+//	public final static String COMMANDS_XML = "V:/API Knowledge Base/prop/commands.xml";
+//	public final static String SUCESS_CONNECT_ICON = "V:/API Knowledge Base/prop/sucess.jpg";
+	public final static String BB_AND_VERSIONS_XML = "X:/prop/BBAndVersions.xml";
+	public final static String USERNAME_PASSWORD_XML = "X:/prop/usernamePassword.xml";
+	public final static String COMMANDS_XML = "X:/prop/commands.xml";
+	public final static String SUCESS_CONNECT_ICON = "X:/prop/sucess.jpg";
 
 	public static final String LOG_MENU_ITEM = "Logs";
 	public static final String RELOAD_ENV_MENU_ITEM = "Reload files";
@@ -60,7 +60,10 @@ public class Constants {
 	
 	public static String END_ACTIVITY_COMMANED = "Activiy Enassded";
 	public static String BUILD_SUCCESSFUL = "BUILD SUCCESSFUL";
-	public static String BUILD_FAILED = "BUILD FAILED";
+	public static String BUILD_FAILED = "BUILD FASDSILED";
+	public static String WEBLOGIC_FAILD = "Server state changed to FAILED";
+	public static String WEBLOGIC_ALREADY_UP = "Address already in use";
+	public static String WEBLOGIC_SUCCESS = "Server started in RUNNING mode";
 	
 	public static final int USERNAME_INDEX = 0;
 	public static final int PASSWORD_INDEX = 1;

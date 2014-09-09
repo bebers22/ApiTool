@@ -36,7 +36,7 @@ public class localBuildHandler implements ActionListener{
     	case Constants.END:
     		logAreaModel.stopWorker(command);
     		break;
-    		default:
+    		default: 
     			String unixCommand = prepareCommand(((JButton)e.getSource()).getText());
     			if(unixCommand.isEmpty()) {
     	        	return;

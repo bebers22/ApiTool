@@ -80,7 +80,7 @@ public class CommandsDataInfo {
 
 	/*}*/
 
-	return commandToRun + /*endBuildCommand+*/" \n";			
+	return commandToRun + endBuildCommand+" \n";			
 	}
 
 	

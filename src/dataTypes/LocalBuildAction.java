@@ -13,6 +13,7 @@ public class LocalBuildAction extends Actions{
 	private boolean isBuildSuccess = false;
 	private boolean isBuildFaild = false;
 	private int numOfSuccessBuilds = 0;
+	private boolean isWeblogicUp = false;
 
 	public LocalBuildAction(LogAreaModel logAreaModel) {
 		super(logAreaModel);
@@ -51,6 +52,17 @@ public class LocalBuildAction extends Actions{
 			isBuildFaild = true;
 			//this.stopActivity("End");
 		}
+		
+		if(str.contains(Constants.WEBLOGIC_FAILD)){
+			isActivityEnded = true;
+			isWeblogicUp = false;
+		}
+		
+		if(str.contains(Constants.WEBLOGIC_ALREADY_UP) || str.contains(Constants.WEBLOGIC_SUCCESS)){
+			isActivityEnded = true;
+			isWeblogicUp = true;
+		}
+
 		
 		if(activityEndMsgCounter > 0){
 			isActivityEnded = true;

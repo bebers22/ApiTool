@@ -71,8 +71,13 @@ public class ShellConnector {
     
     public void writeCommand(String s) {
         try {
-            writer.write(s);
-            writer.flush();
+        	String[] cmds  = s.split(";");
+        	for(String st : cmds){
+        		st = "\n\n\n"+ st + "\n\n\n";
+                 writer.write(st);
+                writer.flush();
+        	}
+
         } catch(Exception ex) {
         	ex.printStackTrace();
         }
