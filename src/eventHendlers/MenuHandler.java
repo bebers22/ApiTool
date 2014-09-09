@@ -24,31 +24,44 @@ public class MenuHandler implements ActionListener{
     
     @Override
     public void actionPerformed(ActionEvent e) {
-    	
+
     	switch (e.getActionCommand()) {
-    	
-		case Constants.LOG_MENU_ITEM:
-		{
-			dialog = new JDialog(toolFrame);
-			errorLogTE = new JTextArea(50,50);
-			scrollPane = new JScrollPane(errorLogTE);
-			scrollPane.setAutoscrolls(true);
-			scrollPane.setWheelScrollingEnabled(true);
-			errorLogTE.setText(EnviromentHolder.getErrorLogs());
-			
-			dialog.add(scrollPane);
-			dialog.setSize(600,300);
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setLocationRelativeTo(null);
-			dialog.setResizable(false);
-			dialog.setVisible(true);
-			
-			break;}
-		
-		case Constants.RELOAD_ENV_MENU_ITEM: 
-		{
-			toolFrame.ReLoadToolFrame();
-			break;}
+
+    	case Constants.LOG_MENU_ITEM:
+    	{
+    		dialog = new JDialog(toolFrame);
+    		errorLogTE = new JTextArea(50,50);
+    		scrollPane = new JScrollPane(errorLogTE);
+    		scrollPane.setAutoscrolls(true);
+    		scrollPane.setWheelScrollingEnabled(true);
+    		errorLogTE.setText(EnviromentHolder.getErrorLogs());
+
+    		dialog.add(scrollPane);
+    		dialog.setSize(600,300);
+    		dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+    		dialog.setLocationRelativeTo(null);
+    		dialog.setResizable(false);
+    		dialog.setVisible(true);
+
+    		break;}
+
+    	case Constants.RELOAD_ENV_MENU_ITEM: 
+    	{
+    		toolFrame.ReLoadToolFrame();
+    		break;}
+
+
+    	case Constants.SET_DEBUG_MODE: 
+    	{
+    		EnviromentHolder.DEBUG_MODE = true;
+    		toolFrame.ReLoadToolFrame();
+    		break;}
+       
+    	case Constants.UNSET_DEBUG_MODE: 
+    	{
+    		EnviromentHolder.DEBUG_MODE = false;
+    		toolFrame.ReLoadToolFrame();
+    		break;}
     	}
 
     }

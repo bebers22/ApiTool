@@ -7,6 +7,7 @@ public class LoginDialogFrame extends JDialog {
 
 	private LoginPanel loginPanel;
 	public Boolean isConnected = false;
+	public Boolean isDebugMode = false;
 
 	
 	public LoginDialogFrame(JFrame toolFrame, boolean b) {
@@ -20,7 +21,7 @@ public class LoginDialogFrame extends JDialog {
 	public void setLoginDialogFrame() {
 		
 		loginPanel = new LoginPanel(this);
-		setSize(220,220);
+		setSize(220,240);
 		setLocationRelativeTo(null);
 		setResizable(false);
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);

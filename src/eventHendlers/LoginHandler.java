@@ -57,6 +57,7 @@ public class LoginHandler implements ActionListener,KeyListener{
     	if(checkConnection()) {
     		loginPanel.parentContainer.isConnected = true;
     		updateLocalDetails(loginPanel.getUserName(), loginPanel.getPassword());
+    		EnviromentHolder.DEBUG_MODE = loginPanel.getDebugMode();
     		loginPanel.parentContainer.setVisible(false);
     	}
     }
@@ -69,7 +70,8 @@ public class LoginHandler implements ActionListener,KeyListener{
      */
     private void updateLocalDetails(String userName, String password) {
     	
-		if(userName.equals(EnviromentHolder.getUsernamePassword()[Constants.USERNAME_INDEX]) && password.equals(EnviromentHolder.getUsernamePassword()[Constants.PASSWORD_INDEX])) {
+		if(userName.equals(EnviromentHolder.getUsernamePassword() != null ? EnviromentHolder.getUsernamePassword()[Constants.USERNAME_INDEX] : "") 
+				&& password.equals(EnviromentHolder.getUsernamePassword() != null ? EnviromentHolder.getUsernamePassword()[Constants.PASSWORD_INDEX] : "")) {
 			return;
 		}
 		
@@ -125,6 +127,7 @@ public class LoginHandler implements ActionListener,KeyListener{
     	catch (IOException iox) {
     		ErrorMsgs.handleException("Login : ", JOptionPane.ERROR_MESSAGE, "Connection refused", ErrorMsgs.FAILD_TO_CREATE_CONNECTION_WITH_MACHINE, ErrorMsgs.FAILD_TO_CREATE_CONNECTION_WITH_MACHINE);
     	}
+    	
     	return isAuthenticated;
     }
 

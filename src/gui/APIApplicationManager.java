@@ -28,11 +28,7 @@ public class APIApplicationManager{
 			toolFrame.LoadToolFrame();
 			
 			toolFrame.setVisible(true);
-			
-//			if(isReload()) {
-//				toolFrame.setVisible(false);
-//				toolFrame = EnviromentHolder.getToolFrame();
-//			}
+
 		}
 		else {
 			System.exit(0);

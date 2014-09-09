@@ -31,16 +31,22 @@ public class Constants {
 	public final static String XML_TAG_ID = "id";
 	public final static String XML_TAG_USER = "User";
 	public final static String XML_TAG_BB = "BB";
+	public static final String XML_TAG_FILE = "File";
+	public static final String XML_TAG_LOCATION = "location";
 
 	public final static String XML_TAG_VERSION_UNDERSCORE = "Version_";
 	public final static String XML_TAG_VERSION = "Version";
 	public final static String XML_TAG_COMMAND = "command";
 	public final static String XML_TAG_TLG_DOMAIN = "Tlg_domain";
 	
-	public final static String BB_AND_VERSIONS_XML = "V:/API Knowledge Base/prop/BBAndVersions.xml";
-	public final static String USERNAME_PASSWORD_XML = "V:/API Knowledge Base/prop/usernamePassword.xml";
-	public final static String COMMANDS_XML = "V:/API Knowledge Base/prop/commands.xml";
-	public final static String SUCESS_CONNECT_ICON = "V:/API Knowledge Base/prop/sucess.jpg";
+	public final static String LOCATIONS_XML = "V:/API Knowledge Base/prop/Locations.xml";
+	public final static String LOCAL_LOCATIONS_XML = "Locations.xml";
+	public final static String USERNAME_PASSWORD_XML = "xmlsFolder/usernamePassword.xml"; ///TODO: change to local!!! allways
+	
+	public final static String BB_AND_VERSIONS_XML = "BB_AND_VERSIONS_XML";
+	public final static String COMMANDS_XML = "COMMANDS_XML";
+	public final static String SUCESS_CONNECT_ICON = "SUCESS_CONNECT_ICON";
+	
 //	public final static String BB_AND_VERSIONS_XML = "X:/prop/BBAndVersions.xml";
 //	public final static String USERNAME_PASSWORD_XML = "X:/prop/usernamePassword.xml";
 //	public final static String COMMANDS_XML = "X:/prop/commands.xml";
@@ -68,8 +74,9 @@ public class Constants {
 	public static final int USERNAME_INDEX = 0;
 	public static final int PASSWORD_INDEX = 1;
 	public static final String LOCAL_XML_USER_DETAILS_FILE = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\" standalone=\"no\"?><UserDetails> <User id=\"1\" password=\"somePassword\" type=\"string\" username=\"guest\"/> </UserDetails>";
-
 	
+	public static final String SET_DEBUG_MODE = "Set Debug Mode";
+	public static final String UNSET_DEBUG_MODE = "UnSet Debug Mode";
 	
 	public static String EMPTY_STRING = "";
 	public static String LOG_SEPARATOR = "\n---------------------------------------------------------------\n";

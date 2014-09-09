@@ -60,6 +60,10 @@ public class ToolFrame extends javax.swing.JFrame {
     	reloadEnvmnit.addActionListener(new MenuHandler(this));
     	mnNewMenu.add(reloadEnvmnit);
     	
+    	debugMode = new JMenuItem(EnviromentHolder.DEBUG_MODE ? Constants.UNSET_DEBUG_MODE : Constants.SET_DEBUG_MODE);
+    	debugMode.addActionListener(new MenuHandler(this));
+    	mnNewMenu.add(debugMode);
+    	
 	}
     
     
@@ -81,6 +85,7 @@ public class ToolFrame extends javax.swing.JFrame {
     public void ReLoadToolFrame() {
 
     	EnviromentHolder.loadPreferences();
+    	loadMenuItems();
 
     	for (JComboBox ddl : EnviromentHolder.ddlList) {
     		ddl.removeAllItems();
@@ -247,6 +252,7 @@ public  HashMap<String, LogAreaListiner> loadOutputLogs(final Container c) {
     private JMenu mnNewMenu;
     private JMenuItem openLogsmnit;
     private JMenuItem reloadEnvmnit;
+    private JMenuItem debugMode;
 
     
     // End of variables declaration//GEN-END:variables

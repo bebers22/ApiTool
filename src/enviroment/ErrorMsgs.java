@@ -10,6 +10,7 @@ public class ErrorMsgs {
 	public final static String COMMANDS_FILE_PARSING_ERROR_PH = "Error while parsing the place holders file";
 	public final static String COMMANDS_FILE_PARSING_ERROR_CO = "Error while parsing the Commands file";
 	public final static String USER_PROPERTIES_FILE_ERROR = "Error while parsing the User properties file\n using default values";
+	public final static String LOCATIONS_FILE = "Error while parsing the LOCATIONS file\n please check the path";
 	public final static String VERSIONS_BB_FILE_ERROR = "Error while parsing the Versions and BB file\n using default values";
 	public final static String FAILD_TO_OPEN_FILE = "Faild to open file";
 	public final static String FILE_IS_EMPTY = "File is empty";

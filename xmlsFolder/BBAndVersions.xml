@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+       <BBandVersions> 
+        <BBs> 
+             <BB id="1" name="TlgServer" value="TlgServer" type="string"/> 
+             <BB id="2" name="junit" value="junit" type="string"/>
+             <BB id="3" name="TlgServices" value="TlgServices" type="string"/>  
+             <BB id="4" name="tlgutil" value="tlgutil" type="string"/> 
+             <BB id="5" name="mi" value="mi" type="string"/> 
+       			 <BB id="6" name="jutil" value="jutil" type="string"/> 
+       		   <BB id="7" name="backendgenerator" value="backendgenerator" type="string"/> 
+       			 <BB id="8" name="csi" value="csi" type="string"/> 
+       		   <BB id="9" name="irdAPI" value="irdAPI" type="string"/> 
+       			 <BB id="10" name="NumberPoolingHandler" value="NumberPoolingHandler" type="string"/>  
+       			 <BB id="11" name="sbms" value="sbms" type="string"/>  
+       			 <BB id="12" name="WTCtemplate" value="WTCtemplate" type="string"/>  
+       	</BBs>
+       			 
+        <Versions>   
+             <Version id="2" name="14023" value="Unix_11" type="string"/>
+             <Version id="3" name="14063" value="Unix_11" type="string"/> 
+             <Version id="4" name="14103" value="Unix_11" type="string"/> 
+             <Version id="5" name="15023" value="Unix_11" type="string"/> 
+        </Versions>
+       </BBandVersions>
+        

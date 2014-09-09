@@ -43,11 +43,13 @@ public class EnviromentHolder {
     public static HashMap componentMap = new HashMap<String, LogAreaListiner>();
     public static ArrayList<JComboBox> ddlList = new ArrayList<JComboBox>();
     
-    //private HashMap<String, OutputPanel> consols = new HashMap<String, OutputPanel>();
+    public static HashMap<String, String> fileLocations = new HashMap<String, String>();
+    public static boolean DEBUG_MODE = false;
+    
     public static FrameModel frameModel;
     private static TaskSchedulerBoard workersScheduler;
     
-    private static String[] usernamePassword; ///[0] username , [1] password
+    private static String[] usernamePassword = new String[2]; ///[0] username , [1] password
     
 	private static HashMap<String,String> ddlFillInBBs;
     private static HashMap<String,String> ddlFillInVersion;
@@ -72,12 +74,34 @@ public class EnviromentHolder {
      */
 	public static void loadPreferences() {
 
+		loadfileLocations();
 		loadDdlDetails();
 		commandsDataInfo = new CommandsDataInfo();
 		webLogicDomains = getWeblogicDomains(new File("\\\\snv4914\\"+getUsernamePassword()[Constants.USERNAME_INDEX]+"\\weblogic"));
 
 	}
 
+
+	private static void loadfileLocations() {
+		try {
+
+			File filesLocations = new File(DEBUG_MODE ? Constants.LOCAL_LOCATIONS_XML : Constants.LOCATIONS_XML);
+			Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(filesLocations);
+			NodeList  nList = doc.getElementsByTagName(Constants.XML_TAG_FILE);
+			for(int i=0; i<nList.getLength(); i++) {
+
+				Element el = (Element) nList.item(i);
+				EnviromentHolder.fileLocations.put(el.getAttribute(Constants.XML_TAG_NAME), el.getAttribute(Constants.XML_TAG_LOCATION));
+			}
+		} catch (SAXException | ParserConfigurationException sx) {
+			ErrorMsgs.handleException("", JOptionPane.WARNING_MESSAGE, ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE,  ErrorMsgs.LOCATIONS_FILE + (DEBUG_MODE ? Constants.LOCAL_LOCATIONS_XML : Constants.LOCATIONS_XML) , sx.toString());
+		} catch (IOException ioe) {
+			ErrorMsgs.handleException("", JOptionPane.WARNING_MESSAGE, ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, ErrorMsgs.FAILD_TO_OPEN_FILE +": locations", ioe.toString());
+			createLocalUserDetailsXMLFile();
+		} catch (Exception e) {
+			ErrorMsgs.handleException("", JOptionPane.WARNING_MESSAGE, ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, ErrorMsgs.FILE_IS_EMPTY +": locations", e.toString());
+		}	
+	}
 
 	/**
 	 * 
@@ -150,7 +174,7 @@ public class EnviromentHolder {
     public static void loadDdlDetails() {
 
     	try {
-    		File fXmlFile = new File(Constants.BB_AND_VERSIONS_XML);
+    		File fXmlFile = new File(EnviromentHolder.fileLocations.get(Constants.BB_AND_VERSIONS_XML));
     		Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(fXmlFile);
 
     		ddlFillInBBs = parsePropertiestoMap(Constants.XML_TAG_BB,doc);
@@ -293,7 +317,7 @@ public class EnviromentHolder {
 		EnviromentHolder.usernamePassword = new String[] {userName,password};
 	}
 
-	public static void setUserInfo(String userName, String password) {
+	public static void setUserInfo(String userName, String password) {	
 		MyUserInfo myUserInfo = new MyUserInfo();
 		//myUserInfo.
 		EnviromentHolder.usernamePassword = new String[] {userName,password};

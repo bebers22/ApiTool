@@ -7,6 +7,7 @@ import javax.swing.JButton;
 import enviroment.Constants;
 import enviroment.EnviromentHolder;
 import eventHendlers.LoginHandler;
+import javax.swing.JCheckBox;
 
 
 public class LoginPanel extends javax.swing.JPanel {
@@ -87,8 +88,12 @@ public class LoginPanel extends javax.swing.JPanel {
     	add(hostTB);
 
     	btnConnect = new JButton("Connect");
-    	btnConnect.setBounds(50, 144, 91, 33);
+    	btnConnect.setBounds(50, 177, 91, 33);
     	add(btnConnect);
+    	
+    	chckbxNewCheckBox = new JCheckBox(Constants.SET_DEBUG_MODE);
+    	chckbxNewCheckBox.setBounds(33, 147, 123, 18);
+    	add(chckbxNewCheckBox);
 
     }// </editor-fold>//GEN-END:initComponents
 
@@ -100,6 +105,7 @@ public class LoginPanel extends javax.swing.JPanel {
 	public javax.swing.JTextField passwordTB;
     public javax.swing.JTextField userNameTB;
     private JButton btnConnect;
+    private JCheckBox chckbxNewCheckBox;
     
     
     public String getPassword() {
@@ -109,9 +115,8 @@ public class LoginPanel extends javax.swing.JPanel {
 	public String getUserName() {
 		return userNameTB.getText();
 	}
-
-
-
-    
-		
+	
+	public boolean getDebugMode() {
+		return chckbxNewCheckBox.isEnabled();
+	}
 }

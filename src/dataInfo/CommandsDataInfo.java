@@ -91,7 +91,7 @@ public class CommandsDataInfo {
 
 		try {
 
-			File commandsFile = new File(Constants.COMMANDS_XML);
+			File commandsFile = new File(EnviromentHolder.fileLocations.get(Constants.COMMANDS_XML));
 			Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(commandsFile);
 			NodeList  nList = doc.getElementsByTagName(Constants.XML_TAG_PLACEHOLDERS);
 
@@ -144,7 +144,7 @@ public class CommandsDataInfo {
 	private void loadCommands() {
 
 	try {
-			File commandsFile = new File(Constants.COMMANDS_XML);
+			File commandsFile = new File(EnviromentHolder.fileLocations.get(Constants.COMMANDS_XML));
 			Document doc;
 
 			doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(commandsFile);
