@@ -23,6 +23,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -40,6 +41,7 @@ public class EnviromentHolder {
     public static StringHolder logAreaNames = new StringHolder(Constants.GENERAL_LOGS+"@"+Constants.LOCAL_BUILD_LOGS+"@"+Constants.BUILD_CC_LOGS+"@"+Constants.BB_MANAGMENT_LOG); //localBuildLog@buildCCLog@generalLog@consolLog);
     public static HashMap<String, LogAreaModel> Logs;
     public static HashMap componentMap = new HashMap<String, LogAreaListiner>();
+    public static ArrayList<JComboBox> ddlList = new ArrayList<JComboBox>();
     
     //private HashMap<String, OutputPanel> consols = new HashMap<String, OutputPanel>();
     public static FrameModel frameModel;
@@ -309,6 +311,11 @@ public class EnviromentHolder {
             ((OutputPanel)entry.getValue()).setLogAreaModel(Logs.get((String)entry.getKey()));
         }
     }
+    
+	public static void updateDdl(JComboBox ddl) {
+		ddl.showPopup();
+		ddl.hidePopup();
+	}
 
 
     /**

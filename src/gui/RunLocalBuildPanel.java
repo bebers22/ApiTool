@@ -80,10 +80,12 @@ public class RunLocalBuildPanel extends javax.swing.JPanel {
     	add(lblBb);
     	
     	bbDDL = new javax.swing.JComboBox();
+    	bbDDL.setName(Constants.DDL_BB_NAME);
     	bbDDL.setBounds(75, 6, 128, 26);
     	bbDDL.setToolTipText("Select BB to run build");
     	bbDDL.setMaximumRowCount(20);
     	bbDDL.setModel(new javax.swing.DefaultComboBoxModel(EnviromentHolder.getDdlForBB()));
+    	EnviromentHolder.ddlList.add(bbDDL);
     	add(bbDDL);
 
     	lblVersion = new JLabel("Version:");
@@ -93,8 +95,10 @@ public class RunLocalBuildPanel extends javax.swing.JPanel {
 
     	versionsDDL = new JComboBox();
     	versionsDDL.setBounds(75, 44, 128, 26);
+    	versionsDDL.setName(Constants.DDL_VERSION_NAME);
     	versionsDDL.setToolTipText("Select version");
     	versionsDDL.setModel(new javax.swing.DefaultComboBoxModel(EnviromentHolder.getDdlForVersions()));
+    	EnviromentHolder.ddlList.add(versionsDDL);
     	add(versionsDDL);
     	
     	quickBuildBTN = new JButton(Constants.RUN_QUICK_BUILD);
@@ -107,8 +111,10 @@ public class RunLocalBuildPanel extends javax.swing.JPanel {
     	add(lblweblogic);
     	
     	tlgDomainDDL = new JComboBox();
+    	tlgDomainDDL.setName(Constants.DDL_TLG_DOMAIN_NAME);
     	tlgDomainDDL.setBounds(75, 82, 128, 26);
     	tlgDomainDDL.setModel(new javax.swing.DefaultComboBoxModel(EnviromentHolder.getTlgDomains()));
+    	EnviromentHolder.ddlList.add(tlgDomainDDL);
     	add(tlgDomainDDL);
 
 

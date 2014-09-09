@@ -3,9 +3,13 @@ package gui;
 import enviroment.Constants;
 import enviroment.EnviromentHolder;
 import eventHendlers.BuildCCHandler;
+
 import javax.swing.JLabel;
+
 import java.awt.Font;
+
 import javax.swing.JComboBox;
+
 import java.awt.Color;
 
 /**
@@ -43,10 +47,12 @@ public class RunBuildCCPanel extends javax.swing.JPanel {
     	add(lblBb);
     	
     	bbDDL = new javax.swing.JComboBox();
+    	bbDDL.setName(Constants.DDL_BB_NAME);
     	bbDDL.setBounds(75, 6, 128, 26);
     	bbDDL.setToolTipText("Select BB to run build");
     	bbDDL.setMaximumRowCount(20);
     	bbDDL.setModel(new javax.swing.DefaultComboBoxModel(EnviromentHolder.getDdlForBB()));
+    	EnviromentHolder.ddlList.add(bbDDL);
     	add(bbDDL);
 
     	lblVersion = new JLabel("Version:");
@@ -55,9 +61,11 @@ public class RunBuildCCPanel extends javax.swing.JPanel {
     	add(lblVersion);
 
     	versionsDDL = new JComboBox();
+    	versionsDDL.setName(Constants.DDL_VERSION_NAME);
     	versionsDDL.setBounds(75, 44, 128, 26);;
     	versionsDDL.setToolTipText("Select version");
     	versionsDDL.setModel(new javax.swing.DefaultComboBoxModel(EnviromentHolder.getDdlForVersions()));
+    	EnviromentHolder.ddlList.add(versionsDDL);
     	add(versionsDDL);
     	
     	runBuildCCBTN = new javax.swing.JButton();

@@ -6,13 +6,18 @@ import dataTypes.TaskSchedulerBoard;
 import enviroment.Constants;
 import enviroment.EnviromentHolder;
 import eventHendlers.MenuHandler;
+
 import java.awt.Component;
 import java.awt.Container;
 import java.util.HashMap;
 import java.awt.Dimension;
+
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JPanel;
 
 public class ToolFrame extends javax.swing.JFrame {
 	public ToolFrame() {
@@ -70,7 +75,35 @@ public class ToolFrame extends javax.swing.JFrame {
         preLoadEnvierment();
         initComponents();
         postLoadEnvierment();
+
     }
+    
+    public void ReLoadToolFrame() {
+
+    	EnviromentHolder.loadPreferences();
+
+    	for (JComboBox ddl : EnviromentHolder.ddlList) {
+    		ddl.removeAllItems();
+
+    		switch (ddl.getName()) {
+    		case Constants.DDL_VERSION_NAME :
+    			ddl.setModel(new javax.swing.DefaultComboBoxModel(EnviromentHolder.getDdlForVersions()));
+    			break;
+
+    		case Constants.DDL_BB_NAME :
+    			ddl.setModel(new javax.swing.DefaultComboBoxModel(EnviromentHolder.getDdlForBB()));
+    			break;
+
+    		case Constants.DDL_TLG_DOMAIN_NAME :
+    			ddl.setModel(new javax.swing.DefaultComboBoxModel(EnviromentHolder.getTlgDomains()));
+    			break;
+    		default:
+    			break;
+    		}	
+    	}
+    }
+    
+
 
 
     private void preLoadEnvierment() {

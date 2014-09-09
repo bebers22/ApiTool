@@ -42,10 +42,12 @@ public class BbManagementPanel extends javax.swing.JPanel {
 		add(lblBb);
 
 		bbDDL = new javax.swing.JComboBox();
+		bbDDL.setName(Constants.DDL_BB_NAME);
 		bbDDL.setBounds(75, 6, 128, 26);
 		bbDDL.setToolTipText("Select BB to run build");
 		bbDDL.setMaximumRowCount(20);
 		bbDDL.setModel(new javax.swing.DefaultComboBoxModel(EnviromentHolder.getDdlForBB()));
+    	EnviromentHolder.ddlList.add(bbDDL);
 		add(bbDDL);
 
 		lblVersion = new JLabel("Version:");
@@ -54,9 +56,11 @@ public class BbManagementPanel extends javax.swing.JPanel {
 		add(lblVersion);
 
 		versionsDDL = new JComboBox();
-		versionsDDL.setBounds(75, 44, 128, 26);
+		versionsDDL.setName(Constants.DDL_VERSION_NAME);
+		versionsDDL.setBounds(75, 44, 128, 26);	
 		versionsDDL.setToolTipText("Select version");
 		versionsDDL.setModel(new javax.swing.DefaultComboBoxModel(EnviromentHolder.getDdlForVersions()));
+    	EnviromentHolder.ddlList.add(versionsDDL);
 		add(versionsDDL);
 
 		ChangeProjCCBTN = new javax.swing.JButton();
@@ -71,6 +75,8 @@ public class BbManagementPanel extends javax.swing.JPanel {
 		add(CreateBBBtn);
 		
 	}// </editor-fold>//GEN-END:initComponents
+
+
 
 	// Variables declaration - do not modify//GEN-BEGIN:variables
 	private javax.swing.JComboBox bbDDL;

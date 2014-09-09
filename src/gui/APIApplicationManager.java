@@ -1,7 +1,5 @@
 package gui;
 
-import javax.swing.JFrame;
-
 
 public class APIApplicationManager{
 
@@ -31,11 +29,16 @@ public class APIApplicationManager{
 			
 			toolFrame.setVisible(true);
 			
+//			if(isReload()) {
+//				toolFrame.setVisible(false);
+//				toolFrame = EnviromentHolder.getToolFrame();
+//			}
 		}
 		else {
 			System.exit(0);
 		}
 	}
+	
 
 	public static void main(String args[]) {
 		try {

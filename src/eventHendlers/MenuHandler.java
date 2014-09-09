@@ -47,7 +47,7 @@ public class MenuHandler implements ActionListener{
 		
 		case Constants.RELOAD_ENV_MENU_ITEM: 
 		{
-			toolFrame.LoadToolFrame();
+			toolFrame.ReLoadToolFrame();
 			break;}
     	}
 
