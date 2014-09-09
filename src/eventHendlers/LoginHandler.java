@@ -3,6 +3,7 @@ package eventHendlers;
 import enviroment.Constants;
 import enviroment.EnviromentHolder;
 import enviroment.ErrorMsgs;
+import enviroment.FileHandler;
 import gui.LoginPanel;
 
 import java.awt.event.ActionEvent;
@@ -76,27 +77,27 @@ public class LoginHandler implements ActionListener,KeyListener{
 		}
 		
     	try{ 
-    		File usernamePasswordfile = new File(Constants.USERNAME_PASSWORD_XML);
+    		File usernamePasswordfile = new File(FileHandler.USERNAME_PASSWORD_XML);
     		Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(usernamePasswordfile);
-    		NodeList  nList = doc.getElementsByTagName(Constants.XML_TAG_USER);
+    		NodeList  nList = doc.getElementsByTagName(FileHandler.XML_TAG_USER);
     		
     		if(nList.getLength() != 0 ) {
     			Element el = (Element) nList.item(0);
-    			el.setAttribute(Constants.XML_TAG_USERNAME, userName);
-    			el.setAttribute(Constants.XML_TAG_PASSWORD, password);
+    			el.setAttribute(FileHandler.XML_TAG_USERNAME, userName);
+    			el.setAttribute(FileHandler.XML_TAG_PASSWORD, password);
     		}
     		
     		Transformer transformer = TransformerFactory.newInstance().newTransformer();
-    		Result output = new StreamResult(new File(Constants.USERNAME_PASSWORD_XML));
+    		Result output = new StreamResult(new File(FileHandler.USERNAME_PASSWORD_XML));
     		Source input = new DOMSource(doc);
     		transformer.transform(input, output);
     		
     	} catch (SAXException | ParserConfigurationException sx) {
-    		ErrorMsgs.handleException("", JOptionPane.WARNING_MESSAGE, ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE,  ErrorMsgs.USER_PROPERTIES_FILE_ERROR, sx.toString());
+    		ErrorMsgs.handleException("", JOptionPane.WARNING_MESSAGE, ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE,  ErrorMsgs.USER_PROPERTIES_FILE_ERROR, sx);
     	} catch (IOException ioe) {
-    		ErrorMsgs.handleException("", JOptionPane.WARNING_MESSAGE, ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, ErrorMsgs.FAILD_TO_OPEN_FILE +": user properties", ioe.toString());
+    		ErrorMsgs.handleException("", JOptionPane.WARNING_MESSAGE, ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, ErrorMsgs.FAILD_TO_OPEN_FILE +": user properties", ioe);
     	} catch (Exception e) {
-    		ErrorMsgs.handleException("", JOptionPane.WARNING_MESSAGE, ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, ErrorMsgs.FILE_IS_EMPTY +": user properties", e.toString());
+    		ErrorMsgs.handleException("", JOptionPane.WARNING_MESSAGE, ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, ErrorMsgs.FILE_IS_EMPTY +": user properties", e);
     	}
     	
     	EnviromentHolder.setUsernamePassword(loginPanel.getUserName(), loginPanel.getPassword());

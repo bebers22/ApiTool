@@ -11,7 +11,7 @@ import eventHendlers.BbManagementHandler;
  *
  * @author izhaq
  */
-public class BbManagementPanel extends javax.swing.JPanel {
+public class BbManagementPanel extends JPanelTool {
 
 	/**
 	 * Creates new form RunBuildCCPanel
@@ -41,13 +41,8 @@ public class BbManagementPanel extends javax.swing.JPanel {
 		lblBb.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		add(lblBb);
 
-		bbDDL = new javax.swing.JComboBox();
-		bbDDL.setName(Constants.DDL_BB_NAME);
-		bbDDL.setBounds(75, 6, 128, 26);
-		bbDDL.setToolTipText("Select BB to run build");
-		bbDDL.setMaximumRowCount(20);
-		bbDDL.setModel(new javax.swing.DefaultComboBoxModel(EnviromentHolder.getDdlForBB()));
-    	EnviromentHolder.ddlList.add(bbDDL);
+    	bbDDL = createDropDownList(Constants.DDL_BB_NAME, "Select BB to run build");
+    	bbDDL.setBounds(75, 6, 128, 26);
 		add(bbDDL);
 
 		lblVersion = new JLabel("Version:");
@@ -55,12 +50,8 @@ public class BbManagementPanel extends javax.swing.JPanel {
 		lblVersion.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		add(lblVersion);
 
-		versionsDDL = new JComboBox();
-		versionsDDL.setName(Constants.DDL_VERSION_NAME);
-		versionsDDL.setBounds(75, 44, 128, 26);	
-		versionsDDL.setToolTipText("Select version");
-		versionsDDL.setModel(new javax.swing.DefaultComboBoxModel(EnviromentHolder.getDdlForVersions()));
-    	EnviromentHolder.ddlList.add(versionsDDL);
+    	versionsDDL = createDropDownList(Constants.DDL_VERSION_NAME, "Select version");
+    	versionsDDL.setBounds(75, 44, 128, 26);	
 		add(versionsDDL);
 
 		ChangeProjCCBTN = new javax.swing.JButton();

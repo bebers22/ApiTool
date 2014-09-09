@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <Locations>
-	<File id="1" name="BB_AND_VERSIONS_XML" location="xmlsFolder/BBAndVersions.xml" type="String"/>
-	<File id="2" name="COMMANDS_XML" location="xmlsFolder/commands.xml" type="String"/>
-	<File id="3" name="SUCESS_CONNECT_ICON" location="xmlsFolder/sucess.jpg" type="String"/>
+	<File id="BB_AND_VERSIONS_XML" name="xmlsFolder/BBAndVersions.xml" type="String"/>
+	<File id="COMMANDS_XML" name="xmlsFolder/commands.xml" type="String"/>
+	<File id="SUCESS_CONNECT_ICON" name="xmlsFolder/sucess.jpg" type="String"/>
 </Locations>

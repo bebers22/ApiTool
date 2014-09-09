@@ -15,7 +15,7 @@ import javax.swing.JButton;
  *
  * @author izhaq
  */
-public class GeneralPanel extends javax.swing.JPanel {
+public class GeneralPanel extends JPanelTool {
 
 
 	/**
@@ -47,13 +47,8 @@ public class GeneralPanel extends javax.swing.JPanel {
     	lblBb.setFont(new Font("Tahoma", Font.PLAIN, 13));
     	add(lblBb);
     	
-    	bbDDL = new javax.swing.JComboBox();
-    	bbDDL.setName(Constants.DDL_BB_NAME);
+    	bbDDL = createDropDownList(Constants.DDL_BB_NAME, "Select BB to run build");
     	bbDDL.setBounds(75, 6, 128, 26);
-    	bbDDL.setToolTipText("Select BB to run build");
-    	bbDDL.setMaximumRowCount(20);
-    	bbDDL.setModel(new javax.swing.DefaultComboBoxModel(EnviromentHolder.getDdlForBB()));
-    	EnviromentHolder.ddlList.add(bbDDL);
     	add(bbDDL);
 
     	lblVersion = new JLabel("Version:");
@@ -61,12 +56,8 @@ public class GeneralPanel extends javax.swing.JPanel {
     	lblVersion.setFont(new Font("Tahoma", Font.PLAIN, 13));
     	add(lblVersion);
     	
-    	versionsDDL = new JComboBox();
-    	versionsDDL.setName(Constants.DDL_VERSION_NAME);
+    	versionsDDL = createDropDownList(Constants.DDL_VERSION_NAME, "Select version");
     	versionsDDL.setBounds(75, 44, 128, 26);
-    	versionsDDL.setToolTipText("Select version");
-    	versionsDDL.setModel(new javax.swing.DefaultComboBoxModel(EnviromentHolder.getDdlForVersions()));
-    	EnviromentHolder.ddlList.add(versionsDDL);
     	add(versionsDDL);
     	
     	lblweblogic = new JLabel(Constants.TLG_DOMAIN);
@@ -74,9 +65,8 @@ public class GeneralPanel extends javax.swing.JPanel {
     	lblweblogic.setFont(new Font("Tahoma", Font.PLAIN, 13));
     	add(lblweblogic);
     	
-    	tlgDomainDDL = new JComboBox();
+    	tlgDomainDDL = createDropDownList(Constants.DDL_TLG_DOMAIN_NAME, "");
     	tlgDomainDDL.setBounds(75, 82, 128, 26);
-    	tlgDomainDDL.setModel(new javax.swing.DefaultComboBoxModel(EnviromentHolder.getTlgDomains()));
     	add(tlgDomainDDL);
 
     	stopTlgServerBTN = new javax.swing.JButton();

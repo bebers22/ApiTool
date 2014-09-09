@@ -8,6 +8,6 @@ public class InfoMsgs {
 	
 	public static void handleMsg(String commandToPerform, int jOptionPaneMessageType, String popupTitle, String popupMsg, String infLogDescription) {
 		JOptionPane.showMessageDialog(null, popupMsg, popupTitle, jOptionPaneMessageType);
-		EnviromentHolder.writeToErrorLog(commandToPerform + infLogDescription);
+		ErrorMsgs.writeToErrorLog(commandToPerform + infLogDescription);
 	}
 }

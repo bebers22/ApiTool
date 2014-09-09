@@ -34,14 +34,24 @@ public class ErrorMsgs {
 	
 	/**
 	 * Handle an error event
-	 * @param commandToPerform - the command that failed
+	 * @param ActionToPerform - the command that failed
 	 * @param jOptionPaneMessageType - the type of the Pop-up message
 	 * @param popupTitle - the title of the popup 
 	 * @param popupError - the description of the error 
 	 * @param errorLogDescription - the description to the log
 	 */
-	public static void handleException(String commandToPerform, int jOptionPaneMessageType, String popupTitle, String popupError, String errorLogDescription) {
+	public static void handleException(String ActionToPerform, int jOptionPaneMessageType, String popupTitle, String popupError, Exception e) {
 		JOptionPane.showMessageDialog(null, popupError, popupTitle, jOptionPaneMessageType);
-		EnviromentHolder.writeToErrorLog(commandToPerform + errorLogDescription);
+		writeToErrorLog(ActionToPerform + (EnviromentHolder.DEBUG_MODE ? e.getStackTrace().toString() : e.getMessage()));
+	}
+	
+	public static void handleException(String ActionToPerform, int jOptionPaneMessageType, String popupTitle, String popupError, String errorLogDescription) {
+		JOptionPane.showMessageDialog(null, popupError, popupTitle, jOptionPaneMessageType);
+		writeToErrorLog(ActionToPerform + errorLogDescription);
+	}
+
+
+	public static void writeToErrorLog(String error) {
+		EnviromentHolder.errorLogs.add(Constants.LOG_SEPARATOR + error);
 	}
 }

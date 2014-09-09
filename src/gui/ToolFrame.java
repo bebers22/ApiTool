@@ -65,9 +65,7 @@ public class ToolFrame extends javax.swing.JFrame {
     	mnNewMenu.add(debugMode);
     	
 	}
-    
-    
-    
+
     public void LoadToolFrame() {
         
         EnviromentHolder.loadPreferences();
@@ -107,10 +105,6 @@ public class ToolFrame extends javax.swing.JFrame {
     		}	
     	}
     }
-    
-
-
-
     private void preLoadEnvierment() {
         FrameModel frameModel = new FrameModel();
         EnviromentHolder.setFrameModel(frameModel);

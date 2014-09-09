@@ -19,6 +19,7 @@ import org.xml.sax.SAXException;
 import enviroment.Constants;
 import enviroment.EnviromentHolder;
 import enviroment.ErrorMsgs;
+import enviroment.FileHandler;
 
 public class CommandsDataInfo {
 
@@ -53,7 +54,7 @@ public class CommandsDataInfo {
 		}
 		else
 		{
-			ErrorMsgs.handleException(commandToPerform,JOptionPane.WARNING_MESSAGE ,ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE,ErrorMsgs.COMMAND_IS_MISSING, ErrorMsgs.COMMAND_IS_MISSING_DESCRIPTION  );
+			ErrorMsgs.handleException(commandToPerform,JOptionPane.WARNING_MESSAGE ,ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE,ErrorMsgs.COMMAND_IS_MISSING, ErrorMsgs.COMMAND_IS_MISSING_DESCRIPTION);
 		}
 		
 		return preparedCommand;
@@ -91,9 +92,9 @@ public class CommandsDataInfo {
 
 		try {
 
-			File commandsFile = new File(EnviromentHolder.fileLocations.get(Constants.COMMANDS_XML));
+			File commandsFile = new File(EnviromentHolder.fileLocations.get(FileHandler.COMMANDS_XML));
 			Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(commandsFile);
-			NodeList  nList = doc.getElementsByTagName(Constants.XML_TAG_PLACEHOLDERS);
+			NodeList  nList = doc.getElementsByTagName(FileHandler.XML_TAG_PLACEHOLDERS);
 
 			if(nList.getLength() == 0) {
 				throw new Exception();
@@ -101,38 +102,38 @@ public class CommandsDataInfo {
 
 			for(int i=0;i<nList.getLength();i++) {
 				Element el = (Element) nList.item(i);
-				String attr = el.getAttribute(Constants.XML_TAG_ID);
+				String attr = el.getAttribute(FileHandler.XML_TAG_ID);
 				switch (attr) {
 
-				case Constants.XML_TAG_VERSION : {
-					Constants.PLACE_HOLDER_VERSION = el.getAttribute(Constants.XML_TAG_NAME);
+				case FileHandler.XML_TAG_VERSION : {
+					Constants.PLACE_HOLDER_VERSION = el.getAttribute(FileHandler.XML_TAG_NAME);
 					break;
 				}
-				case Constants.XML_TAG_BB : {
+				case FileHandler.XML_TAG_BB : {
 
-					Constants.PLACE_HOLDER_BB = el.getAttribute(Constants.XML_TAG_NAME);
+					Constants.PLACE_HOLDER_BB = el.getAttribute(FileHandler.XML_TAG_NAME);
 					break;
 				}
-				case Constants.XML_TAG_VERSION_UNDERSCORE : {
+				case FileHandler.XML_TAG_VERSION_UNDERSCORE : {
 
-					Constants.PLACE_HOLDER_VERSION_UNDERSCOR = el.getAttribute(Constants.XML_TAG_NAME);
+					Constants.PLACE_HOLDER_VERSION_UNDERSCOR = el.getAttribute(FileHandler.XML_TAG_NAME);
 					break;
 				}
 
-				case Constants.XML_TAG_TLG_DOMAIN: {
+				case FileHandler.XML_TAG_TLG_DOMAIN: {
 
-					Constants.PLACE_HOLDER_TLG_DOMAIN = el.getAttribute(Constants.XML_TAG_NAME);
+					Constants.PLACE_HOLDER_TLG_DOMAIN = el.getAttribute(FileHandler.XML_TAG_NAME);
 					break;
 				}
 
 				}
 			}
 		} catch (SAXException | ParserConfigurationException sx) {
-			ErrorMsgs.handleException("", JOptionPane.WARNING_MESSAGE, ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, ErrorMsgs.COMMANDS_FILE_PARSING_ERROR_PH, sx.toString());
+			ErrorMsgs.handleException("", JOptionPane.WARNING_MESSAGE, ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, ErrorMsgs.COMMANDS_FILE_PARSING_ERROR_PH, sx);
 		} catch (IOException ioe) {
-			ErrorMsgs.handleException("", JOptionPane.WARNING_MESSAGE,  ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, ErrorMsgs.FAILD_TO_OPEN_FILE+": Commands file", ioe.toString());
+			ErrorMsgs.handleException("", JOptionPane.WARNING_MESSAGE,  ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, ErrorMsgs.FAILD_TO_OPEN_FILE+": Commands file", ioe);
 		} catch (Exception e) {
-			ErrorMsgs.handleException("", JOptionPane.WARNING_MESSAGE, ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, ErrorMsgs.FILE_IS_EMPTY, e.toString());
+			ErrorMsgs.handleException("", JOptionPane.WARNING_MESSAGE, ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, ErrorMsgs.FILE_IS_EMPTY, e);
 		}
 
 
@@ -144,13 +145,13 @@ public class CommandsDataInfo {
 	private void loadCommands() {
 
 	try {
-			File commandsFile = new File(EnviromentHolder.fileLocations.get(Constants.COMMANDS_XML));
+			File commandsFile = new File(EnviromentHolder.fileLocations.get(FileHandler.COMMANDS_XML));
 			Document doc;
 
 			doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(commandsFile);
 
 			
-			NodeList  nList = doc.getElementsByTagName(Constants.XML_TAG_COMMAND);
+			NodeList  nList = doc.getElementsByTagName(FileHandler.XML_TAG_COMMAND);
 			commands = new HashMap<>();
 			
 			if(nList.getLength() == 0) {
@@ -159,17 +160,17 @@ public class CommandsDataInfo {
 			
 			for(int i=0;i<nList.getLength();i++) {
 				Element el = (Element) nList.item(i);
-				String command_name = el.getAttribute(Constants.XML_TAG_NAME);
-				String command = el.getAttribute(Constants.XML_TAG_COMMAND);
+				String command_name = el.getAttribute(FileHandler.XML_TAG_NAME);
+				String command = el.getAttribute(FileHandler.XML_TAG_COMMAND);
 				commands.put(command_name, command);
 			}
 			
 			} catch (SAXException | ParserConfigurationException sx) {
-				ErrorMsgs.handleException("", JOptionPane.WARNING_MESSAGE, ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, ErrorMsgs.COMMANDS_FILE_PARSING_ERROR_CO, sx.toString());
+				ErrorMsgs.handleException("", JOptionPane.WARNING_MESSAGE, ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, ErrorMsgs.COMMANDS_FILE_PARSING_ERROR_CO, sx);
 			} catch (IOException ioe) {
-				ErrorMsgs.handleException("", JOptionPane.WARNING_MESSAGE, ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, ErrorMsgs.FAILD_TO_OPEN_FILE+": Commands file", ioe.toString());
+				ErrorMsgs.handleException("", JOptionPane.WARNING_MESSAGE, ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, ErrorMsgs.FAILD_TO_OPEN_FILE+": Commands file", ioe);
 			} catch (Exception e) {
-				ErrorMsgs.handleException("", JOptionPane.WARNING_MESSAGE,  ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, ErrorMsgs.FILE_IS_EMPTY, e.toString());
+				ErrorMsgs.handleException("", JOptionPane.WARNING_MESSAGE,  ErrorMsgs.TITLE_FAILD_TO_LOAD_FILE, ErrorMsgs.FILE_IS_EMPTY, e);
 			}
 
 	}

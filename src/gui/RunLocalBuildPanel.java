@@ -3,10 +3,13 @@ package gui;
 import enviroment.Constants;
 import enviroment.EnviromentHolder;
 import eventHendlers.localBuildHandler;
+
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
+
 import java.awt.Font;
+
 import javax.swing.JButton;
 
 
@@ -14,7 +17,7 @@ import javax.swing.JButton;
  *
  * @author izhaq
  */
-public class RunLocalBuildPanel extends javax.swing.JPanel {
+public class RunLocalBuildPanel extends JPanelTool {
 
 
 
@@ -79,26 +82,17 @@ public class RunLocalBuildPanel extends javax.swing.JPanel {
     	lblBb.setFont(new Font("Tahoma", Font.PLAIN, 13));
     	add(lblBb);
     	
-    	bbDDL = new javax.swing.JComboBox();
-    	bbDDL.setName(Constants.DDL_BB_NAME);
+    	bbDDL = createDropDownList(Constants.DDL_BB_NAME, "Select BB to run build");
     	bbDDL.setBounds(75, 6, 128, 26);
-    	bbDDL.setToolTipText("Select BB to run build");
-    	bbDDL.setMaximumRowCount(20);
-    	bbDDL.setModel(new javax.swing.DefaultComboBoxModel(EnviromentHolder.getDdlForBB()));
-    	EnviromentHolder.ddlList.add(bbDDL);
     	add(bbDDL);
 
     	lblVersion = new JLabel("Version:");
     	lblVersion.setBounds(6, 49, 57, 17);
     	lblVersion.setFont(new Font("Tahoma", Font.PLAIN, 13));
     	add(lblVersion);
-
-    	versionsDDL = new JComboBox();
+    	
+    	versionsDDL = createDropDownList(Constants.DDL_VERSION_NAME, "Select version");
     	versionsDDL.setBounds(75, 44, 128, 26);
-    	versionsDDL.setName(Constants.DDL_VERSION_NAME);
-    	versionsDDL.setToolTipText("Select version");
-    	versionsDDL.setModel(new javax.swing.DefaultComboBoxModel(EnviromentHolder.getDdlForVersions()));
-    	EnviromentHolder.ddlList.add(versionsDDL);
     	add(versionsDDL);
     	
     	quickBuildBTN = new JButton(Constants.RUN_QUICK_BUILD);
@@ -110,16 +104,12 @@ public class RunLocalBuildPanel extends javax.swing.JPanel {
     	lblweblogic.setFont(new Font("Tahoma", Font.PLAIN, 13));
     	add(lblweblogic);
     	
-    	tlgDomainDDL = new JComboBox();
-    	tlgDomainDDL.setName(Constants.DDL_TLG_DOMAIN_NAME);
+    	tlgDomainDDL = createDropDownList(Constants.DDL_TLG_DOMAIN_NAME, "");
     	tlgDomainDDL.setBounds(75, 82, 128, 26);
-    	tlgDomainDDL.setModel(new javax.swing.DefaultComboBoxModel(EnviromentHolder.getTlgDomains()));
-    	EnviromentHolder.ddlList.add(tlgDomainDDL);
     	add(tlgDomainDDL);
 
 
     }// </editor-fold>//GEN-END:initComponents
-
 
 
 	// Variables declaration - do not modify//GEN-BEGIN:variables

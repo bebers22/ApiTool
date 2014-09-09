@@ -6,11 +6,13 @@ import javax.swing.JButton;
 
 import enviroment.Constants;
 import enviroment.EnviromentHolder;
+import enviroment.FileHandler;
 import eventHendlers.LoginHandler;
+
 import javax.swing.JCheckBox;
 
 
-public class LoginPanel extends javax.swing.JPanel {
+public class LoginPanel extends JPanelTool {
 	
 	public LoginDialogFrame parentContainer;
 
@@ -35,7 +37,7 @@ public class LoginPanel extends javax.swing.JPanel {
      */
 	private void initUserPassword() {
     	
-    	EnviromentHolder.loadUserEnvDetails();
+    	FileHandler.loadUserEnvDetails();
     	String[] usernamePassword = EnviromentHolder.getUsernamePassword();
     	if(usernamePassword != null) {
     		this.userNameTB.setText(usernamePassword[Constants.USERNAME_INDEX]);
