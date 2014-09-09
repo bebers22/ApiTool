@@ -62,7 +62,7 @@ public class GeneralPanel extends javax.swing.JPanel {
     	add(lblVersion);
     	
     	versionsDDL = new JComboBox();
-    	bbDDL.setName(Constants.DDL_VERSION_NAME);
+    	versionsDDL.setName(Constants.DDL_VERSION_NAME);
     	versionsDDL.setBounds(75, 44, 128, 26);
     	versionsDDL.setToolTipText("Select version");
     	versionsDDL.setModel(new javax.swing.DefaultComboBoxModel(EnviromentHolder.getDdlForVersions()));
