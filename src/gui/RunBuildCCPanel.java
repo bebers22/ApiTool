@@ -8,8 +8,6 @@ import javax.swing.JLabel;
 
 import java.awt.Font;
 
-import javax.swing.JComboBox;
-
 import java.awt.Color;
 
 /**
@@ -77,28 +75,28 @@ public class RunBuildCCPanel extends JPanelTool {
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox bbDDL;
+    private JComboBoxTool bbDDL;
 	private javax.swing.JButton checkLogBTN;
     private javax.swing.JButton runBuildCCBTN;
     private JLabel lblBb;
     private JLabel lblVersion;
-    private JComboBox versionsDDL;
+    private JComboBoxTool versionsDDL;
     private JLabel informationlbl;
     
     
-    public javax.swing.JComboBox getBbDDL() {
+    public JComboBoxTool getBbDDL() {
 		return bbDDL;
 	}
 
-	public void setBbDDL(javax.swing.JComboBox bbDDL) {
+	public void setBbDDL(JComboBoxTool bbDDL) {
 		this.bbDDL = bbDDL;
 	}
 
-	public JComboBox getVersionsDDL() {
+	public JComboBoxTool getVersionsDDL() {
 		return versionsDDL;
 	}
 
-	public void setVersionsDDL(JComboBox versionsDDL) {
+	public void setVersionsDDL(JComboBoxTool versionsDDL) {
 		this.versionsDDL = versionsDDL;
 	}
 }

@@ -3,4 +3,5 @@
 	<File id="BB_AND_VERSIONS_XML" name="xmlsFolder/BBAndVersions.xml" type="String"/>
 	<File id="COMMANDS_XML" name="xmlsFolder/commands.xml" type="String"/>
 	<File id="SUCESS_CONNECT_ICON" name="xmlsFolder/sucess.jpg" type="String"/>
+	<File id="ICON" name="xmlsFolder/icon.gif" type="String"/>
 </Locations>

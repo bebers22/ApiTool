@@ -1,5 +1,7 @@
 package enviroment;
 
+import javax.swing.Icon;
+
 public class Constants {
 	
 	public static final String TOOL_TITLE = "AT&T API Team - Unix tool";
@@ -47,6 +49,9 @@ public class Constants {
 	public static final int PASSWORD_INDEX = 1;
 	public static final String SET_DEBUG_MODE = "Set Debug Mode";
 	public static final String UNSET_DEBUG_MODE = "UnSet Debug Mode";
+	public static final String ABOUT_MENU_ITEM = "About";
+	public static final String ABOUT_DESCRIPTION = "This program was developed by Yuval Simhon and Izhaq BarOz\n"
+			+ "All rights reserved© 2014";
 	
 	public static String EMPTY_STRING = "";
 	public static String LOG_SEPARATOR = "\n---------------------------------------------------------------\n";

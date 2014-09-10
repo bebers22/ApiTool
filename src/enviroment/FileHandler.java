@@ -36,7 +36,7 @@ public class FileHandler {
 	public final static String COMMANDS_XML = "COMMANDS_XML";
 	public final static String SUCESS_CONNECT_ICON = "SUCESS_CONNECT_ICON";
 	public final static String LOCAL_XML_USER_DETAILS_FILE = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\" standalone=\"no\"?><UserDetails> <User id=\"1\" password=\"somePassword\" type=\"string\" username=\"guest\"/> </UserDetails>";
-
+	public final static String ICON = "ICON";
 	
 	
 	/**

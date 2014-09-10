@@ -1,10 +1,8 @@
 package gui;
 
 import java.awt.Font;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import enviroment.Constants;
-import enviroment.EnviromentHolder;
 import eventHendlers.BbManagementHandler;
 
 /**
@@ -70,18 +68,19 @@ public class BbManagementPanel extends JPanelTool {
 
 
 	// Variables declaration - do not modify//GEN-BEGIN:variables
-	private javax.swing.JComboBox bbDDL;
+	
 	private javax.swing.JButton CreateBBBtn;
 	private javax.swing.JButton ChangeProjCCBTN;
 	private JLabel lblBb;
 	private JLabel lblVersion;
-	private JComboBox versionsDDL;
+	private JComboBoxTool versionsDDL;
+	private JComboBoxTool bbDDL;
 	
-	public javax.swing.JComboBox getBbDDL() {
+	public JComboBoxTool getBbDDL() {
 		return bbDDL;
 	}
 
-	public JComboBox getVersionsDDL() {
+	public JComboBoxTool getVersionsDDL() {
 		return versionsDDL;
 	}
 }

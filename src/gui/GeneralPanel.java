@@ -1,14 +1,9 @@
 package gui;
 
 import enviroment.Constants;
-import enviroment.EnviromentHolder;
 import eventHendlers.GeneralHandler;
-
 import java.awt.Font;
-
-import javax.swing.AbstractListModel;
 import javax.swing.JLabel;
-import javax.swing.JComboBox;
 import javax.swing.JButton;
 
 /**
@@ -114,19 +109,19 @@ public class GeneralPanel extends JPanelTool {
     private JLabel lblVersion;
     private JButton clearClassesBTN;
     private JLabel lblBb;
-	private JComboBox bbDDL;
+	private JComboBoxTool bbDDL;
 	private JLabel lblweblogic;
-	private JComboBox tlgDomainDDL;
-	private JComboBox versionsDDL;
+	private JComboBoxTool tlgDomainDDL;
+	private JComboBoxTool versionsDDL;
 	
-	public JComboBox getversionsDDL() {
+	public JComboBoxTool getversionsDDL() {
 		return versionsDDL;
 	}
 
-	public JComboBox getBbDDL() {
+	public JComboBoxTool getBbDDL() {
 		return bbDDL;
 	}
-    public JComboBox getTlgDomainDDL() {
+    public JComboBoxTool getTlgDomainDDL() {
 		return tlgDomainDDL;
 	}
 

@@ -1,10 +1,7 @@
 package gui;
 
 import enviroment.Constants;
-import enviroment.EnviromentHolder;
 import eventHendlers.localBuildHandler;
-
-import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 
@@ -121,22 +118,22 @@ public class RunLocalBuildPanel extends JPanelTool {
     private javax.swing.JButton localBuildBTN;
     private JLabel lblVersion;
 	private JComponent lblBb;
-	private JComboBox bbDDL;
-	private JComboBox versionsDDL;
+	private JComboBoxTool bbDDL;
+	private JComboBoxTool versionsDDL;
 	private JButton quickBuildBTN;
 	private JLabel lblweblogic;
-	private JComboBox tlgDomainDDL;
+	private JComboBoxTool tlgDomainDDL;
 	
 	
-	public JComboBox getBbDDL() {
+	public JComboBoxTool getBbDDL() {
 		return bbDDL;
 	}
 
-	public JComboBox getVersionsDDL() {
+	public JComboBoxTool getVersionsDDL() {
 		return versionsDDL;
 	}
 	
-    public JComboBox getTlgDomainDDL() {
+    public JComboBoxTool getTlgDomainDDL() {
 		return tlgDomainDDL;
 	}
 }

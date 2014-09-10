@@ -2,10 +2,14 @@ package eventHendlers;
 
 import enviroment.Constants;
 import enviroment.EnviromentHolder;
+import enviroment.ErrorMsgs;
 import gui.ToolFrame;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
@@ -61,6 +65,11 @@ public class MenuHandler implements ActionListener{
     	{
     		EnviromentHolder.DEBUG_MODE = false;
     		toolFrame.ReLoadToolFrame();
+    		break;}
+    	
+    	case Constants.ABOUT_MENU_ITEM:
+    	{
+    		JOptionPane.showMessageDialog(null, Constants.ABOUT_DESCRIPTION, Constants.ABOUT_MENU_ITEM , JOptionPane.INFORMATION_MESSAGE);
     		break;}
     	}
 

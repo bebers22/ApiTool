@@ -8,19 +8,18 @@ import dataTypes.LocalBuildAction;
 import dataTypes.LogAreaListiner;
 import dataTypes.LogAreaModel;
 import dataTypes.TaskSchedulerBoard;
+import gui.JComboBoxTool;
 import gui.OutputPanel;
 import gui.ToolFrame;
 
 import java.io.File;
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 import org.omg.CORBA.StringHolder;
@@ -31,7 +30,7 @@ public class EnviromentHolder {
     public static StringHolder logAreaNames = new StringHolder(Constants.GENERAL_LOGS+"@"+Constants.LOCAL_BUILD_LOGS+"@"+Constants.BUILD_CC_LOGS+"@"+Constants.BB_MANAGMENT_LOG); //localBuildLog@buildCCLog@generalLog@consolLog);
     public static HashMap<String, LogAreaModel> Logs;
     public static HashMap componentMap = new HashMap<String, LogAreaListiner>();
-    public static ArrayList<JComboBox> ddlList = new ArrayList<JComboBox>();
+    public static ArrayList<WeakReference<JComboBoxTool>> ddlList = new ArrayList<>();
     
     public static HashMap<String, String> fileLocations = new HashMap<String, String>();
     public static boolean DEBUG_MODE = false;
@@ -41,8 +40,8 @@ public class EnviromentHolder {
     
     private static String[] usernamePassword = new String[2]; ///[0] username , [1] password
     
-	static HashMap<String,String> ddlFillInBBs;
-    static HashMap<String,String> ddlFillInVersion;
+	public static HashMap<String,String> ddlFillInBBs;
+    public static HashMap<String,String> ddlFillInVersion;
     private static CommandsDataInfo commandsDataInfo;
     
     private static String[] webLogicDomains; 
@@ -94,38 +93,7 @@ public class EnviromentHolder {
 		}
 	}
 
-	/**
-     * get ddl BB content
-     * @return
-     */
-    public static String[] getDdlForBB() {
-    	
-    	String[] bbsString = {"TlgServer"};
-    	
-    	if(ddlFillInBBs != null) {
-    		bbsString = ddlFillInBBs.values().toArray(new String[ddlFillInBBs.size()]);
-    	}
-
-    	return bbsString;
-    }
-    
-    /**
-     * get ddl versions content
-     * @return
-     */
-    public static String[] getDdlForVersions() {
-    	
-    	String[] versionsString = {"14063"};
-    	
-    	if(ddlFillInVersion != null) {
-    		versionsString = (String[])ddlFillInVersion.values().toArray(new String[ddlFillInVersion.size()]);
-    	}
-    	Arrays.sort(versionsString, Collections.reverseOrder());
-    	
-    	return versionsString;
-    }
-
-    public static CommandsDataInfo getCommandsDataInfo() {
+	public static CommandsDataInfo getCommandsDataInfo() {
 		return commandsDataInfo;
 	}
 
@@ -214,11 +182,6 @@ public class EnviromentHolder {
             ((OutputPanel)entry.getValue()).setLogAreaModel(Logs.get((String)entry.getKey()));
         }
     }
-    
-	public static void updateDdl(JComboBox ddl) {
-		ddl.showPopup();
-		ddl.hidePopup();
-	}
 
 
     /**

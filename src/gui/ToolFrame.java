@@ -5,21 +5,24 @@ import dataTypes.LogAreaListiner;
 import dataTypes.TaskSchedulerBoard;
 import enviroment.Constants;
 import enviroment.EnviromentHolder;
+import enviroment.FileHandler;
 import eventHendlers.MenuHandler;
 
 import java.awt.Component;
 import java.awt.Container;
+import java.lang.ref.WeakReference;
 import java.util.HashMap;
 import java.awt.Dimension;
 
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JComboBox;
+import javax.swing.ImageIcon;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
-import javax.swing.JPanel;
 
 public class ToolFrame extends javax.swing.JFrame {
+	
+
+
 	public ToolFrame() {
 	}
 
@@ -64,6 +67,10 @@ public class ToolFrame extends javax.swing.JFrame {
     	debugMode.addActionListener(new MenuHandler(this));
     	mnNewMenu.add(debugMode);
     	
+    	aboutMenuit = new JMenuItem(Constants.ABOUT_MENU_ITEM);
+    	aboutMenuit.addActionListener(new MenuHandler(this));
+    	mnNewMenu.add(aboutMenuit);
+    	
 	}
 
     public void LoadToolFrame() {
@@ -77,6 +84,7 @@ public class ToolFrame extends javax.swing.JFrame {
         preLoadEnvierment();
         initComponents();
         postLoadEnvierment();
+        this.setIconImage(new ImageIcon(EnviromentHolder.fileLocations.get(FileHandler.ICON)).getImage());
 
     }
     
@@ -85,26 +93,13 @@ public class ToolFrame extends javax.swing.JFrame {
     	EnviromentHolder.loadPreferences();
     	loadMenuItems();
 
-    	for (JComboBox ddl : EnviromentHolder.ddlList) {
-    		ddl.removeAllItems();
-
-    		switch (ddl.getName()) {
-    		case Constants.DDL_VERSION_NAME :
-    			ddl.setModel(new javax.swing.DefaultComboBoxModel(EnviromentHolder.getDdlForVersions()));
-    			break;
-
-    		case Constants.DDL_BB_NAME :
-    			ddl.setModel(new javax.swing.DefaultComboBoxModel(EnviromentHolder.getDdlForBB()));
-    			break;
-
-    		case Constants.DDL_TLG_DOMAIN_NAME :
-    			ddl.setModel(new javax.swing.DefaultComboBoxModel(EnviromentHolder.getTlgDomains()));
-    			break;
-    		default:
-    			break;
-    		}	
+    	for (WeakReference<JComboBoxTool> ddl : EnviromentHolder.ddlList) {
+    		if(ddl.get() != null){
+    			ddl.get().reload();
+    		}
     	}
     }
+    
     private void preLoadEnvierment() {
         FrameModel frameModel = new FrameModel();
         EnviromentHolder.setFrameModel(frameModel);
@@ -247,6 +242,7 @@ public  HashMap<String, LogAreaListiner> loadOutputLogs(final Container c) {
     private JMenuItem openLogsmnit;
     private JMenuItem reloadEnvmnit;
     private JMenuItem debugMode;
+    private JMenuItem aboutMenuit;
 
     
     // End of variables declaration//GEN-END:variables
