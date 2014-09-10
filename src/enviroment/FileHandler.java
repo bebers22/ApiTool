@@ -5,11 +5,9 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
-
 import javax.swing.JOptionPane;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -18,6 +16,29 @@ import org.xml.sax.SAXException;
 
 public class FileHandler {
 
+	public final static String XML_TAG_PLACEHOLDERS = "PlaceHolder";
+	public final static String XML_TAG_USERNAME = "username";
+	public final static String XML_TAG_PASSWORD = "password";
+	public final static String XML_TAG_NAME = "name";
+	public final static String XML_TAG_ID = "id";
+	public final static String XML_TAG_USER = "User";
+	public final static String XML_TAG_BB = "BB";
+	public static final String XML_TAG_FILE = "File";
+	public static final String XML_TAG_LOCATION = "location";
+	public final static String XML_TAG_VERSION_UNDERSCORE = "Version_";
+	public final static String XML_TAG_VERSION = "Version";
+	public final static String XML_TAG_COMMAND = "command";
+	public final static String XML_TAG_TLG_DOMAIN = "Tlg_domain";
+	public final static String LOCATIONS_XML = "V:/API Knowledge Base/prop/Locations.xml";
+	public final static String LOCAL_LOCATIONS_XML = "Locations.xml";
+	public final static String USERNAME_PASSWORD_XML = "xmlsFolder/usernamePassword.xml";
+	public final static String BB_AND_VERSIONS_XML = "BB_AND_VERSIONS_XML";
+	public final static String COMMANDS_XML = "COMMANDS_XML";
+	public final static String SUCESS_CONNECT_ICON = "SUCESS_CONNECT_ICON";
+	public final static String LOCAL_XML_USER_DETAILS_FILE = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\" standalone=\"no\"?><UserDetails> <User id=\"1\" password=\"somePassword\" type=\"string\" username=\"guest\"/> </UserDetails>";
+
+	
+	
 	/**
 	 * loading the versions an BBs from xml file
 	 */
@@ -120,25 +141,5 @@ public class FileHandler {
 		return mapToFill;
 	}
 
-	public final static String XML_TAG_PLACEHOLDERS = "PlaceHolder";
-	public final static String XML_TAG_USERNAME = "username";
-	public final static String XML_TAG_PASSWORD = "password";
-	public final static String XML_TAG_NAME = "name";
-	public final static String XML_TAG_ID = "id";
-	public final static String XML_TAG_USER = "User";
-	public final static String XML_TAG_BB = "BB";
-	public static final String XML_TAG_FILE = "File";
-	public static final String XML_TAG_LOCATION = "location";
-	public final static String XML_TAG_VERSION_UNDERSCORE = "Version_";
-	public final static String XML_TAG_VERSION = "Version";
-	public final static String XML_TAG_COMMAND = "command";
-	public final static String XML_TAG_TLG_DOMAIN = "Tlg_domain";
-	public final static String LOCATIONS_XML = "V:/API Knowledge Base/prop/Locations.xml";
-	public final static String LOCAL_LOCATIONS_XML = "Locations.xml";
-	public final static String USERNAME_PASSWORD_XML = "xmlsFolder/usernamePassword.xml";
-	public final static String BB_AND_VERSIONS_XML = "BB_AND_VERSIONS_XML";
-	public final static String COMMANDS_XML = "COMMANDS_XML";
-	public final static String SUCESS_CONNECT_ICON = "SUCESS_CONNECT_ICON";
-	public static final String LOCAL_XML_USER_DETAILS_FILE = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\" standalone=\"no\"?><UserDetails> <User id=\"1\" password=\"somePassword\" type=\"string\" username=\"guest\"/> </UserDetails>";
 
 }

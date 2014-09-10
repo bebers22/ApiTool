@@ -22,8 +22,6 @@ public class ErrorMsgs {
 	public final static String ACTIVITY_IS_NOT_RUNNING_DESCRIPTION = "There is no activity which belongs to the selected tab that is currently running.";
 	public final static String BUILD_FAILD = "Build failed";
 
-	
-	
 	public final static String TITLE_CONNECTION_REFUSED = "Connection refused";
 	public final static String TITLE_WRONG_DETAILS = "Wrong Detaild"; 
 	public final static String TITLE_FAILD_TO_LOAD_FILE = "Faild to load from file"; 
@@ -38,13 +36,21 @@ public class ErrorMsgs {
 	 * @param jOptionPaneMessageType - the type of the Pop-up message
 	 * @param popupTitle - the title of the popup 
 	 * @param popupError - the description of the error 
-	 * @param errorLogDescription - the description to the log
+	 * @param e - the exception
 	 */
 	public static void handleException(String ActionToPerform, int jOptionPaneMessageType, String popupTitle, String popupError, Exception e) {
 		JOptionPane.showMessageDialog(null, popupError, popupTitle, jOptionPaneMessageType);
 		writeToErrorLog(ActionToPerform + (EnviromentHolder.DEBUG_MODE ? e.getStackTrace().toString() : e.getMessage()));
 	}
 	
+	/**
+	 * Handle an error event
+	 * @param ActionToPerform - the command that failed
+	 * @param jOptionPaneMessageType - the type of the Pop-up message
+	 * @param popupTitle - the title of the popup 
+	 * @param popupError - the description of the error 
+	 * @param errorLogDescription - the description to the log
+	 */
 	public static void handleException(String ActionToPerform, int jOptionPaneMessageType, String popupTitle, String popupError, String errorLogDescription) {
 		JOptionPane.showMessageDialog(null, popupError, popupTitle, jOptionPaneMessageType);
 		writeToErrorLog(ActionToPerform + errorLogDescription);
