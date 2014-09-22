@@ -71,10 +71,9 @@ public class ShellConnector {
     
     public void writeCommand(String s) {
         try {
-        	//s = "Test_LOCAL_BUILD1";
         	String[] cmds  = s.split(";");
         	for(String st : cmds){
-        		 st = st + "\n\n";
+        		st = "\n\n\n"+ st + "\n\n\n";
                  writer.write(st);
                 writer.flush();
         	}
