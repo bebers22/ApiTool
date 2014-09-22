@@ -122,6 +122,9 @@ public class ShellConnectorJcraft {
         userSession.setUserInfo(userinfo);
         userSession.setConfig("PreferredAuthentications", "publickey,keyboard-interactive,password");
         userSession.connect(TIMEOUT);
+        //userSession.setConfig("StrictHostKeyChecking", "no");
+        jsch.setKnownHosts("knowonHosts.txt");
+        
     }
     
     public void openChannel() throws JSchException, FileNotFoundException {
