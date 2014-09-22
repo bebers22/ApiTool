@@ -11,6 +11,12 @@ public class MyUserInfo implements UserInfo, UIKeyboardInteractive {
 	
     public String getPassword(){ return passwd; }
     public boolean promptYesNo(String str){
+    	
+    	if(str.contains("The authenticity of host")
+    			&& str.contains("can't be established") &&
+    			str.contains("RSA key")) {
+    		return true;
+    	}
       Object[] options={ "yes", "no" };
       int foo=JOptionPane.showOptionDialog(null, 
              str,

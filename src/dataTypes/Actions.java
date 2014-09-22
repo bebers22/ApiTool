@@ -20,6 +20,7 @@ public abstract class Actions {
     
     private LogAreaModel logAreaModel;
     private Vector< LogAreaListiner> listners ;
+    protected String cmd = Constants.EMPTY_STRING;
 
     Actions(LogAreaModel logAreaModel) {
          this.logAreaModel = logAreaModel;
@@ -61,7 +62,7 @@ public abstract class Actions {
 		System.out.println();
 
 	}
-        
+    
     public void startActivity(String command) {
     	if(isActivityIsNotRunning() ){
     	    resetActivity();

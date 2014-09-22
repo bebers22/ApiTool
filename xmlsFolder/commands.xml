@@ -10,8 +10,8 @@
 	</PlaceHolders>
 
 	<UnixCommands>
-		<command id="1" name="Clear Backend Generator" 
-command="find ~/bb/TlgServer/{VERSION_}/amdocs/TlgServer/backend/datalayers_v36 -type f -exec rm -f '{}' \; ;find ~/bb/TlgServer/{VERSION_}/amdocs/TlgServer/backend/dl_interfaces -type f -exec rm -f '{}' \; ;find ~/bb/TlgServer/{VERSION_}/amdocs/TlgServer/backend/datatypes -type f -exec rm -i '{}' \; "
+			<command id="1" name="Clear Backend Generator" 
+command="find ~/bb/TlgServer/{VERSION_}/amdocs/TlgServer/backend/datalayers_v36/ -type f -exec rm -f '{}' \; ;find ~/bb/TlgServer/{VERSION_}/amdocs/TlgServer/backend/dl_interfaces/ -type f -exec rm -f '{}' \; ;find ~/bb/TlgServer/{VERSION_}/amdocs/TlgServer/backend/datatypes/ -type f -exec rm -f '{}' \; ;end_activity;"
 type="string"/>
 <command id="2" name="Run build in CC" 
 			command = "/ibmshome/ibms/ibms/mb_ccird/bin/request_API_build -v {VERSION} -p sbmsIrd{VERSION} \n"
@@ -20,16 +20,16 @@ type="string"/>
 			command = "cd /ibmshome/ibms/ibms/ccird/log.sbmsIrd{VERSION}/log.{BB};grep -l 'BUILD SUCCESSFUL' `ls -rt |tail -2` ;echo $? \n"
 type="string"/>
 <command id="4" name="Run local build"
-			command = "set_proj -p sbmsIrd{VERSION} -b {BB} ; rm -rf ~/weblogic/{TLGDOMAIN}/classes/amdocs ; ant_build_bb -c ; ant_build_bb ;"
+			command = "set_proj -p sbmsIrd{VERSION} -b {BB} ; rm -rf ~/weblogic/tlg_domain/classes/amdocs/;cd ~/weblogic/{TLGDOMAIN}; Test_LOCAL_BUILD1;@"
 type="string"/>
 <command id="5" name="RefreshLocal"
-			command = "cd ~/weblogic/{TLGDOMAIN}/refreshLocal.sh;"
+			command = "cd ~/weblogic/{TLGDOMAIN}; refreshLocal.sh;"
 type="string"/>
 <command id="6" name="Refresh TlgServer"
-			command = "cd ~/weblogic/{TLGDOMAIN}/refreshTlgServer.sh;"
+			command = "cd ~/weblogic/{TLGDOMAIN}; refreshTlgServer.sh;"
 type="string"/>
 <command id="7" name="Restart TlgServer"
-			command = "cd ~/weblogic/tlg_domain/stopTlgServer.sh; cd ~/weblogic/tlg_domain/startTlgServer.sh;"
+			command = "cd ~/weblogic/{TLGDOMAIN}; stopTlgServer.sh; startTlgServer.sh; tail -f logs/weblogic.*;"
 type="string"/>
 <command id="8" name="Quick build"
 			command = "set_proj -p sbmsIrd{VERSION} -b {BB} ;rm -rf ~/ weblogic/{TLGDOMAIN}/classes/amdocs ;cp -rf ~/bb/{BB}/{VERSION_}/bin/ ~/weblogic/{TLGDOMAIN}/classes/amdocs ; "
